@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 var bodyParser = require('body-parser')
 require('dotenv').config()
+const authRouter = require('./routes/auth')
 
 const connectDB = async () => {
 	try {
@@ -23,7 +24,9 @@ const connectDB = async () => {
 const app = express()
 app.use(express.json())
 app.use(cors())
-app.get('/', (req,res)=>res.send('hiiii'))
+
+
+app.use('/api/auth', authRouter)
 
 
 
@@ -36,6 +39,6 @@ connectDB()
 
 
 
-app.listen(8000,()=>{
+app.listen(7000,()=>{
     console.log("server run prefectly")
 })
