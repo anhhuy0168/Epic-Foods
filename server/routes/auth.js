@@ -6,5 +6,6 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/Users')
 
 router.post('/register',AccountController.userRegister) 
-	
+router.post('/login', AccountController.userLogin)
+
 module.exports= router

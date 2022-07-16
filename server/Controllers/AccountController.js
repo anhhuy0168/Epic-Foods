@@ -43,5 +43,48 @@ class AccountController{
 		res.status(500).json({ success: false, message: 'Internal server error' })
 	}
 }
+    //login
+     //login
+   async userLogin(req,res){
+    const { username, password } = req.body
+   
+// Simple validation
+if (!username || !password)
+    return res
+        .status(400)
+        .json({ success: false, message: 'Missing username and/or password' })
+try{
+    // check existing user
+    const user = await User.findOne({username})
+    if(!user)
+    return res.status(400).json({success:false, message:'Incorrect username or password'})
+
+    //username found
+    const passwordValid = await argon2.verify(user.password,password)
+    if(!passwordValid)
+    return res.status(400).json({success:false, message:'Incorrect username or password'})
+
+    // all good
+    // return token
+    const accessToken = jwt.sign(
+        { userId: user._id,
+        username:user.username,
+        
+    },
+        process.env.ACCESS_TOKEN_SECRET,{expiresIn:"2h"}
+    )
+
+    res.json({
+        success: true,
+        message: 'User logged in successfully',
+        accessToken
+    })
+}
+catch(err){
+    console.log(error)
+    res.status(500).json({ success: false, message: 'Internal server error' })
+}
+   
+}
 }
 module.exports = new AccountController()

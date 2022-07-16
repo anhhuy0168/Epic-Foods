@@ -10,3 +10,13 @@ Content-Type: application/json
   "phoneNumber":"0125467889"
 
 }
+
+###
+
+  POST http://localhost:7000/api/auth/login
+  Content-Type: application/json
+
+  {
+    "username": "huynguyen",
+    "password": "jim"
+  }
