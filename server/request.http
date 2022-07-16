@@ -1,0 +1,12 @@
+POST http://localhost:7000/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "viegosenpai",
+  "password": "huy123456",
+  "email":"anhhhhu@gmail.com",
+  "dateOfBirth":"2021-01-15T06:31:15Z",
+  "address":"home",
+  "phoneNumber":"0125467889"
+
+}
