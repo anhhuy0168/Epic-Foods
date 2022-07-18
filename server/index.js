@@ -8,7 +8,7 @@ const authRouter = require('./routes/auth')
 const connectDB = async () => {
 	try {
 		await mongoose.connect(
-			`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.sbcvi.mongodb.net/Users?retryWrites=true&w=majority`,		
+			`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.sbcvi.mongodb.net/Epic-Foods?retryWrites=true&w=majority`,		
 			{
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
