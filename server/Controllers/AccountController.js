@@ -3,7 +3,18 @@ const argon2 = require('argon2')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 class AccountController{
-   
+   // @desc Check if user is logged in
+	async checkUser(req,res){
+		try {
+			const user = await User.findById(req.userId).select('-password')
+			if (!user)
+				return res.status(400).json({ success: false, message: 'User not found' })
+			res.json({ success: true, user })
+		} catch (error) {
+			console.log(error)
+			res.status(500).json({ success: false, message: 'Internal server error' })
+		}
+	}
     // register
    async userRegister(req,res){
     const { username, password ,email, dateOfBirth, address,phoneNumber} = req.body

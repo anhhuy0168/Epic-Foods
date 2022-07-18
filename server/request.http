@@ -2,9 +2,9 @@ POST http://localhost:7000/api/auth/register
 Content-Type: application/json
 
 {
-  "username": "viegosenpai",
-  "password": "huy123456",
-  "email":"anhhhhu@gmail.com",
+  "username": "huy141020",
+  "password": "huy",
+  "email":"anhhhh65u@gmail.com",
   "dateOfBirth":"2021-01-15T06:31:15Z",
   "address":"home",
   "phoneNumber":"0125467889"
@@ -17,6 +17,6 @@ Content-Type: application/json
   Content-Type: application/json
 
   {
-    "username": "huynguyen",
-    "password": "jim"
+    "username": "huy141020",
+    "password": "huy"
   }
