@@ -39,6 +39,6 @@ connectDB()
 
 
 
-app.listen(7000,()=>{
+app.listen(5000,()=>{
     console.log("server run prefectly")
 })
