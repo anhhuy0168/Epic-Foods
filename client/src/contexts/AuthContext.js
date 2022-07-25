@@ -14,6 +14,7 @@ const AuthContextProvider = ({children})=>{
     const loginUser = async userForm =>{
         try {
             const response = await axios.post(`${apiUrl}/auth/login`, userForm)
+            console.log("res login",response);
             if(response.data.success)
             localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME ,response.data.accessToken)
             console.log(response.data.accessToken,"day la token")
@@ -28,7 +29,7 @@ const AuthContextProvider = ({children})=>{
     const registerUser = async userForm => {
 		try {
 			const response = await axios.post(`${apiUrl}/auth/register`, userForm)
-            
+            console.log("res register",response);
 			if (response.data.success)
 				localStorage.setItem(
 					LOCAL_STORAGE_TOKEN_NAME,
