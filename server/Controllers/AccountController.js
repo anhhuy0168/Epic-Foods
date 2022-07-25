@@ -82,7 +82,7 @@ try{
         username:user.username,
         
     },
-        process.env.ACCESS_TOKEN_SECRET,{expiresIn:"2h"}
+        process.env.ACCESS_TOKEN_SECRET,{expiresIn:"5s"}
     )
 
     res.json({
