@@ -10,8 +10,8 @@ const AuthContextProvider = ({children})=>{
         isAuthenticated:false,
         user:null
     })
-    // check user
-    const loadUser = async () => {
+	//authen user
+	const loadUser = async () => {
 		if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
 			setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME])
 		}
@@ -40,12 +40,10 @@ const AuthContextProvider = ({children})=>{
     const loginUser = async userForm =>{
         try {
             const response = await axios.post(`${apiUrl}/auth/login`, userForm)
-            console.log("res login",response);
             if(response.data.success)
             localStorage.setItem(LOCAL_STORAGE_TOKEN_NAME ,response.data.accessToken)
             console.log(response.data.accessToken,"day la token")
-            await loadUser()
-
+			await loadUser()
             return response.data
         } catch (error) {
             //send req in back-end
@@ -57,12 +55,12 @@ const AuthContextProvider = ({children})=>{
     const registerUser = async userForm => {
 		try {
 			const response = await axios.post(`${apiUrl}/auth/register`, userForm)
-            console.log("res register",response);
 			if (response.data.success)
 				localStorage.setItem(
 					LOCAL_STORAGE_TOKEN_NAME,
 					response.data.accessToken
 				)
+
 			return response.data
 		} catch (error) {
 			if (error.response.data) return error.response.data
