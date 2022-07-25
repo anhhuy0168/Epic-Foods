@@ -4,13 +4,14 @@ import Landing from './component/layout/Landing'
 import Auth from './views/auth/auth';
 import AuthContextProvider from './contexts/AuthContext';
 import Homepage from './views/Homepage';
+import ProtectedRoute from './component/routing/ProtectedRoute';
 function App() {
   return (
     <AuthContextProvider>
        <Router>
     <Switch>
     <Route exact path='/' component={Landing}></Route>
-    <Route exact path='/homepage' component={Homepage}></Route>
+    <ProtectedRoute exact path='/homepage' component={Homepage}/>
     <Route
 							exact
 							path='/login'
