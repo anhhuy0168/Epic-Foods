@@ -2,7 +2,9 @@ const User = require("../models/Users");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const sendEmail = require("./SendMailController");
 class AccountController {
+  // @route GET api/auth
   // @desc Check if user is logged in
   async checkUser(req, res) {
     try {
@@ -19,17 +21,60 @@ class AccountController {
         .json({ success: false, message: "Internal server error" });
     }
   }
+  //login
+  async userLogin(req, res) {
+    const { username, password } = req.body;
+
+    // Simple validation
+    if (!username || !password)
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing username and/or password" });
+
+    try {
+      // check existing user
+      const user = await User.findOne({ username });
+      if (!user)
+        return res
+          .status(400)
+          .json({ success: false, message: "Incorrect username or password" });
+
+      //username found
+      const passwordValid = await argon2.verify(user.password, password);
+      if (!passwordValid)
+        return res
+          .status(400)
+          .json({ success: false, message: "Incorrect username or password" });
+
+      // all good
+      // return token
+      const accessToken = jwt.sign(
+        { userId: user._id, username: user.username },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "1d" }
+      );
+
+      res.json({
+        success: true,
+        message: "User logged in successfully",
+        accessToken,
+      });
+    } catch (err) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
   // register
-  async userRegister(req, res) {
+  async userRegister(req, res, next) {
     const { username, password, email, dateOfBirth, address, phoneNumber } =
       req.body;
-    console.log(req.body);
     // Simple validation
     if (!username || !password || !email || !address || !phoneNumber)
       return res
         .status(400)
         .json({ success: false, message: "Missing information" });
-
     try {
       // Check for existing user
       const user = await User.findOne({ username });
@@ -40,6 +85,7 @@ class AccountController {
 
       // All good
 
+      // const newUser1 = new User({ phoneNumber,role :'user', email,address,dateOfBirth,username, password: hashedPassword })
       const newUser = {
         username,
         email,
@@ -105,50 +151,6 @@ class AccountController {
       res.json({ msg: "account has been activated" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
-    }
-  }
-  //login
-  async userLogin(req, res) {
-    const { username, password } = req.body;
-
-    // Simple validation
-    if (!username || !password)
-      return res
-        .status(400)
-        .json({ success: false, message: "Missing username and/or password" });
-    try {
-      // check existing user
-      const user = await User.findOne({ username });
-      if (!user)
-        return res
-          .status(400)
-          .json({ success: false, message: "Incorrect username or password" });
-
-      //username found
-      const passwordValid = await argon2.verify(user.password, password);
-      if (!passwordValid)
-        return res
-          .status(400)
-          .json({ success: false, message: "Incorrect username or password" });
-
-      // all good
-      // return token
-      const accessToken = jwt.sign(
-        { userId: user._id, username: user.username },
-        process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1d" }
-      );
-
-      res.json({
-        success: true,
-        message: "User logged in successfully",
-        accessToken,
-      });
-    } catch (err) {
-      console.log(error);
-      res
-        .status(500)
-        .json({ success: false, message: "Internal server error" });
     }
   }
 }
