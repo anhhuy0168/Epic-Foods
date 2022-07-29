@@ -174,6 +174,7 @@ class AccountController {
       return res.status(500).json({ msg: err.message });
     }
   }
+  // reset pass
   async resetPassword(req, res) {
     try {
       const { password } = req.body;
