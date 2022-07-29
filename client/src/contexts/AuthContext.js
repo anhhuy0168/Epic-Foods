@@ -10,7 +10,7 @@ const AuthContextProvider = ({children})=>{
         isAuthenticated:false,
         user:null
     })
-	//authen user
+	//authenticated user
 	const loadUser = async () => {
 		if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
 			setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME])
