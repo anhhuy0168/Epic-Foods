@@ -7,6 +7,8 @@ import Homepage from "./views/Homepage";
 import ProtectedRoute from "./component/routing/ProtectedRoute";
 import ActivationEmail from "./views/ActivationEmail";
 import ConfirmEmailForm from "./component/ConfirmEmail/ConfirmEmailForm";
+import ForgotPassword from "./component/auth/ForgotPassword/ForgotPassword";
+import ResetPassword from "./component/auth/ResetPass/ResetPassword";
 function App() {
   return (
     <AuthContextProvider>
@@ -24,11 +26,14 @@ function App() {
             render={(props) => <Auth {...props} authRoute="register" />}
           />
           <ProtectedRoute exact path="/homepage" component={Homepage} />
+          <Route path="/forgot_password" component={ForgotPassword} exact />
+          <Route path="/user/reset/:token" component={ResetPassword} exact />
           <Route
             path="/user/activate/:activation_token"
             component={ActivationEmail}
             exact
           />
+
           <Route
             exact
             path="/confirmEmail"

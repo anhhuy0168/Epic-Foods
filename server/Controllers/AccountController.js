@@ -153,5 +153,45 @@ class AccountController {
       return res.status(500).json({ msg: err.message });
     }
   }
+  //forgot pass
+  async forgotPassword(req, res) {
+    try {
+      const { email } = req.body;
+      const user = await User.findOne({ email });
+      if (!user)
+        return res.status(400).json({ msg: "This email does not exist." });
+      // get access token
+      const access_token = jwt.sign(
+        { userId: user._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "2h" }
+      );
+      const url = `${process.env.CLIENT_URL}/user/reset/${access_token}`;
+
+      sendEmail(email, url, "Reset your password");
+      res.json({ msg: "Re-send the password, please check your email." });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  }
+  // reset pass
+  async resetPassword(req, res) {
+    try {
+      const { password } = req.body;
+      console.log(password);
+      const passwordHash = await argon2.hash(password);
+      console.log(req.user.userId);
+      await User.findOneAndUpdate(
+        { _id: req.user.userId },
+        {
+          password: passwordHash,
+        }
+      );
+
+      res.json({ msg: "Password successfully changed!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  }
 }
 module.exports = new AccountController();
