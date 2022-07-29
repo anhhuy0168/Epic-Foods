@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 
 const LoginForm = () => {
-  //alet
+  //alert
   const [alert, setAlert] = useState(null)
   //context
   const{loginUser}= useContext(AuthContext)
@@ -14,7 +14,7 @@ const LoginForm = () => {
   // router
   const history = useHistory()
 
-  //loacal state
+  //local state
   const [loginForm, setLoginForm] = useState({
     
     username:'',
@@ -27,7 +27,7 @@ const LoginForm = () => {
     try{
       const loginData = await loginUser(loginForm)
       if(!loginData.success){
-        setAlert({ type: 'danger', message: 'Incorect Passwords or User Name' })
+        setAlert({ type: 'danger', message: 'Incorrect Passwords or User Name' })
         setTimeout(() => setAlert(null), 5000)
       }
       if(loginData.success){

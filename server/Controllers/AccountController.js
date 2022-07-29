@@ -1,101 +1,155 @@
-const User = require("../models/Users")
-const argon2 = require('argon2')
-const jwt = require('jsonwebtoken')
-require('dotenv').config()
-class AccountController{
-   // @desc Check if user is logged in
-	async checkUser(req,res){
-		try {
-			const user = await User.findById(req.userId).select('-password')
-			if (!user)
-				return res.status(400).json({ success: false, message: 'User not found' })
-			res.json({ success: true, user })
-		} catch (error) {
-			console.log(error)
-			res.status(500).json({ success: false, message: 'Internal server error' })
-		}
-	}
-    // register
-   async userRegister(req,res){
-    const { username, password ,email, dateOfBirth, address,phoneNumber} = req.body
+const User = require("../models/Users");
+const argon2 = require("argon2");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+class AccountController {
+  // @desc Check if user is logged in
+  async checkUser(req, res) {
+    try {
+      const user = await User.findById(req.userId).select("-password");
+      if (!user)
+        return res
+          .status(400)
+          .json({ success: false, message: "User not found" });
+      res.json({ success: true, user });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
+  // register
+  async userRegister(req, res) {
+    const { username, password, email, dateOfBirth, address, phoneNumber } =
+      req.body;
     console.log(req.body);
-	// Simple validation
-	if (!username || !password||!email||!address||!phoneNumber)
-		return res
-			.status(400)
-			.json({ success: false, message: 'Missing information' })
-
-	try {
-		// Check for existing user
-		const user = await User.findOne({ username })
-		if (user)
-			return res
-				.status(400)
-				.json({ success: false, message: 'Username already taken' })
-
-		// All good
-		const hashedPassword = await argon2.hash(password)
-		const newUser = new User({ phoneNumber,role :'user', email,address,dateOfBirth,username, password: hashedPassword })
-		await newUser.save()
-
-		// Return token
-		const accessToken = jwt.sign(
-			{ userId: newUser._id },
-			process.env.ACCESS_TOKEN_SECRET,{expiresIn:"2h"}
-		)
-
-		res.json({
-			success: true,
-			message: 'User created successfully',
-			accessToken
-		})
-	} catch (error) {
-		console.log(error)
-		res.status(500).json({ success: false, message: 'Internal server error' })
-	}
-}
-    //login
-     //login
-   async userLogin(req,res){
-    const { username, password } = req.body
-   
-// Simple validation
-if (!username || !password)
-    return res
+    // Simple validation
+    if (!username || !password || !email || !address || !phoneNumber)
+      return res
         .status(400)
-        .json({ success: false, message: 'Missing username and/or password' })
-try{
-    // check existing user
-    const user = await User.findOne({username})
-    if(!user)
-    return res.status(400).json({success:false, message:'Incorrect username or password'})
+        .json({ success: false, message: "Missing information" });
 
-    //username found
-    const passwordValid = await argon2.verify(user.password,password)
-    if(!passwordValid)
-    return res.status(400).json({success:false, message:'Incorrect username or password'})
+    try {
+      // Check for existing user
+      const user = await User.findOne({ username });
+      if (user)
+        return res
+          .status(400)
+          .json({ success: false, message: "Username already taken" });
 
-    // all good
-    // return token
-    const accessToken = jwt.sign(
-        { userId: user._id,
-        username:user.username,
-        
-    },
-        process.env.ACCESS_TOKEN_SECRET,{expiresIn:"5s"}
-    )
+      // All good
 
-    res.json({
+      const newUser = {
+        username,
+        email,
+        password,
+        address,
+        role: "user",
+        phoneNumber,
+      };
+
+      // Return token
+      const accessToken = jwt.sign(
+        { userId: newUser._id },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "2h" }
+      );
+
+      const activation_token = jwt.sign(
+        { user: newUser },
+        process.env.ACTIVATION_TOKEN_SECRET,
+        { expiresIn: "2h" }
+      );
+      const url = `${process.env.CLIENT_URL}/user/activate/${activation_token}`;
+      sendEmail(email, url, "Verify your email address");
+
+      res.json({
+        msg: "Register Success! Please activate your email to start.",
         success: true,
-        message: 'User logged in successfully',
-        accessToken
-    })
+        accessToken,
+      });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
+  // activate email
+  async activateEmail(req, res) {
+    try {
+      const { activation_token } = req.body;
+      const user = jwt.verify(
+        activation_token,
+        process.env.ACTIVATION_TOKEN_SECRET
+      );
+      console.log(user.user);
+      // 	// var decoded = jwt_decode(user);
+      const { username, email, address, phoneNumber, password } = user.user;
+
+      const check = await User.findOne({ email });
+      if (check)
+        return res.status(400).json({ msg: "This email already exists." });
+      const hashedPassword = await argon2.hash(password);
+      const newUser = new User({
+        username,
+        email,
+        password: hashedPassword,
+        address,
+        phoneNumber,
+        role: "user",
+      });
+
+      await newUser.save();
+      res.json({ msg: "account has been activated" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  }
+  //login
+  async userLogin(req, res) {
+    const { username, password } = req.body;
+
+    // Simple validation
+    if (!username || !password)
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing username and/or password" });
+    try {
+      // check existing user
+      const user = await User.findOne({ username });
+      if (!user)
+        return res
+          .status(400)
+          .json({ success: false, message: "Incorrect username or password" });
+
+      //username found
+      const passwordValid = await argon2.verify(user.password, password);
+      if (!passwordValid)
+        return res
+          .status(400)
+          .json({ success: false, message: "Incorrect username or password" });
+
+      // all good
+      // return token
+      const accessToken = jwt.sign(
+        { userId: user._id, username: user.username },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "1d" }
+      );
+
+      res.json({
+        success: true,
+        message: "User logged in successfully",
+        accessToken,
+      });
+    } catch (err) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
 }
-catch(err){
-    console.log(error)
-    res.status(500).json({ success: false, message: 'Internal server error' })
-}
-   
-}
-}
-module.exports = new AccountController()
+module.exports = new AccountController();
