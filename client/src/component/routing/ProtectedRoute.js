@@ -4,6 +4,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import { Spinner } from "reactstrap";
 import AlertToken from "../../component/layout/AlertTokenExp";
+import Navbar from "../layout/Navbar";
+import Carousel from "../layout/Carousel";
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const {
     authState: { authLoading, isAuthenticated },
@@ -22,6 +24,8 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
       render={(props) =>
         isAuthenticated ? (
           <>
+            <Navbar />
+            <Carousel />
             <Component {...rest} {...props} />
           </>
         ) : (

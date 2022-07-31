@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { apiUrl } from "../../../contexts/constants";
+import dribble from "../../../assets/dribbble.jpg";
+import "./ForgotPassword.css";
 import {
   showErrMsg,
   showSuccessMsg,
 } from "../../layout/NotificationEmail/NotificationEmail";
-import "./ForgotPassword.css";
 const initialState = {
   email: "",
   err: "",
   success: "",
 };
-
 function ForgotPassword() {
   const [data, setData] = useState(initialState);
 
@@ -63,6 +63,7 @@ function ForgotPassword() {
             >
               Verify
             </Button>{" "}
+            <img src={dribble} style={{ marginLeft: "10%" }} />
           </div>
         </div>
       </div>

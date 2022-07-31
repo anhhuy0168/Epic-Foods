@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { Redirect } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import "../auth/auth.css";
-
+import Logo from "../../assets/icon.png";
 const Auth = ({ authRoute }) => {
   const {
     authState: { authLoading, isAuthenticated },
@@ -32,8 +32,16 @@ const Auth = ({ authRoute }) => {
     <div className="landing">
       <div className="dark-overlay">
         <div className="landing-inner">
-          <h1 style={{ color: "yellow" }}>Food Epic</h1>
-          <h4>Bring best foods for you !</h4>
+          <div></div>
+          <img
+            src={Logo}
+            alt="Logo"
+            width="200px"
+            height="130px"
+            className="mr-2"
+          />
+          <h1 style={{ color: "yellow" }}>Foods Epic</h1>
+          <h4>Bring the best food for you !</h4>
           {body}
         </div>
       </div>
