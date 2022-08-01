@@ -1,5 +1,3 @@
 import styled from "styled-components";
-const Wrapper = styled.main`
-  background-color: #330000;
-`;
+const Wrapper = styled.main``;
 export default Wrapper;

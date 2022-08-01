@@ -5,7 +5,7 @@ import AuthContextProvider from "./contexts/AuthContext";
 import Homepage from "./views/Homepage";
 import ProtectedRoute from "./component/routing/ProtectedRoute";
 import ActivationEmail from "./views/ActivationEmail";
-import ConfirmEmailForm from "./component/ConfirmEmail/ConfirmEmailForm";
+import ConfirmEmailForm from "../src/component/layout/ConfirmEmail/ConfirmEmailForm";
 import ForgotPassword from "./component/auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "./component/auth/ResetPass/ResetPassword";
 function App() {
