@@ -72,7 +72,7 @@ const LoginForm = () => {
         </Button>
       </Form>
       <p>
-        Don't have an account ?
+        Don't have an account ?&nbsp;
         <Link style={{ color: "yellow" }} to="register">
           Register
         </Link>

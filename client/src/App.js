@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Landing from "./component/layout/Landing";
 import Auth from "./views/auth/auth";

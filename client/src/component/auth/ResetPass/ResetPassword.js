@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import Form from "react-bootstrap/Form";
 import { apiUrl } from "../../../contexts/constants";
 import {
   showErrMsg,
   showSuccessMsg,
 } from "../../layout/NotificationEmail/NotificationEmail";
 import { isLength, isMatch } from "../../../utils/Validation";
+import "./Reset.css";
 const initialState = {
   password: "",
   cf_password: "",
@@ -55,15 +55,41 @@ function ResetPassword() {
   };
 
   return (
-    <div className="fg_pass">
-      <h2>Reset Your Password</h2>
+    <div
+      className="fg_pass"
+      style={{
+        marginLeft: "35%",
+        width: "30%",
+        border: "1px",
+        borderColor: "black",
+        borderStyle: "solid",
+        borderRadius: "10px",
+        backgroundColor: "rgb(0, 255, 136)",
+      }}
+    >
+      <h2
+        style={{
+          color: "black",
+          fontSize: "25px",
+          margin: "40px 0 20px 0",
+          marginLeft: "20px",
+        }}
+      >
+        Reset Your Password
+      </h2>
 
       <div className="row">
         {err && showErrMsg(err)}
         {success && showSuccessMsg(success)}
 
-        <label htmlFor="password">Password</label>
         <input
+          style={{
+            margin: "20px 0 20px 210px",
+            width: "60%",
+            borderRadius: "10px",
+          }}
+          placeholder="Password"
+          className="input"
           type="password"
           name="password"
           id="password"
@@ -71,17 +97,34 @@ function ResetPassword() {
           onChange={handleChangeInput}
         />
 
-        <label htmlFor="cf_password">Confirm Password</label>
         <input
+          style={{
+            margin: "20px 0 20px 210px",
+            width: "60%",
+            borderRadius: "10px",
+          }}
+          placeholder="Confirm Password"
+          className="input"
           type="password"
           name="cf_password"
           id="cf_password"
           value={cf_password}
           onChange={handleChangeInput}
         />
-
-        <button onClick={handleResetPass}>Reset Password</button>
       </div>
+      <button
+        style={{
+          marginTop: "40px",
+          borderRadius: "10px",
+          backgroundColor: "yellow",
+          marginLeft: "110px",
+          width: "50%",
+        }}
+        className="buttonReset"
+        onClick={handleResetPass}
+      >
+        Reset Password
+      </button>
     </div>
   );
 }

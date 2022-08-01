@@ -118,11 +118,9 @@ const RegisterForm = () => {
       </Form>
 
       <p>
-        Already have an account ?
-        <Link to="login">
-          <Button variant="info" size="sm" className="ml-2">
-            Login
-          </Button>
+        Already have an account ? &nbsp;
+        <Link style={{ color: "yellow" }} to="login">
+          Login
         </Link>
       </p>
     </>
