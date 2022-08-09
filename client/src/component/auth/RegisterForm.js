@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link, useHistory } from "react-router-dom";
-
+import AlertMessage from "../layout/AlertToken/AlertMessage";
 const RegisterForm = () => {
   const history = useHistory();
   // Context
@@ -49,6 +49,7 @@ const RegisterForm = () => {
   return (
     <>
       <Form className="my-4" onSubmit={register}>
+        <AlertMessage info={alert} />
         <Form.Group>
           <Form.Control
             type="text"

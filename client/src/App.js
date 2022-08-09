@@ -27,6 +27,7 @@ function App() {
           <ProtectedRoute exact path="/homepage" component={Homepage} />
           <Route path="/forgot_password" component={ForgotPassword} exact />
           <Route path="/user/reset/:token" component={ResetPassword} exact />
+
           <Route
             path="/user/activate/:activation_token"
             component={ActivationEmail}
