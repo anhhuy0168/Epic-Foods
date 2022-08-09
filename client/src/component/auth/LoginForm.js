@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
+import AlertMessage from "../layout/AlertToken/AlertMessage";
 const LoginForm = () => {
   //alert
   const [alert, setAlert] = useState(null);
@@ -46,6 +47,7 @@ const LoginForm = () => {
   return (
     <>
       <Form className="my-4" onSubmit={login}>
+        <AlertMessage info={alert} />
         <Form.Group>
           <Form.Control
             type="text"
