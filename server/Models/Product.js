@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const FoodsSchema = new mongoose.Schema({
+const ProductsSchema = new mongoose.Schema({
   name: {
     type: String,
     unique: [true, "food name already exists"],
@@ -25,4 +25,4 @@ const FoodsSchema = new mongoose.Schema({
     ref: "category",
   },
 });
-module.exports = mongoose.model("food", FoodsSchema);
+module.exports = mongoose.model("product", ProductsSchema);

@@ -1,4 +1,4 @@
-const Foods = require("../models/Foods");
+const Foods = require("../Models/Product");
 const multer = require("multer");
 const cloudinary = require("../utils/cloudinary");
 class FoodsController {

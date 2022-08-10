@@ -1,15 +1,16 @@
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import Logo from "../../assets/logox2.png";
-import logoutIcon from "../../assets/logout.svg";
+import Logo from "../../../assets/logox2.png";
+import logoutIcon from "../../../assets/logout.svg";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { useContext } from "react";
+import beeSad from "../../../assets/beeSad.png";
 const NavbarMenu = () => {
   const {
     authState: {
-      user: { username },
+      user: { username, avatar },
     },
     logoutUser,
   } = useContext(AuthContext);
@@ -51,6 +52,13 @@ const NavbarMenu = () => {
 
           <Nav>
             <Nav.Link className="font-weight-bolder text-white" disabled>
+              <img
+                style={{ borderRadius: "50px" }}
+                src={!avatar ? beeSad : avatar}
+                width="42"
+                height="42"
+                className="mr-2"
+              />{" "}
               Welcome {username}
             </Nav.Link>
             <Button
