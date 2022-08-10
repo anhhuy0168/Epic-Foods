@@ -2,7 +2,7 @@ import Wrapper from "./AlertTokenExpStyle";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
-import BeeSad from "../../assets/beeSad.png";
+import BeeSad from "../../../assets/beeSad.png";
 import "./AlertTokenExpStyle";
 const AlertToken = () => {
   return (

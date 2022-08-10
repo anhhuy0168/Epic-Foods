@@ -8,39 +8,42 @@ import ActivationEmail from "./views/ActivationEmail";
 import ConfirmEmailForm from "../src/component/layout/ConfirmEmail/ConfirmEmailForm";
 import ForgotPassword from "./component/auth/ForgotPassword/ForgotPassword";
 import ResetPassword from "./component/auth/ResetPass/ResetPassword";
+import FoodContextProvider from "./contexts/FoodsContext";
 function App() {
   return (
     <AuthContextProvider>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Landing}></Route>
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Auth {...props} authRoute="login" />}
-          />
-          <Route
-            exact
-            path="/register"
-            render={(props) => <Auth {...props} authRoute="register" />}
-          />
-          <ProtectedRoute exact path="/homepage" component={Homepage} />
-          <Route path="/forgot_password" component={ForgotPassword} exact />
-          <Route path="/user/reset/:token" component={ResetPassword} exact />
+      <FoodContextProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Landing}></Route>
+            <Route
+              exact
+              path="/login"
+              render={(props) => <Auth {...props} authRoute="login" />}
+            />
+            <Route
+              exact
+              path="/register"
+              render={(props) => <Auth {...props} authRoute="register" />}
+            />
+            <ProtectedRoute exact path="/homepage" component={Homepage} />
+            <Route path="/forgot_password" component={ForgotPassword} exact />
+            <Route path="/user/reset/:token" component={ResetPassword} exact />
 
-          <Route
-            path="/user/activate/:activation_token"
-            component={ActivationEmail}
-            exact
-          />
+            <Route
+              path="/user/activate/:activation_token"
+              component={ActivationEmail}
+              exact
+            />
 
-          <Route
-            exact
-            path="/confirmEmail"
-            component={ConfirmEmailForm}
-          ></Route>
-        </Switch>
-      </Router>
+            <Route
+              exact
+              path="/confirmEmail"
+              component={ConfirmEmailForm}
+            ></Route>
+          </Switch>
+        </Router>
+      </FoodContextProvider>
     </AuthContextProvider>
   );
 }
