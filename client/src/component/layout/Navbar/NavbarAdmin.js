@@ -73,7 +73,22 @@ export const NavbarAdmin = () => {
                 textDecoration: "none",
               }}
               activeClassName="active1"
-              to="/registerStaff"
+              to="/viewUser"
+              exact
+            >
+              <a className="list-group-item list-group-item-action py-2 ripple ">
+                <i className="fas fa-chart-area fa-fw me-3"></i>
+                <span>USER</span>
+              </a>
+            </NavLink>
+            <NavLink
+              style={{
+                borderRadius: "10px",
+                margin: "10px 0px 10px 0px",
+                textDecoration: "none",
+              }}
+              activeClassName="active1"
+              to="/viewUser"
               exact
             >
               <a className="list-group-item list-group-item-action py-2 ripple ">
