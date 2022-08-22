@@ -73,7 +73,7 @@ export const NavbarAdmin = () => {
                 textDecoration: "none",
               }}
               activeClassName="active1"
-              to="/confirmEmail"
+              to="/registerStaff"
               exact
             >
               <a className="list-group-item list-group-item-action py-2 ripple ">

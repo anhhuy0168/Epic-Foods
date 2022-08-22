@@ -16,13 +16,21 @@ const RegisterForm = () => {
     password: "",
     confirmPassword: "",
     address: "",
+    role: "user",
     phoneNumber: "",
   });
   //uncontrolled
   const inputRef = useRef(null);
   const [alert, setAlert] = useState(null);
-  const { address, phoneNumber, email, username, password, confirmPassword } =
-    registerForm;
+  const {
+    address,
+    phoneNumber,
+    email,
+    username,
+    password,
+    confirmPassword,
+    role,
+  } = registerForm;
   const onChangeRegisterForm = (event) =>
     setRegisterForm({
       ...registerForm,
