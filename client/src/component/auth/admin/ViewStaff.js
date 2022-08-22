@@ -7,6 +7,7 @@ import AOS from "aos";
 import beeSad from "../../../assets/avatar.png";
 import "aos/dist/aos.css";
 import NavbarAdmin from "../../layout/Navbar/NavbarAdmin";
+import ActionButtons from "./ActionButton";
 const ViewStaff = () => {
   const {
     userState: { users },
@@ -70,6 +71,9 @@ const ViewStaff = () => {
                 <Card.Text style={{ marginLeft: "10px" }}>
                   Role: {item.role}
                 </Card.Text>
+                <Col className="text-right">
+                  <ActionButtons _id={item._id} />
+                </Col>
               </Card.Body>
             </Card>
           );
