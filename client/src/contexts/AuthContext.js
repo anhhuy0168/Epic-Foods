@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 import { authReducer } from "../reducers/authReducer";
 import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "./constants";
 import axios from "axios";
@@ -10,6 +10,8 @@ const AuthContextProvider = ({ children }) => {
     isAuthenticated: false,
     user: null,
   });
+  const [showAddStaffModal, setShowAddStaffModal] = useState(false);
+
   //authenticated user
   const loadUser = async () => {
     if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
@@ -78,7 +80,14 @@ const AuthContextProvider = ({ children }) => {
     });
   };
   //context data
-  const authContextData = { loginUser, registerUser, logoutUser, authState };
+  const authContextData = {
+    showAddStaffModal,
+    setShowAddStaffModal,
+    loginUser,
+    registerUser,
+    logoutUser,
+    authState,
+  };
 
   //return provide
 

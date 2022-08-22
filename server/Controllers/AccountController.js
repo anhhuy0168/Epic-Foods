@@ -68,8 +68,15 @@ class AccountController {
   }
   // register
   async userRegister(req, res, next) {
-    const { username, password, email, dateOfBirth, address, phoneNumber } =
-      req.body;
+    const {
+      username,
+      password,
+      email,
+      dateOfBirth,
+      address,
+      phoneNumber,
+      role,
+    } = req.body;
     // Simple validation
     if (!username || !password || !email || !address || !phoneNumber)
       return res
@@ -91,7 +98,7 @@ class AccountController {
         email,
         password,
         address,
-        role: "user",
+        role,
         phoneNumber,
       };
 
@@ -132,7 +139,8 @@ class AccountController {
       );
       console.log(user.user);
       // 	// var decoded = jwt_decode(user);
-      const { username, email, address, phoneNumber, password } = user.user;
+      const { username, email, address, phoneNumber, password, role } =
+        user.user;
 
       const check = await User.findOne({ email });
       if (check)
@@ -144,7 +152,7 @@ class AccountController {
         password: hashedPassword,
         address,
         phoneNumber,
-        role: "user",
+        role,
       });
 
       await newUser.save();
