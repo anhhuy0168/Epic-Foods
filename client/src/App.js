@@ -15,6 +15,7 @@ import DetailProduct from "./component/foods/DetailProduct";
 import CartContextProvider from "./contexts/CartContext";
 import Cart from "./component/foods/Cart_User";
 import RegisterStaff from "./component/auth/admin/RegisterStaff";
+import ViewUser from "./component/auth/admin/ViewUser";
 function App() {
   return (
     <AuthContextProvider>
@@ -44,6 +45,12 @@ function App() {
                   exact
                   path="/food/detail/:id"
                   component={DetailProduct}
+                />
+                <ProtectedRoute exact path="/viewUser" component={ViewUser} />
+                <Route
+                  path="/forgot_password"
+                  component={ForgotPassword}
+                  exact
                 />
                 <ProtectedRoute exact path="/cart_User" component={Cart} />
                 <Route
