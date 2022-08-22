@@ -3,7 +3,7 @@ const ProductsSchema = new mongoose.Schema({
   name: {
     type: String,
     unique: [true, "food name already exists"],
-    minLength: [8, "name must be at least 8 character"],
+    minLength: [5, "name must be at least 5 character"],
     maxLength: 255,
   },
   description: {

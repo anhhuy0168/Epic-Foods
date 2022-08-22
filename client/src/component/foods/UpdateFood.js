@@ -57,7 +57,7 @@ const UpdateFoodModal = () => {
   return (
     <Modal show={showUpdateFoodModal} onHide={closeDialog}>
       <Modal.Header closeButton>
-        <Modal.Title>Making progress?</Modal.Title>
+        <Modal.Title>Edit product ?</Modal.Title>
       </Modal.Header>
       <Form onSubmit={onSubmit}>
         <Modal.Body>
@@ -110,7 +110,7 @@ const UpdateFoodModal = () => {
             Cancel
           </Button>
           <Button variant="primary" type="submit">
-            LearnIt!
+            Done
           </Button>
         </Modal.Footer>
       </Form>

@@ -5,6 +5,7 @@ const multer = require("multer");
 const upload = require("../utils/multer");
 
 router.get("/get_foods", FoodsController.getAllFoods);
+router.get("/get_food/:id", FoodsController.getOneFood);
 router.post(
   "/create_foods",
   upload.single("productImage"),

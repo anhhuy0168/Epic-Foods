@@ -8,6 +8,7 @@ import {
   DELETE_FOOD,
   UPDATE_FOOD,
   FIND_FOOD,
+  GET_ONE_FOOD,
 } from "../contexts/constants";
 import axios from "axios";
 
@@ -19,6 +20,7 @@ const FoodContextProvider = ({ children }) => {
     food: null,
     foods: [],
     foodsLoading: true,
+    oneFood: {},
   });
 
   const [showAddFoodModal, setShowAddFoodModal] = useState(false);
@@ -28,6 +30,17 @@ const FoodContextProvider = ({ children }) => {
     message: "",
     type: null,
   });
+
+  //get 1 foods
+  const getOneFoods = async (foodId) => {
+    try {
+      const response = await axios.get(`${apiUrl}/foods/get_food/${foodId}`);
+      if (response.data.success)
+        dispatch({ type: GET_ONE_FOOD, payload: response.data.food });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // Get all posts
   const getFoods = async () => {
     try {
@@ -105,6 +118,7 @@ const FoodContextProvider = ({ children }) => {
 
   // Post context data
   const foodContextData = {
+    getOneFoods,
     foodState,
     getFoods,
     showAddFoodModal,

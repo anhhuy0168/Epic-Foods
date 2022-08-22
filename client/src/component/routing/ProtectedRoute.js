@@ -28,7 +28,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
           </>
         ) : user.role === "admin" && isAuthenticated ? (
           <>
-            <NavbarAdmin />
             <Component {...rest} {...props} />
           </>
         ) : user.role === "staff" && isAuthenticated ? (
@@ -37,8 +36,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
           </>
         ) : user.role === "user" && isAuthenticated ? (
           <>
-            <Navbar />
-            <Carousel />
             <Component {...rest} {...props} />
           </>
         ) : (

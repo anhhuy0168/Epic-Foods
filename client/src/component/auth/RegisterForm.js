@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useContext, useState } from "react";
@@ -15,7 +15,11 @@ const RegisterForm = () => {
     username: "",
     password: "",
     confirmPassword: "",
+    address: "",
+    phoneNumber: "",
   });
+  //uncontrolled
+  const inputRef = useRef(null);
   const [alert, setAlert] = useState(null);
   const { address, phoneNumber, email, username, password, confirmPassword } =
     registerForm;
@@ -57,6 +61,7 @@ const RegisterForm = () => {
             name="email"
             required
             value={email}
+            ref={inputRef}
             onChange={onChangeRegisterForm}
           />
         </Form.Group>
@@ -66,6 +71,7 @@ const RegisterForm = () => {
             placeholder="Address"
             name="address"
             required
+            ref={inputRef}
             value={address}
             onChange={onChangeRegisterForm}
           />
@@ -76,6 +82,7 @@ const RegisterForm = () => {
             placeholder="Phone Number"
             name="phoneNumber"
             required
+            ref={inputRef}
             value={phoneNumber}
             onChange={onChangeRegisterForm}
           />
@@ -88,6 +95,7 @@ const RegisterForm = () => {
             name="username"
             required
             value={username}
+            ref={inputRef}
             onChange={onChangeRegisterForm}
           />
         </Form.Group>
@@ -99,6 +107,7 @@ const RegisterForm = () => {
             name="password"
             required
             value={password}
+            ref={inputRef}
             onChange={onChangeRegisterForm}
           />
         </Form.Group>
@@ -109,6 +118,7 @@ const RegisterForm = () => {
             name="confirmPassword"
             required
             value={confirmPassword}
+            ref={inputRef}
             onChange={onChangeRegisterForm}
           />
         </Form.Group>
