@@ -5,11 +5,17 @@ import {
   DELETE_FOOD,
   UPDATE_FOOD,
   FIND_FOOD,
+  GET_ONE_FOOD,
 } from "../contexts/constants";
 
 export const foodReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
+    case GET_ONE_FOOD:
+      return {
+        ...state,
+        oneFood: payload,
+      };
     case FOODS_LOADED_SUCCESS:
       return {
         ...state,

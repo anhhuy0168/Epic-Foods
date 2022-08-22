@@ -2,8 +2,21 @@ const Foods = require("../Models/Product");
 const multer = require("multer");
 const cloudinary = require("../utils/cloudinary");
 class FoodsController {
-  //
-
+  //get 1
+  async getOneFood(req, res) {
+    try {
+      const food = await Foods.findById({ _id: req.params.id });
+      if (!food) {
+        res.status(404).json({ success: false, message: "Food is not exist" });
+      }
+      if (food) res.json({ success: true, food });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
   //
   async getAllFoods(req, res) {
     try {

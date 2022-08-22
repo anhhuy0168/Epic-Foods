@@ -13,6 +13,9 @@ import AddFoodModal from "../component/foods/AddFood";
 import UpdateFoodModal from "../component/foods/UpdateFood";
 import addIcon from "../assets/plus-circle-fill.svg";
 import SingleFoodUser from "../component/foods/SingleFoodUser";
+import NavbarAdmin from "../../src/component/layout/Navbar/NavbarAdmin";
+import Navbar from "../../src/component/layout/Navbar/Navbar";
+import Carousels from "../component/layout/Carousel";
 const HomePage = () => {
   // Contexts
   const {
@@ -68,20 +71,8 @@ const HomePage = () => {
   } else if (role === "admin") {
     body = (
       <>
-        <div
-          className=""
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {foods.map((food) => (
-            <div key={food._id}>
-              <SingleFood food={food} />
-            </div>
-          ))}
-        </div>
-
+        <NavbarAdmin />
+        <SingleFood />
         {/* Open Add Post Modal */}
         <OverlayTrigger
           placement="left"
@@ -97,38 +88,13 @@ const HomePage = () => {
       </>
     );
   } else if (role === "staff") {
-    body = (
-      <>
-        <div
-          className=""
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {foods.map((food) => (
-            <div key={food._id}>
-              <SingleFood food={food} />
-            </div>
-          ))}
-        </div>
-      </>
-    );
+    body = <></>;
   } else if (role === "user") {
     body = (
       <>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          {foods.map((food) => (
-            <div key={food._id}>
-              <SingleFoodUser food={food} />
-            </div>
-          ))}
-        </div>
+        <Navbar />
+        <Carousels />
+        <SingleFoodUser />
       </>
     );
   }

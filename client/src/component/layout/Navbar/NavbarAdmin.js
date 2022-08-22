@@ -20,7 +20,6 @@ export const NavbarAdmin = () => {
     },
     logoutUser,
   } = useContext(AuthContext);
-  console.log("day la avatar", avatar);
   const logout = () => logoutUser();
   return (
     <Wrapper>
