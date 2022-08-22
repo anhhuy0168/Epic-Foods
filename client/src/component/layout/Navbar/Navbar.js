@@ -8,6 +8,8 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { useContext } from "react";
 import beeSad from "../../../assets/avatar.png";
 import { GrLogout } from "react-icons/gr";
+import { CartContext } from "../../../contexts/CartContext";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 const NavbarMenu = () => {
   const {
@@ -61,7 +63,12 @@ const NavbarMenu = () => {
         </h4>
       </div>
       <div style={{ marginRight: "20px" }}>{username}</div>
-
+      <Link to="/cart_User">
+        <MdOutlineShoppingCart
+          size={30}
+          variant="secondary"
+        ></MdOutlineShoppingCart>
+      </Link>
       <div style={{ margin: "0px 0px 0px 1rem", cursor: "pointer" }}>
         <GrLogout
           size={30}
