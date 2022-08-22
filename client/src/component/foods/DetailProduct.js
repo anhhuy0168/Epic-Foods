@@ -5,6 +5,9 @@ import Button from "react-bootstrap/esm/Button";
 import { AuthContext } from "../../contexts/AuthContext";
 import NavbarAdmin from "../layout/Navbar/NavbarAdmin";
 import Navbar from "../layout/Navbar/Navbar";
+import { CartContext } from "../../contexts/CartContext";
+import toast, { Toaster } from "react-hot-toast";
+
 const DetailProduct = () => {
   const params = useParams();
 
@@ -18,9 +21,22 @@ const DetailProduct = () => {
       user: { _id, role },
     },
   } = useContext(AuthContext);
-
+  const {
+    cartState: { cart },
+    addProductCart,
+  } = useContext(CartContext);
   useEffect(() => getOneFoods(params.id), []);
-  console.log(oneFood);
+
+  const addProductToCart = (value) => {
+    const newProduct = {
+      product: value,
+      users_id: _id,
+    };
+
+    addProductCart(newProduct);
+    toast.success("Add Product Successfully");
+  };
+
   let body = null;
   if (role === "admin") {
     body = (
@@ -76,6 +92,7 @@ const DetailProduct = () => {
   if (role === "user") {
     body = (
       <>
+        <Toaster position="top-right" reverseOrder={false} />
         <Navbar />
         <div
           className="detail"
@@ -115,7 +132,14 @@ const DetailProduct = () => {
             Price:$ {oneFood.price}
           </div>
         </div>
-        <Button style={{ marginLeft: "50rem", marginTop: "-5rem" }}>
+        <Button
+          style={{ marginLeft: "750px", marginTop: "-140px" }}
+          onClick={() => addProductToCart(oneFood._id)}
+          className="text-right"
+        >
+          Add to cart
+        </Button>
+        <Button style={{ marginLeft: "55rem", marginTop: "-11.7rem" }}>
           Buy Now
         </Button>
       </>
