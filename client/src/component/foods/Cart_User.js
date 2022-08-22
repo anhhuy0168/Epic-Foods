@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import DeleteProductCart from "./DeleteProductCart";
 const Cart_User = () => {
   const history = useHistory();
 
@@ -93,6 +94,9 @@ const Cart_User = () => {
                       +{" "}
                     </button>
                   </div>
+                </td>
+                <td>
+                  <DeleteProductCart _id={item.product._id} cartId={item._id} />
                 </td>
               </tr>
             );
