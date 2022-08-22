@@ -1,0 +1,24 @@
+.errMsg{
+    position: fixed;
+    top: 0;
+    right: 25%;
+    width: 50%;
+    background: rgb(214, 10, 10);
+    color: #fff9;
+    text-align: center;
+    padding: 10px 0;
+    letter-spacing: 1.3px;
+}
+
+.successMsg{
+    position: fixed;
+    top: 0;
+    right: 25%;
+    width: 50%;
+
+    background: rgb(9, 158, 54);
+    color: #fff9;
+    text-align: center;
+    padding: 10px 0;
+    letter-spacing: 1.3px;
+}
