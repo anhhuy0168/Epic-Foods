@@ -13,6 +13,8 @@ import { Link, NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { GrLogout } from "react-icons/gr";
 import beeSad from "../../../assets/beeSad.png";
+import Logo from "../../../assets/logox2.png";
+
 export const NavbarAdmin = () => {
   const {
     authState: {
@@ -49,6 +51,21 @@ export const NavbarAdmin = () => {
               <a className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
                 <span>CRUD FOODS</span>
+              </a>
+            </NavLink>
+            <NavLink
+              style={{
+                borderRadius: "10px",
+                margin: "10px 0px 10px 0px",
+                textDecoration: "none",
+              }}
+              activeClassName="active1"
+              to="/Category"
+              exact
+            >
+              <a className="list-group-item list-group-item-action py-2 ripple ">
+                <i className="fas fa-chart-area fa-fw me-3"></i>
+                <span>CRUD CATEGORY</span>
               </a>
             </NavLink>
             <NavLink
@@ -98,7 +115,7 @@ export const NavbarAdmin = () => {
             </NavLink>
           </div>
         </div>
-        <div style={{ margin: "16rem 0px 0px 5rem", cursor: "pointer" }}>
+        <div style={{ margin: "10rem 0px 0px 5rem", cursor: "pointer" }}>
           <GrLogout
             size={30}
             variant="secondary"
@@ -126,12 +143,17 @@ export const NavbarAdmin = () => {
             <i className="fas fa-bars"></i>
           </button>
         </div>
-        <a className="navbar-brand" href="#">
-          Epic Foods
-        </a>
+        <img
+          src={Logo}
+          alt="Logo"
+          width="50px"
+          height="50px"
+          className="mr-3"
+        />
+
         <form className="d-none d-md-flex input-group w-auto my-auto">
           <input
-            autocomplete="off"
+            autoComplete="off"
             type="search"
             className="form-control rounded"
             placeholder="Search..."

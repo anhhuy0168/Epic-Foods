@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useContext } from "react";
 import { AdminContext } from "../../../contexts/AdminContext";
 import Col from "react-bootstrap/Col";
-import ActionButtons from "./ActionButton";
 import Card from "react-bootstrap/Card";
 import AOS from "aos";
+import ActionButtons from "./ActionButton";
 import beeSad from "../../../assets/avatar.png";
 import "aos/dist/aos.css";
 import NavbarAdmin from "../../layout/Navbar/NavbarAdmin";
@@ -13,7 +13,9 @@ const ViewUser = () => {
     userState: { listUser },
     getUser,
   } = useContext(AdminContext);
-  useEffect(() => getUser(), []);
+  useEffect(() => {
+    getUser();
+  }, []);
   useEffect(() => {
     AOS.init({ duration: 1000 });
     AOS.refresh();

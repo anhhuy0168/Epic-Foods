@@ -8,6 +8,7 @@ import beeSad from "../../../assets/avatar.png";
 import "aos/dist/aos.css";
 import NavbarAdmin from "../../layout/Navbar/NavbarAdmin";
 import ActionButtons from "./ActionButton";
+import ViewUser from "./ViewUser";
 const ViewStaff = () => {
   const {
     userState: { users },

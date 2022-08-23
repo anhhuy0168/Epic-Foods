@@ -16,6 +16,7 @@ import CartContextProvider from "./contexts/CartContext";
 import Cart from "./component/foods/Cart_User";
 import RegisterStaff from "./component/auth/admin/RegisterStaff";
 import ViewUser from "./component/auth/admin/ViewUser";
+import ViewCategory from "./component/auth/admin/Category/ViewCategory";
 function App() {
   return (
     <AuthContextProvider>
@@ -53,6 +54,16 @@ function App() {
                   exact
                 />
                 <ProtectedRoute exact path="/cart_User" component={Cart} />
+                <Route
+                  path="/user/reset/:token"
+                  component={ResetPassword}
+                  exact
+                />
+                <ProtectedRoute
+                  exact
+                  path="/Category"
+                  component={ViewCategory}
+                />
                 <Route
                   path="/user/reset/:token"
                   component={ResetPassword}

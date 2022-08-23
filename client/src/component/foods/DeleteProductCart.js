@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import deleteIcon from "../../assets/trash.svg";
 import { CartContext } from "../../contexts/CartContext";
 const DeleteProductCart = (_id, cartId) => {
-  const { deleteProductCart, findProduct } = useContext(CartContext);
+  const { deleteProductCart } = useContext(CartContext);
   return (
     <>
       <Button
