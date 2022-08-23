@@ -27,7 +27,7 @@ const SingleFood = () => {
           position: "relative",
           width: "50%",
           width: "18rem",
-          top: 200,
+          top: 150,
           left: 350,
           padding: 0,
           display: "grid",

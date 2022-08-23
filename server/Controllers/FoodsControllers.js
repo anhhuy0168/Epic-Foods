@@ -61,7 +61,6 @@ class FoodsController {
   }
   //update
   async updateFoods(req, res) {
-    console.log(req.body);
     const result = await cloudinary.uploader.upload(req.file.path);
 
     const { name, description, price, productImage } = req.body;

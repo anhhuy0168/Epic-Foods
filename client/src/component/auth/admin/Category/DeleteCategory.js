@@ -1,15 +1,19 @@
 import Button from "react-bootstrap/Button";
-import { AdminContext } from "../../../contexts/AdminContext";
-import { useContext, useEffect } from "react";
+import { AdminContext } from "../../../../contexts/AdminContext";
+import { useContext } from "react";
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-const ActionButtons = ({ _id }) => {
+const DeleteCategory = ({ _id }) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const { deleteStaff, getUser } = useContext(AdminContext);
-  useEffect(() => getUser(), [show]);
+  const { findCategory, setShowUpdateCategoryModal, deleteCategory } =
+    useContext(AdminContext);
+  const chooseCategory = (categoryId) => {
+    findCategory(categoryId);
+    setShowUpdateCategoryModal(true);
+  };
   return (
     <>
       <Button
@@ -32,15 +36,16 @@ const ActionButtons = ({ _id }) => {
           <div variant="primary" onClick={handleClose}>
             <Button
               className="staff-button"
-              onClick={deleteStaff.bind(this, _id)}
+              onClick={deleteCategory.bind(this, _id)}
             >
               Delete
             </Button>
           </div>
         </Modal.Footer>
       </Modal>
+      <Button onClick={chooseCategory.bind(this, _id)}>Update</Button>
     </>
   );
 };
 
-export default ActionButtons;
+export default DeleteCategory;

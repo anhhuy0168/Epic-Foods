@@ -8,7 +8,7 @@ import AlertMessage from "../../layout/AlertToken/AlertMessage";
 import { isEmail } from "../../../utils/Validation";
 import ViewStaff from "./ViewStaff";
 import toast, { Toaster } from "react-hot-toast";
-
+import ViewUser from "./ViewUser";
 const RegisterStaff = () => {
   const history = useHistory();
   // Context
