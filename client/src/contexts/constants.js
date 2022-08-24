@@ -2,7 +2,10 @@ export const apiUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:5000/api"
     : "somedeployed";
-
+export const apiUrlComment =
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:5000/auth/comment"
+    : "somedeployed";
 export const apiGoogleUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:5000"
@@ -33,3 +36,5 @@ export const ADD_CATEGORY = "ADD_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
 export const FIND_CATEGORY = "FIND_CATEGORY";
+export const COMMENT_LOADED_SUCCESS = "COMMENT_LOADED_SUCCESS";
+export const COMMENT_LOADED_FAIL = "COMMENT_LOADED_FAIL";

@@ -2,7 +2,6 @@ const Cart = require("../models/Cart");
 const { ObjectId } = require("mongodb");
 class CartController {
   async getCartUser(req, res) {
-    console.log("Param", req.userId);
     try {
       const cart = await Cart.find({ user_id: req.userId });
       res.json({ success: true, cart });

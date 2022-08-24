@@ -8,13 +8,13 @@ import Navbar from "../layout/Navbar/Navbar";
 import { CartContext } from "../../contexts/CartContext";
 import toast, { Toaster } from "react-hot-toast";
 import { AdminContext } from "../../contexts/AdminContext";
+
 const DetailProduct = () => {
   const params = useParams();
   const {
     userState: { listCategory },
     getCategory,
   } = useContext(AdminContext);
-
   const {
     foodState: { oneFood, category },
     getOneFoods,
@@ -30,7 +30,7 @@ const DetailProduct = () => {
     addProductCart,
   } = useContext(CartContext);
   useEffect(() => getOneFoods(params.id), []);
-  console.log(oneFood.category);
+
   const addProductToCart = (value) => {
     const newProduct = {
       product: value,
