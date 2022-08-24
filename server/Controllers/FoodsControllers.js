@@ -34,7 +34,7 @@ class FoodsController {
     try {
       //upload
       const result = await cloudinary.uploader.upload(req.file.path);
-      const { name, description, price } = req.body;
+      const { name, description, price, category } = req.body;
       const product = await Foods.findOne({ name });
       if (product)
         return res
@@ -49,6 +49,7 @@ class FoodsController {
         description,
         price,
         productImage: result.secure_url,
+        category,
       });
       await newFood.save();
       res.json({ success: true, message: "Create complete !", food: newFood });

@@ -7,15 +7,19 @@ import NavbarAdmin from "../layout/Navbar/NavbarAdmin";
 import Navbar from "../layout/Navbar/Navbar";
 import { CartContext } from "../../contexts/CartContext";
 import toast, { Toaster } from "react-hot-toast";
-
+import { AdminContext } from "../../contexts/AdminContext";
 const DetailProduct = () => {
   const params = useParams();
+  const {
+    userState: { listCategory },
+    getCategory,
+  } = useContext(AdminContext);
 
   const {
-    foodState: { oneFood },
+    foodState: { oneFood, category },
     getOneFoods,
+    getFoods,
   } = useContext(FoodContext);
-
   const {
     authState: {
       user: { _id, role },
@@ -26,7 +30,7 @@ const DetailProduct = () => {
     addProductCart,
   } = useContext(CartContext);
   useEffect(() => getOneFoods(params.id), []);
-
+  console.log(oneFood.category);
   const addProductToCart = (value) => {
     const newProduct = {
       product: value,
@@ -58,6 +62,8 @@ const DetailProduct = () => {
             <div style={{ fontSize: "40px", margin: "-18px 0 0 100px " }}>
               {oneFood.name}
             </div>
+            <div></div>
+
             <div
               style={{
                 maxWidth: "30rem",
@@ -67,9 +73,11 @@ const DetailProduct = () => {
               }}
             >
               {oneFood.description}
+              <div style={{ marginTop: "20px", fontWeight: "600" }}>
+                Category: {category.name}
+              </div>
             </div>
           </div>
-
           <div
             style={{
               marginTop: "23rem",

@@ -15,6 +15,7 @@ export const foodReducer = (state, action) => {
       return {
         ...state,
         oneFood: payload,
+        category: payload.category,
       };
     case FOODS_LOADED_SUCCESS:
       return {
