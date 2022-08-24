@@ -31,6 +31,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/foods", foodsRouter);
 app.use("/auth/cart", cartRouter);
 app.use("/api/admin", adminRouter);
+
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // // app.use('/api/auth', authRouter)
