@@ -12,11 +12,9 @@ const ProductsSchema = new mongoose.Schema({
   },
   price: {
     type: Number,
-    unique: [true, "Price already exists"],
   },
   productImage: {
     type: String,
-    unique: [true, "Product Image already exists"],
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,

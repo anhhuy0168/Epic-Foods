@@ -66,7 +66,6 @@ const CartContextProvider = ({ children }) => {
 
   // delete product in cart
   const deleteProductCart = async (productId) => {
-    console.log("id context", productId);
     try {
       const response = await axios.delete(
         `${apiGoogleUrl}/auth/cart/cart_product/${productId}`
