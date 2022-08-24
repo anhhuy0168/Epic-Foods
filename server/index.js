@@ -7,6 +7,7 @@ const authRouter = require("./routes/auth");
 const foodsRouter = require("./routes/food");
 const cartRouter = require("./routes/cart");
 const adminRouter = require("./routes/admin");
+const commentRouter = require("./routes/comment");
 const connectDB = async () => {
   try {
     await mongoose.connect(
@@ -31,6 +32,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/foods", foodsRouter);
 app.use("/auth/cart", cartRouter);
 app.use("/api/admin", adminRouter);
+app.use("/auth/comment", commentRouter);
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));

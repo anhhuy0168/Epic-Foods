@@ -8,6 +8,10 @@ import Navbar from "../layout/Navbar/Navbar";
 import { CartContext } from "../../contexts/CartContext";
 import toast, { Toaster } from "react-hot-toast";
 import { AdminContext } from "../../contexts/AdminContext";
+import { CommentContext } from "../../contexts/CommentContext";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import { AiOutlineSend } from "react-icons/ai";
 
 const DetailProduct = () => {
   const params = useParams();
@@ -16,10 +20,15 @@ const DetailProduct = () => {
     getCategory,
   } = useContext(AdminContext);
   const {
+    commentState: { comments },
+    getComment,
+  } = useContext(CommentContext);
+  const {
     foodState: { oneFood, category },
     getOneFoods,
     getFoods,
   } = useContext(FoodContext);
+  console.log("day la comment", comments);
   const {
     authState: {
       user: { _id, role },
@@ -30,6 +39,7 @@ const DetailProduct = () => {
     addProductCart,
   } = useContext(CartContext);
   useEffect(() => getOneFoods(params.id), []);
+  useEffect(() => getComment(params.id), []);
 
   const addProductToCart = (value) => {
     const newProduct = {
@@ -153,7 +163,57 @@ const DetailProduct = () => {
       </>
     );
   }
-  return <>{body}</>;
+  return (
+    <>
+      {body}
+      <Card
+        style={{ width: "70rem", position: "relative", left: 300, top: 100 }}
+      >
+        <Card.Header
+          style={{
+            fontSize: "30px",
+            textAlign: "center",
+            backgroundColor: "yellow",
+          }}
+        >
+          Comments
+        </Card.Header>
+        <Form style={{ display: "flex" }}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="text"
+              placeholder="Comment..."
+              style={{
+                height: "3rem",
+                width: "60rem",
+                marginTop: "50px",
+                marginLeft: "80px",
+                borderRadius: "30px",
+              }}
+            />
+          </Form.Group>
+
+          <AiOutlineSend
+            variant="primary"
+            type="submit"
+            size={30}
+            style={{ position: "relative", top: 58, right: 60 }}
+          ></AiOutlineSend>
+        </Form>
+        <Card.Body>
+          {comments.map((item) => {
+            return (
+              <>
+                <blockquote className="blockquote mb-0" key={item._id}>
+                  <p key={item._id}>{item.content}</p>
+                </blockquote>
+              </>
+            );
+          })}
+        </Card.Body>
+      </Card>
+    </>
+  );
 };
 
 export default DetailProduct;
