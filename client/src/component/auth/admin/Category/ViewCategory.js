@@ -18,12 +18,6 @@ const ViewCategory = () => {
   const {
     userState: { listCategory },
     getCategory,
-    setShowAddCategoryModal,
-    showUpdateCategoryModal,
-    setShowUpdateCategoryModal,
-    setUpdateCategoryData,
-    showToast: { show, message, type },
-    setShowToast,
   } = useContext(AdminContext);
   const {
     authState: {

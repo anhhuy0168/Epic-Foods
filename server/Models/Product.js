@@ -8,9 +8,7 @@ const ProductsSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    unique: [true, "Description already exists"],
     minLength: [8, "Description must be at least 8 character"],
-    maxLength: 255,
   },
   price: {
     type: Number,
@@ -20,9 +18,15 @@ const ProductsSchema = new mongoose.Schema({
     type: String,
     unique: [true, "Product Image already exists"],
   },
-  Category: {
+  category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
   },
+});
+ProductsSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "category",
+  });
+  next();
 });
 module.exports = mongoose.model("product", ProductsSchema);

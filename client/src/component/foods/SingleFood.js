@@ -28,7 +28,7 @@ const SingleFood = () => {
           width: "50%",
           width: "18rem",
           top: 150,
-          left: 350,
+          left: 400,
           padding: 0,
           display: "grid",
           gridTemplateColumns: "repeat(3,1fr)",

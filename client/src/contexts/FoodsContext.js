@@ -21,6 +21,7 @@ const FoodContextProvider = ({ children }) => {
     foods: [],
     foodsLoading: true,
     oneFood: {},
+    category: {},
   });
 
   const [showAddFoodModal, setShowAddFoodModal] = useState(false);
