@@ -81,7 +81,6 @@ class AdminController {
     }
   }
   async updateCategory(req, res) {
-    console.log(req.body);
     const { name } = req.body;
     // Simple validation
     if (!name)

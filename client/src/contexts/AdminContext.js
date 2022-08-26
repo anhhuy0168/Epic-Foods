@@ -23,7 +23,7 @@ const AdminContextProvider = ({ children }) => {
     userLoading: true,
     listUser: [],
     listCategory: [],
-    category: null,
+    category: {},
   });
   const [showAddCategoryModal, setShowAddCategoryModal] = useState(false);
   const [showUpdateCategoryModal, setShowUpdateCategoryModal] = useState(false);
@@ -125,7 +125,6 @@ const AdminContextProvider = ({ children }) => {
   //update category
   const updateCategory = async (updateCategory) => {
     try {
-      console.log(updateCategory);
       const response = await axios.patch(
         `${apiUrl}/admin/updateCategory/${updateCategory._id}`,
         updateCategory,

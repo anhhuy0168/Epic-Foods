@@ -12,7 +12,7 @@ import { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import { GrLogout } from "react-icons/gr";
-import beeSad from "../../../assets/beeSad.png";
+import beeSad from "../../../assets/avatar.png";
 import Logo from "../../../assets/logox2.png";
 
 export const NavbarAdmin = () => {
@@ -48,10 +48,10 @@ export const NavbarAdmin = () => {
               to="/homepage"
               exact
             >
-              <a className="list-group-item list-group-item-action py-2 ripple ">
+              <div className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
                 <span>CRUD FOODS</span>
-              </a>
+              </div>
             </NavLink>
             <NavLink
               style={{
@@ -63,10 +63,10 @@ export const NavbarAdmin = () => {
               to="/Category"
               exact
             >
-              <a className="list-group-item list-group-item-action py-2 ripple ">
+              <div className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
                 <span>CRUD CATEGORY</span>
-              </a>
+              </div>
             </NavLink>
             <NavLink
               style={{
@@ -78,10 +78,10 @@ export const NavbarAdmin = () => {
               to="/registerStaff"
               exact
             >
-              <a className="list-group-item list-group-item-action py-2 ripple ">
+              <div className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
                 <span>CRUD ACCOUNT</span>
-              </a>
+              </div>
             </NavLink>
             <NavLink
               style={{
@@ -93,10 +93,10 @@ export const NavbarAdmin = () => {
               to="/viewUser"
               exact
             >
-              <a className="list-group-item list-group-item-action py-2 ripple ">
+              <div className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
                 <span>USER</span>
-              </a>
+              </div>
             </NavLink>
             <NavLink
               style={{
@@ -108,10 +108,10 @@ export const NavbarAdmin = () => {
               to="/viewUser"
               exact
             >
-              <a className="list-group-item list-group-item-action py-2 ripple ">
+              <div className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
                 <span>Webiste traffic</span>
-              </a>
+              </div>
             </NavLink>
           </div>
         </div>

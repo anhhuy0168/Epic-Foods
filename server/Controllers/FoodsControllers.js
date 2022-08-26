@@ -64,7 +64,7 @@ class FoodsController {
   async updateFoods(req, res) {
     const result = await cloudinary.uploader.upload(req.file.path);
 
-    const { name, description, price, productImage } = req.body;
+    const { name, description, price, productImage, category } = req.body;
     // Simple validation
     if (!name && !productImage && !price)
       return res
@@ -76,6 +76,7 @@ class FoodsController {
         description,
         price,
         productImage: result.secure_url,
+        category,
       };
       const updateProductCondition = { _id: req.params.id };
       updateProduct = await Foods.findByIdAndUpdate(

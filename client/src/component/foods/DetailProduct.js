@@ -7,28 +7,29 @@ import NavbarAdmin from "../layout/Navbar/NavbarAdmin";
 import Navbar from "../layout/Navbar/Navbar";
 import { CartContext } from "../../contexts/CartContext";
 import toast, { Toaster } from "react-hot-toast";
-import { AdminContext } from "../../contexts/AdminContext";
 import { CommentContext } from "../../contexts/CommentContext";
-import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { AiOutlineSend } from "react-icons/ai";
-
+import CreateComment from "./CreateComment";
+import DeleteComment from "./DeleteComment";
+import { AiFillCar } from "react-icons/ai";
+import EditComment from "./EditComment";
+import Toast from "react-bootstrap/Toast";
+import beeSad from "../../assets/avatar.png";
 const DetailProduct = () => {
   const params = useParams();
+
   const {
-    userState: { listCategory },
-    getCategory,
-  } = useContext(AdminContext);
-  const {
-    commentState: { comments },
+    commentState: { comments, user },
     getComment,
+    deleteComment,
   } = useContext(CommentContext);
+  const [count, setCount] = useState(comments);
   const {
     foodState: { oneFood, category },
     getOneFoods,
-    getFoods,
+    showToast: { show, message, type },
+    setShowToast,
   } = useContext(FoodContext);
-  console.log("day la comment", comments);
   const {
     authState: {
       user: { _id, role },
@@ -40,6 +41,8 @@ const DetailProduct = () => {
   } = useContext(CartContext);
   useEffect(() => getOneFoods(params.id), []);
   useEffect(() => getComment(params.id), []);
+  useEffect(() => setCount(comments), [comments]);
+  console.log(count);
 
   const addProductToCart = (value) => {
     const newProduct = {
@@ -104,6 +107,80 @@ const DetailProduct = () => {
         <Button style={{ marginLeft: "60rem", marginTop: "-5rem" }}>
           Buy Now
         </Button>
+
+        <Card
+          style={{
+            width: "70rem",
+            position: "relative",
+            left: 300,
+            top: 100,
+            boxShadow:
+              "0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%)",
+            padding: "0 0 10rem 0",
+            marginBottom: "10rem",
+          }}
+        >
+          <CreateComment idProduct={oneFood._id} />
+          <Card.Body>
+            {count.map((item) => {
+              return (
+                <>
+                  <div
+                    key={item._id}
+                    style={{
+                      height: "4.5rem",
+                      marginBottom: "30px",
+                      marginLeft: "60px",
+                    }}
+                  >
+                    <div>
+                      <p
+                        style={{
+                          backgroundColor: "#BBBBBB",
+                          borderRadius: "20px",
+                          height: "auto",
+                          width: "25rem",
+                          maxWidth: "30rem",
+                          padding: "5px 20px 5px 20px",
+                          wordWrap: "break-word",
+                          fontSize: "16px",
+                          position: "relative",
+                          fontWeight: 450,
+                        }}
+                      >
+                        <div style={{ fontSize: "16px", fontWeight: 650 }}>
+                          {item.user_id.username}
+                        </div>
+                        {item.content}
+
+                        <img
+                          src={
+                            !item.user_id.avatar ? beeSad : item.user_id.avatar
+                          }
+                          style={{
+                            position: "absolute",
+                            borderRadius: "30px",
+                            left: -50,
+                            top: 1,
+                          }}
+                          width="40px"
+                          height="40px"
+                          className="mr-3"
+                        />
+                      </p>
+
+                      <div>
+                        {item.user_id._id === _id ? (
+                          <DeleteComment _id={item._id} />
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+          </Card.Body>
+        </Card>
       </>
     );
   }
@@ -131,9 +208,13 @@ const DetailProduct = () => {
                 marginTop: "2rem",
                 position: "relative",
                 left: 50,
+                verticalAlign: "top",
               }}
             >
               {oneFood.description}
+              <div style={{ marginTop: "20px", fontWeight: "600" }}>
+                Category: {category.name}
+              </div>
             </div>
           </div>
 
@@ -160,58 +241,103 @@ const DetailProduct = () => {
         <Button style={{ marginLeft: "55rem", marginTop: "-11.7rem" }}>
           Buy Now
         </Button>
+
+        <Card
+          style={{
+            width: "70rem",
+            position: "relative",
+            left: 200,
+            top: 100,
+            boxShadow:
+              "0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%)",
+            padding: "0 0 10rem 0",
+            marginBottom: "10rem",
+          }}
+        >
+          <CreateComment idProduct={oneFood._id} />
+          <Card.Body>
+            {count.map((item) => {
+              return (
+                <>
+                  <div
+                    key={item._id}
+                    style={{
+                      height: "4.5rem",
+                      marginBottom: "30px",
+                      marginLeft: "60px",
+                    }}
+                  >
+                    <div>
+                      <p
+                        style={{
+                          backgroundColor: "#BBBBBB",
+                          borderRadius: "20px",
+                          height: "auto",
+                          width: "25rem",
+                          maxWidth: "30rem",
+                          padding: "5px 20px 5px 20px",
+                          wordWrap: "break-word",
+                          fontSize: "16px",
+                          position: "relative",
+                          fontWeight: 450,
+                        }}
+                      >
+                        <div style={{ fontSize: "16px", fontWeight: 650 }}>
+                          {item.user_id.username}
+                        </div>
+                        {item.content}
+
+                        <img
+                          src={
+                            !item.user_id.avatar ? beeSad : item.user_id.avatar
+                          }
+                          style={{
+                            position: "absolute",
+                            borderRadius: "30px",
+                            left: -50,
+                            top: 1,
+                          }}
+                          width="40px"
+                          height="40px"
+                          className="mr-3"
+                        />
+                      </p>
+
+                      <div>
+                        {item.user_id._id === _id ? (
+                          <DeleteComment _id={item._id} />
+                        ) : null}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })}
+          </Card.Body>
+        </Card>
       </>
     );
   }
   return (
     <>
       {body}
-      <Card
-        style={{ width: "70rem", position: "relative", left: 300, top: 100 }}
+      <EditComment />
+      <Toast
+        show={show}
+        style={{ position: "fixed", top: "20%", right: "10px" }}
+        className={`bg-${type} text-white`}
+        onClose={setShowToast.bind(this, {
+          show: false,
+          message: "",
+          type: null,
+        })}
+        delay={3000}
+        autohide
       >
-        <Card.Header
-          style={{
-            fontSize: "30px",
-            textAlign: "center",
-            backgroundColor: "yellow",
-          }}
-        >
-          Comments
-        </Card.Header>
-        <Form style={{ display: "flex" }}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              type="text"
-              placeholder="Comment..."
-              style={{
-                height: "3rem",
-                width: "60rem",
-                marginTop: "50px",
-                marginLeft: "80px",
-                borderRadius: "30px",
-              }}
-            />
-          </Form.Group>
-
-          <AiOutlineSend
-            variant="primary"
-            type="submit"
-            size={30}
-            style={{ position: "relative", top: 58, right: 60 }}
-          ></AiOutlineSend>
-        </Form>
-        <Card.Body>
-          {comments.map((item) => {
-            return (
-              <>
-                <blockquote className="blockquote mb-0" key={item._id}>
-                  <p key={item._id}>{item.content}</p>
-                </blockquote>
-              </>
-            );
-          })}
-        </Card.Body>
-      </Card>
+        <Toast.Body>
+          <strong>{message}</strong>
+        </Toast.Body>
+      </Toast>
     </>
   );
 };

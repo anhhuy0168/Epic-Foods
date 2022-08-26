@@ -31,7 +31,7 @@ function AddFood() {
     productImage: "",
     category: "",
   });
-  const { _id, name, description, price, productImage, category } = newFood;
+  const { _id, name, description, price, productImage } = newFood;
 
   const onChangeNewFoodForm = (event) =>
     setNewFood({ ...newFood, [event.target.name]: event.target.value });
@@ -113,15 +113,16 @@ function AddFood() {
               {listCategory.map((item) => {
                 return (
                   <>
-                    <div
-                      key={item._id}
-                      onClick={() => setCategoryName(item.name)}
-                    >
-                      <Dropdown.Item
-                        onClick={() => setCategoryId(item._id, item.name)}
-                      >
-                        {item.name}
-                      </Dropdown.Item>
+                    <div key={item._id}>
+                      <div key={item._id}>
+                        <div onClick={() => setCategoryName(item.name)}>
+                          <Dropdown.Item
+                            onClick={() => setCategoryId(item._id, item.name)}
+                          >
+                            {item.name}
+                          </Dropdown.Item>
+                        </div>
+                      </div>
                     </div>
                   </>
                 );
