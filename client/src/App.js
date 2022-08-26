@@ -18,6 +18,7 @@ import RegisterStaff from "./component/auth/admin/RegisterStaff";
 import ViewUser from "./component/auth/admin/ViewUser";
 import ViewCategory from "./component/auth/admin/Category/ViewCategory";
 import CommentContextProvider from "./contexts/CommentContext";
+import EditComment from "./component/foods/EditComment";
 function App() {
   return (
     <AuthContextProvider>
@@ -66,6 +67,7 @@ function App() {
                     path="/Category"
                     component={ViewCategory}
                   />
+                  <Route path="/editComment" component={EditComment} exact />
                   <Route
                     path="/user/reset/:token"
                     component={ResetPassword}

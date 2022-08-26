@@ -13,11 +13,7 @@ const Cart_User = () => {
   const [total, setTotal] = useState(0);
   const [cartProduct, setCartProduct] = useState();
   const {
-    cartState: {
-      cart: { amount },
-      cart,
-    },
-
+    cartState: { cart },
     getCart,
     changeAmountCart,
   } = useContext(CartContext);

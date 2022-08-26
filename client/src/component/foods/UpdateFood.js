@@ -3,7 +3,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useContext, useState, useEffect } from "react";
 import { FoodContext } from "../../contexts/FoodsContext";
-
+import { AdminContext } from "../../contexts/AdminContext";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 const UpdateFoodModal = () => {
   // Contexts
   const {
@@ -13,8 +15,13 @@ const UpdateFoodModal = () => {
     updateFood,
     setShowToast,
   } = useContext(FoodContext);
-
+  const {
+    userState: { listCategory },
+    getCategory,
+  } = useContext(AdminContext);
   // State
+  const [categoryId, setCategoryId] = useState(null);
+  const [categoryName, setCategoryName] = useState(null);
   const [updatedFoods, setUpdatedFood] = useState(food);
 
   useEffect(() => setUpdatedFood(food), [food]);
@@ -33,14 +40,6 @@ const UpdateFoodModal = () => {
     setShowUpdateFoodModal(false);
   };
   const { _id, name, description, price, productImage } = updatedFoods;
-
-  // const onSubmit = async (event) => {
-  //   event.preventDefault();
-  //   console.log(updatedFoods);
-  //   const { success, message } = await updateFood(updatedFoods);
-  //   setShowUpdateFoodModal(false);
-  //   setShowToast({ show: true, message, type: success ? "success" : "danger" });
-  // };
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -49,6 +48,7 @@ const UpdateFoodModal = () => {
     formData.append("description", description);
     formData.append("price", price);
     formData.append("productImage", productImage, productImage.name);
+    formData.append("category", categoryId);
     const { success, message } = await updateFood(formData);
     setShowUpdateFoodModal(false);
     setShowToast({ show: true, message, type: success ? "success" : "danger" });
@@ -94,8 +94,35 @@ const UpdateFoodModal = () => {
               onChange={onChangeUpdatedFoodForm}
             />
           </Form.Group>
+          <Form.Group style={{ display: "flex", marginTop: "3rem" }}>
+            <div style={{ fontSize: "20px" }}>Category :</div>
+            <DropdownButton
+              style={{ marginLeft: "20px" }}
+              title={categoryName}
+              type="file"
+            >
+              {listCategory.map((item) => {
+                return (
+                  <>
+                    <div key={item._id}>
+                      <div key={item._id}>
+                        <div onClick={() => setCategoryName(item.name)}>
+                          <Dropdown.Item
+                            onClick={() => setCategoryId(item._id, item.name)}
+                          >
+                            {item.name}
+                          </Dropdown.Item>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
+            </DropdownButton>
+          </Form.Group>
+
           <Form.Group>
-            <form class="text-center">
+            <form className="text-center">
               <input
                 type="file"
                 placeholder="Upload file"

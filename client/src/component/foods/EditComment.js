@@ -2,50 +2,55 @@ import { useContext, useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { AdminContext } from "../../../../contexts/AdminContext";
-import { List } from "reactstrap";
-const UpdateCategory = () => {
+import { CommentContext } from "../../contexts/CommentContext";
+
+const EditComment = () => {
   const {
-    userState: { category },
-    setShowUpdateCategoryModal,
-    showUpdateCategoryModal,
+    commentState: { comment },
+    setShowUpdateCommentModal,
+    showUpdateCommentModal,
     setShowToast,
-    updateCategory,
-  } = useContext(AdminContext);
-  const [updatedCategory, setUpdatedCategory] = useState(category);
-  useEffect(() => setUpdatedCategory(category), [category]);
-  const { name } = updatedCategory;
-  const onChangeUpdatedCategoryForm = (event) =>
-    setUpdatedCategory({
-      ...updatedCategory,
+    updateComment,
+  } = useContext(CommentContext);
+  const [updatedComment, setUpdatedComment] = useState(comment);
+  useEffect(() => setUpdatedComment(comment), [comment]);
+  const onChangeUpdatedCommentForm = (event) =>
+    setUpdatedComment({
+      ...updatedComment,
       [event.target.name]: event.target.value,
     });
   const closeDialog = () => {
-    setUpdatedCategory(category);
-    setShowUpdateCategoryModal(false);
+    setUpdatedComment(comment);
+    setShowUpdateCommentModal(false);
   };
+  const { content } = updatedComment;
   const onSubmit = async (event) => {
     event.preventDefault();
-    const { success, message } = await updateCategory(updatedCategory);
-    setShowUpdateCategoryModal(false);
+    const { success, message } = await updateComment(updatedComment);
+    setShowUpdateCommentModal(false);
     setShowToast({ show: true, message, type: success ? "success" : "danger" });
   };
+
   return (
     <>
-      <Modal show={showUpdateCategoryModal} onHide={closeDialog}>
+      <Modal
+        show={showUpdateCommentModal}
+        onHide={closeDialog}
+        style={{ marginTop: "10rem" }}
+      >
         <Modal.Header closeButton>
-          <Modal.Title>Update Category?</Modal.Title>
+          <Modal.Title>Update Comment?</Modal.Title>
         </Modal.Header>
         <Form onSubmit={onSubmit}>
           <Modal.Body>
             <Form.Group>
               <Form.Control
                 type="text"
-                placeholder="Name"
-                name="name"
+                placeholder="Comment..."
+                name="content"
                 required
-                onChange={onChangeUpdatedCategoryForm}
-                value={name}
+                onChange={onChangeUpdatedCommentForm}
+                value={content}
               />
             </Form.Group>
           </Modal.Body>
@@ -63,4 +68,4 @@ const UpdateCategory = () => {
   );
 };
 
-export default UpdateCategory;
+export default EditComment;

@@ -14,8 +14,11 @@ const CommentSchema = new mongoose.Schema({
 });
 CommentSchema.pre(/^find/, function (next) {
   this.populate({
+    path: "product",
+  }).populate({
     path: "user_id",
   });
   next();
 });
+
 module.exports = mongoose.model("comment", CommentSchema);

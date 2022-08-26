@@ -88,7 +88,6 @@ const FoodContextProvider = ({ children }) => {
   // Find post when user is updating post
   const findFood = (foodId) => {
     const food = foodState.foods.find((food) => food._id === foodId);
-    console.log("id", food);
     dispatch({ type: FIND_FOOD, payload: food });
   };
 

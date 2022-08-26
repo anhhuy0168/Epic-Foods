@@ -7,6 +7,8 @@ import {
   COMMENT_LOADED_FAIL,
   CREATE_COMMENT,
   DELETE_COMMENT,
+  UPDATE_COMMENT,
+  FIND_COMMENT,
 } from "./constants";
 export const CommentContext = createContext();
 const CommentContextProvider = ({ children }) => {
@@ -14,8 +16,14 @@ const CommentContextProvider = ({ children }) => {
   const [commentState, dispatch] = useReducer(commentReducer, {
     comments: [],
     commentLoading: true,
-    comment: null,
+    comment: {},
     user: {},
+  });
+  const [showUpdateCommentModal, setShowUpdateCommentModal] = useState(false);
+  const [showToast, setShowToast] = useState({
+    show: true,
+    message: "",
+    type: null,
   });
   //getall comment
   const getComment = async (productId) => {
@@ -23,7 +31,6 @@ const CommentContextProvider = ({ children }) => {
       const response = await axios.get(
         `${apiUrlComment}/getComment/${productId}`
       );
-      console.log(response);
       if (response.data.success) {
         dispatch({
           type: COMMENT_LOADED_SUCCESS,
@@ -56,7 +63,7 @@ const CommentContextProvider = ({ children }) => {
   const deleteComment = async (commentId) => {
     try {
       const response = await axios.delete(
-        `${apiGoogleUrl}/auth/cart/cart_product/${commentId}`
+        `${apiUrlComment}/deleteComment/${commentId}`
       );
       console.log("res cua delete", response);
       if (response.data.success)
@@ -65,11 +72,42 @@ const CommentContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const updateComment = async (updateComment) => {
+    try {
+      const response = await axios.patch(
+        `${apiUrlComment}/editComment/${updateComment._id}`,
+        updateComment
+      );
+      if (response.data.success) {
+        dispatch({ type: UPDATE_COMMENT, payload: response.data.comment });
+        return response.data;
+      }
+    } catch (error) {
+      console.log(error.response.data);
+      return error.response.data
+        ? error.response.data
+        : { success: false, message: "Server error" };
+    }
+  };
+  const findComment = (commentId) => {
+    const comment = commentState.comments.find(
+      (comment) => comment._id === commentId
+    );
+    console.log(comment);
+
+    dispatch({ type: FIND_COMMENT, payload: comment });
+  };
   const commentContextData = {
+    showUpdateCommentModal,
+    setShowUpdateCommentModal,
+    showToast,
+    setShowToast,
+    findComment,
     getComment,
     commentState,
     createComment,
     deleteComment,
+    updateComment,
   };
 
   //return provide
