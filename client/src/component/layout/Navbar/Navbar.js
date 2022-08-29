@@ -50,19 +50,21 @@ const NavbarMenu = () => {
           style={{ marginLeft: "30rem", width: "225px" }}
         />
       </form>
-      <div style={{ marginLeft: "30em", marginRight: "10px" }}>
-        <h4>
-          {" "}
-          <img
-            style={{ borderRadius: "50px" }}
-            src={!avatar ? beeSad : avatar}
-            width="42"
-            height="42"
-            className="mr-2"
-          />{" "}
-        </h4>
-      </div>
-      <div style={{ marginRight: "20px" }}>{username}</div>
+      <Link to="/editProfile">
+        <div style={{ marginLeft: "30em", marginRight: "10px" }}>
+          <h4>
+            {" "}
+            <img
+              style={{ borderRadius: "50px" }}
+              src={!avatar ? beeSad : avatar}
+              width="42"
+              height="42"
+              className="mr-2"
+            />{" "}
+          </h4>
+        </div>
+        <div style={{ marginRight: "20px" }}>{username}</div>
+      </Link>
       <Link to="/cart_User">
         <MdOutlineShoppingCart
           size={30}

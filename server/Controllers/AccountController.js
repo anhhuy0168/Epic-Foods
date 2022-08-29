@@ -3,6 +3,7 @@ const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const sendEmail = require("./SendMailController");
+const cloudinary = require("../utils/cloudinary");
 class AccountController {
   // @route GET api/auth
   // @desc Check if user is logged in
@@ -199,6 +200,46 @@ class AccountController {
       res.json({ msg: "Password successfully changed!" });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
+    }
+  }
+  //profile update
+  async updateProfile(req, res) {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    console.log(req.body);
+    const { username, address, phoneNumber } = req.body;
+    if (!username || !phoneNumber || !address)
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing information !" });
+    try {
+      let updateUser = {
+        username,
+        address,
+        phoneNumber,
+        avatar: result.secure_url,
+      };
+      const updateUserCondition = { _id: req.params.id };
+      updateUser = await User.findByIdAndUpdate(
+        updateUserCondition,
+        updateUser,
+        { new: true }
+      );
+      if (!updateUser)
+        return res.status(401).json({
+          success: false,
+          message: "User not found",
+        });
+
+      res.json({
+        success: true,
+        message: "Excellent progress!",
+        user: updateUser,
+      });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
     }
   }
 }
