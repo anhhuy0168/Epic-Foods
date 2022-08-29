@@ -16,6 +16,7 @@ import SingleFoodUser from "../component/foods/SingleFoodUser";
 import NavbarAdmin from "../../src/component/layout/Navbar/NavbarAdmin";
 import Navbar from "../../src/component/layout/Navbar/Navbar";
 import Carousels from "../component/layout/Carousel";
+import UpdateProfile from "../component/auth/UpdateProfile";
 const HomePage = () => {
   // Contexts
   const {

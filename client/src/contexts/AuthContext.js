@@ -1,6 +1,6 @@
 import { createContext, useReducer, useEffect, useState } from "react";
 import { authReducer } from "../reducers/authReducer";
-import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "./constants";
+import { apiUrl, LOCAL_STORAGE_TOKEN_NAME, UPDATE_PROFILE } from "./constants";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 export const AuthContext = createContext();
@@ -79,8 +79,30 @@ const AuthContextProvider = ({ children }) => {
       payload: { isAuthenticated: false, user: null },
     });
   };
+  //update profile
+  const updateProfile = async (updateProfile) => {
+    try {
+      for (var pair of updateProfile.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+      const response = await axios.patch(
+        `${apiUrl}/auth/updateUser/${updateProfile.get("_id")}`,
+        updateProfile,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      if (response.data.success) {
+        dispatch({ type: UPDATE_PROFILE, payload: response.data.user });
+        return response.data;
+      }
+    } catch (error) {
+      return error.response.data
+        ? error.response.data
+        : { success: false, message: "Server error" };
+    }
+  };
   //context data
   const authContextData = {
+    updateProfile,
     showAddStaffModal,
     setShowAddStaffModal,
     loginUser,

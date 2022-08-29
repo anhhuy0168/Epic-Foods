@@ -13,7 +13,6 @@ class CartController {
     }
   }
   async addToCart(req, res) {
-    console.log("day la body", req.body);
     const { product, users_id } = req.body;
     // const infor = await Cart.findById(req.body.userId, req.body.product);
     // if (infor) {
