@@ -8,6 +8,7 @@ const foodsRouter = require("./routes/food");
 const cartRouter = require("./routes/cart");
 const adminRouter = require("./routes/admin");
 const commentRouter = require("./routes/comment");
+const paymentRouter = require("./routes/payment");
 const connectDB = async () => {
   try {
     await mongoose.connect(
@@ -24,7 +25,11 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
+const { v4: uuidv4 } = require("uuid");
+uuidv4();
 const app = express();
+uuidv4();
 app.use(express.json());
 app.use(cors());
 
@@ -33,6 +38,7 @@ app.use("/api/foods", foodsRouter);
 app.use("/auth/cart", cartRouter);
 app.use("/api/admin", adminRouter);
 app.use("/auth/comment", commentRouter);
+app.use("/auth", paymentRouter);
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));

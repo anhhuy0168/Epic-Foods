@@ -19,6 +19,9 @@ import ViewUser from "./component/auth/admin/ViewUser";
 import ViewCategory from "./component/auth/admin/Category/ViewCategory";
 import CommentContextProvider from "./contexts/CommentContext";
 import UpdateProfile from "./component/auth/UpdateProfile";
+import BuyProduct from "./component/foods/BuyProduct";
+import OrderContextProvider from "./contexts/OrdersContext";
+import ViewListOrders from "./component/auth/staff/ViewListOrders";
 function App() {
   return (
     <AuthContextProvider>
@@ -26,82 +29,104 @@ function App() {
         <CartContextProvider>
           <AdminContextProvider>
             <CommentContextProvider>
-              <Router>
-                <Switch>
-                  <Route exact path="/" component={Landing}></Route>
-                  <Route
-                    exact
-                    path="/login"
-                    render={(props) => <Auth {...props} authRoute="login" />}
-                  />
-                  <Route
-                    exact
-                    path="/register"
-                    render={(props) => <Auth {...props} authRoute="register" />}
-                  />
-                  <ProtectedRoute exact path="/homepage" component={Homepage} />
-                  <ProtectedRoute
-                    exact
-                    path="/registerStaff"
-                    component={RegisterStaff}
-                  />
-                  <ProtectedRoute
-                    exact
-                    path="/food/detail/:id"
-                    component={DetailProduct}
-                  />
-                  <ProtectedRoute exact path="/viewUser" component={ViewUser} />
-                  <Route
-                    path="/forgot_password"
-                    component={ForgotPassword}
-                    exact
-                  />
-                  <ProtectedRoute exact path="/cart_User" component={Cart} />
-                  <Route
-                    path="/user/reset/:token"
-                    component={ResetPassword}
-                    exact
-                  />
-                  <ProtectedRoute
-                    exact
-                    path="/Category"
-                    component={ViewCategory}
-                  />
-                  <ProtectedRoute
-                    exact
-                    path="/editProfile"
-                    component={UpdateProfile}
-                  />
-                  <Route
-                    path="/user/reset/:token"
-                    component={ResetPassword}
-                    exact
-                  />
-                  <Route
-                    path="/forgot_password"
-                    component={ForgotPassword}
-                    exact
-                  />
-                  <Route
-                    path="/user/reset/:token"
-                    component={ResetPassword}
-                    exact
-                  />
+              <OrderContextProvider>
+                <Router>
+                  <Switch>
+                    <Route exact path="/" component={Landing}></Route>
+                    <Route
+                      exact
+                      path="/login"
+                      render={(props) => <Auth {...props} authRoute="login" />}
+                    />
+                    <Route
+                      exact
+                      path="/register"
+                      render={(props) => (
+                        <Auth {...props} authRoute="register" />
+                      )}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/homepage"
+                      component={Homepage}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/registerStaff"
+                      component={RegisterStaff}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/food/detail/:id"
+                      component={DetailProduct}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/buy_food/:id"
+                      component={BuyProduct}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/viewUser"
+                      component={ViewUser}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/viewListOrder"
+                      component={ViewListOrders}
+                    />
+                    <Route
+                      path="/forgot_password"
+                      component={ForgotPassword}
+                      exact
+                    />
+                    <ProtectedRoute exact path="/cart_User" component={Cart} />
+                    <Route
+                      path="/user/reset/:token"
+                      component={ResetPassword}
+                      exact
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/Category"
+                      component={ViewCategory}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/editProfile"
+                      component={UpdateProfile}
+                    />
+                    <Route
+                      path="/user/reset/:token"
+                      component={ResetPassword}
+                      exact
+                    />
+                    <Route
+                      path="/forgot_password"
+                      component={ForgotPassword}
+                      exact
+                    />
+                    <Route
+                      path="/user/reset/:token"
+                      component={ResetPassword}
+                      exact
+                    />
 
-                  <Route
-                    path="/user/activate/:activation_token"
-                    component={ActivationEmail}
-                    exact
-                  />
+                    <Route
+                      path="/user/activate/:activation_token"
+                      component={ActivationEmail}
+                      exact
+                    />
 
-                  <Route
-                    exact
-                    path="/confirmEmail"
-                    component={ConfirmEmailForm}
-                  ></Route>
-                </Switch>
-                <Toaster />
-              </Router>
+                    <Route
+                      exact
+                      path="/confirmEmail"
+                      component={ConfirmEmailForm}
+                    ></Route>
+                  </Switch>
+                  <Toaster />
+                </Router>
+              </OrderContextProvider>
             </CommentContextProvider>
           </AdminContextProvider>
         </CartContextProvider>

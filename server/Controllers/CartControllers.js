@@ -14,28 +14,32 @@ class CartController {
   }
   async addToCart(req, res) {
     const { product, users_id } = req.body;
-    // const infor = await Cart.findById(req.body.userId, req.body.product);
-    // if (infor) {
-    //   return res
-    //     .status(400)
-    //     .json({ success: false, message: "Product has exist" });
-    // }
-    try {
-      const user_id = ObjectId(users_id);
-      const newCart = new Cart({
-        amount: 1,
-        product,
-        user_id: user_id,
-      });
+    const infor = await Cart.findById(users_id, product);
+    console.log(infor);
+    if (infor) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Product has exist" });
+    }
+    const cartUser = await Cart.find({ user_id: req.userId });
+    if (cartUser) {
+      try {
+        const user_id = ObjectId(users_id);
+        const newCart = new Cart({
+          amount: 1,
+          product,
+          user_id: user_id,
+        });
 
-      await newCart.save();
+        await newCart.save();
 
-      res.json({ success: true, message: "Happy buy!", cart: newCart });
-    } catch (error) {
-      console.log(error);
-      res
-        .status(500)
-        .json({ success: false, message: "Internal server error" });
+        res.json({ success: true, message: "Happy buy!", cart: newCart });
+      } catch (error) {
+        console.log(error);
+        res
+          .status(500)
+          .json({ success: false, message: "Internal server error" });
+      }
     }
   }
   async changeAmountCart(req, res) {

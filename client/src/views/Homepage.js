@@ -17,6 +17,7 @@ import NavbarAdmin from "../../src/component/layout/Navbar/NavbarAdmin";
 import Navbar from "../../src/component/layout/Navbar/Navbar";
 import Carousels from "../component/layout/Carousel";
 import UpdateProfile from "../component/auth/UpdateProfile";
+import NavbarStaff from "../component/layout/Navbar/NavbarStaff";
 const HomePage = () => {
   // Contexts
   const {
@@ -89,7 +90,12 @@ const HomePage = () => {
       </>
     );
   } else if (role === "staff") {
-    body = <></>;
+    body = (
+      <>
+        <NavbarStaff />
+        <SingleFoodUser />
+      </>
+    );
   } else if (role === "user") {
     body = (
       <>
