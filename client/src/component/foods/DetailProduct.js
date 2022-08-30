@@ -241,7 +241,13 @@ const DetailProduct = () => {
         <Button style={{ marginLeft: "55rem", marginTop: "-11.7rem" }}>
           Buy Now
         </Button>
-
+        <Link
+          to={`/buy_food/${params.id}`}
+          style={{ marginLeft: "6.5rem" }}
+          variant="warning"
+        >
+          <Button variant="warning">Buy</Button>{" "}
+        </Link>
         <Card
           style={{
             width: "70rem",

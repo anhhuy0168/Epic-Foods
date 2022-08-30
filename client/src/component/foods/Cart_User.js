@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import DeleteProductCart from "./DeleteProductCart";
+import Payment from "../auth/Payment";
 const Cart_User = () => {
   const history = useHistory();
 
@@ -102,6 +103,8 @@ const Cart_User = () => {
       <div className="total">
         <h3>Total: $ {total}</h3>
       </div>
+      <Payment total={total} />
+
       <Link to="/homepage" style={{ marginLeft: "764px" }}>
         <Button>Back</Button>
       </Link>

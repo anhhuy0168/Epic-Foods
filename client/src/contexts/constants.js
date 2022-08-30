@@ -6,6 +6,10 @@ export const apiUrlComment =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:5000/auth/comment"
     : "somedeployed";
+export const apiUrlOrder =
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:5000/auth"
+    : "somedeployed";
 export const apiGoogleUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:5000"
@@ -43,3 +47,5 @@ export const DELETE_COMMENT = "DELETE_COMMENT";
 export const UPDATE_COMMENT = "UPDATE_COMMENT";
 export const FIND_COMMENT = "FIND_COMMENT";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
+export const ORDER_LOADED_SUCCESS = "ORDER_LOADED_SUCCESS";
+export const ORDER_LOADED_FAIL = "ORDER_LOADED_FAIL";
