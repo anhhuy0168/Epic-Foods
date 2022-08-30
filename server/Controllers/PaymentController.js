@@ -14,6 +14,17 @@ class PaymentController {
         .json({ success: false, message: "Internal server error" });
     }
   }
+  async getUserOrder(req, res) {
+    try {
+      const order = await Order.find({ user: req.userId });
+      res.json({ success: true, order });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
   async createOrder(req, res) {
     console.log(req.body);
     const { token = {}, amount = 0, user, product, price, cart } = req.body;
