@@ -11,6 +11,8 @@ import {
   LIST_USER_LOADED_SUCCESS,
   LIST_CATEGORY_LOADED_SUCCESS,
   LIST_CATEGORY_LOADED_FAIL,
+  ORDER_USER_LOADED_SUCCESS,
+  ORDER_USER_LOADED_FAIL,
   ADD_CATEGORY,
   DELETE_CATEGORY,
   UPDATE_CATEGORY,
@@ -21,6 +23,7 @@ const OrderContextProvider = ({ children }) => {
   // State
   const [orderState, dispatch] = useReducer(orderReducer, {
     orders: [],
+    orderUser: [],
   });
   //getall staff
   const getAllOrders = async () => {
@@ -37,6 +40,19 @@ const OrderContextProvider = ({ children }) => {
       dispatch({ type: ORDER_LOADED_FAIL });
     }
   };
+  const getUserOrder = async () => {
+    try {
+      const response = await axios.get(`${apiUrlOrder}/orderUser`);
+      if (response.data.success) {
+        dispatch({
+          type: ORDER_USER_LOADED_SUCCESS,
+          payload: response.data.order,
+        });
+      }
+    } catch (error) {
+      dispatch({ type: ORDER_USER_LOADED_FAIL });
+    }
+  };
   const checkOrder = async (staffId) => {
     try {
       const response = await axios.delete(
@@ -49,25 +65,12 @@ const OrderContextProvider = ({ children }) => {
       console.log(error);
     }
   };
-  const getOrderUser = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/admin/getCategory`);
-      if (response.data.success) {
-        dispatch({
-          type: LIST_CATEGORY_LOADED_SUCCESS,
-          payload: response.data.category,
-        });
-      }
-    } catch (error) {
-      dispatch({ type: LIST_CATEGORY_LOADED_FAIL });
-    }
-  };
 
   const orderContextData = {
     orderState,
-    getOrderUser,
     checkOrder,
     getAllOrders,
+    getUserOrder,
   };
 
   //return provide

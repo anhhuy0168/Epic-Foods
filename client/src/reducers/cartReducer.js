@@ -9,7 +9,6 @@ import {
 
 export const cartReducers = (state, action) => {
   const { type, payload } = action;
-  console.log(payload);
 
   switch (type) {
     case CART_LOADED_SUCCESS:

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import DeleteProductCart from "./DeleteProductCart";
 import Payment from "../auth/Payment";
+import OrderUser from "../auth/OrderUser";
 const Cart_User = () => {
   const history = useHistory();
 
@@ -104,10 +105,11 @@ const Cart_User = () => {
         <h3>Total: $ {total}</h3>
       </div>
       <Payment total={total} />
-
       <Link to="/homepage" style={{ marginLeft: "764px" }}>
         <Button>Back</Button>
       </Link>
+      ORDER HISTORY
+      <OrderUser />
     </>
   );
 };

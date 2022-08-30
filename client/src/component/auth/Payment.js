@@ -3,7 +3,6 @@ import StripeCheckout from "react-stripe-checkout";
 import { CartContext } from "../../contexts/CartContext";
 import { AuthContext } from "../../contexts/AuthContext";
 const Payment = (total) => {
-  console.log(total);
   const {
     authState: { user },
   } = useContext(AuthContext);
