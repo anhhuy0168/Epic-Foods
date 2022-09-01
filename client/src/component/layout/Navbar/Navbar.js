@@ -1,17 +1,18 @@
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
 import Logo from "../../../assets/logox2.png";
-import logoutIcon from "../../../assets/logout.svg";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import beeSad from "../../../assets/avatar.png";
 import { GrLogout } from "react-icons/gr";
-import { CartContext } from "../../../contexts/CartContext";
 import { MdOutlineShoppingCart } from "react-icons/md";
-
+import { FoodContext } from "../../../contexts/FoodsContext";
+import SingleFoodUser from "../../foods/SingleFoodUser";
+import SearchProduct from "../../foods/SearchProduct";
 const NavbarMenu = () => {
+  const {
+    foodState: { foods },
+    getFoods,
+  } = useContext(FoodContext);
   const {
     authState: {
       user: { username, avatar },
@@ -20,7 +21,10 @@ const NavbarMenu = () => {
   } = useContext(AuthContext);
 
   const logout = () => logoutUser();
-
+  const [query, setQuery] = useState("");
+  const search = (data) => {
+    return data.filter((item) => item.name.toLowerCase().includes(query));
+  };
   return (
     <nav
       id="main-navbar"
@@ -42,16 +46,16 @@ const NavbarMenu = () => {
       </div>
       <img src={Logo} alt="Logo" width="50px" height="50px" className="mr-3" />
       <form className="d-none d-md-flex input-group w-auto my-auto">
-        <input
-          autoComplete="off"
-          type="search"
-          className="form-control rounded"
-          placeholder="Search..."
-          style={{ marginLeft: "30rem", width: "225px" }}
-        />
+        <SearchProduct placeholder="Search..." data={foods}></SearchProduct>
       </form>
       <Link to="/editProfile">
-        <div style={{ marginLeft: "30em", marginRight: "10px" }}>
+        <div
+          style={{
+            marginLeft: "20em",
+            marginRight: "10px",
+            position: "relative",
+          }}
+        >
           <h4>
             {" "}
             <img
@@ -63,17 +67,18 @@ const NavbarMenu = () => {
             />{" "}
           </h4>
         </div>
-        <div style={{ marginRight: "20px" }}>{username}</div>
       </Link>
+      <div style={{ marginRight: "20px" }}>{username}</div>
+
       <Link to="/cart_User">
         <MdOutlineShoppingCart
           size={30}
           variant="secondary"
         ></MdOutlineShoppingCart>
       </Link>
-      <div style={{ margin: "0px 0px 0px 1rem", cursor: "pointer" }}>
+      <div style={{ margin: "0px 0px 0px 5rem", cursor: "pointer" }}>
         <GrLogout
-          size={30}
+          size={20}
           variant="secondary"
           className="font-weight-bolder text-white"
           onClick={logout}
