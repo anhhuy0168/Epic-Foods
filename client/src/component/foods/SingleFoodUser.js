@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FoodContext } from "../../contexts/FoodsContext";
 import { Link } from "react-router-dom";
-const SingleFoodUser = () => {
+const SingleFoodUser = ({ data }) => {
   const {
     foodState: { foods },
     getFoods,
@@ -15,7 +15,7 @@ const SingleFoodUser = () => {
     AOS.init({ duration: 1000 });
     AOS.refresh();
   });
-  useEffect(() => getFoods(), []);
+  // useEffect(() => getFoods(), [data]);
 
   return (
     <Wrapper>
