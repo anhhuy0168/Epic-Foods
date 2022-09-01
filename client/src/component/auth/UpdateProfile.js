@@ -34,7 +34,7 @@ const UpdateProfile = () => {
     address && formData.append("address", address);
     phoneNumber && formData.append("phoneNumber", phoneNumber);
     dateOfBirth && formData.append("dateOfBirth", dateOfBirth);
-    avatar && formData.append("avatar", avatar, avatar.name);
+    avatar || formData.append("avatar", avatar, avatar.name);
     const { success, message } = await updateProfile(formData);
     console.log(formData.get("avatar"));
   };

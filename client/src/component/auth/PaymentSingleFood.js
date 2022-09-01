@@ -26,18 +26,7 @@ const PaymentSingleFood = (total) => {
   };
 
   return (
-    <div
-      className="App"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "100%",
-        height: "100vh",
-        flexDirection: "column",
-        gap: 15,
-      }}
-    >
+    <div className="App" style={{ margin: "20px 0 0 20rem" }}>
       <StripeCheckout
         stripeKey={
           "pk_test_51LbyNZFYvAR2okGPyqpV3A7965cBfOXkgkSBZTI2op80xFJdjHwHCOCsV2EGBdldK2jZMQS3mGHEhbCq9rSS8eLG00SEJdxO3x" ||

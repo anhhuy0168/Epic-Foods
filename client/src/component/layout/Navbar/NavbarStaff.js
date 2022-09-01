@@ -75,12 +75,12 @@ export const NavbarStaff = () => {
                 textDecoration: "none",
               }}
               activeClassName="active1"
-              to="/registerStaff"
+              to="/viewHistoryOrder"
               exact
             >
               <div className="list-group-item list-group-item-action py-2 ripple ">
                 <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>CRUD ACCOUNT</span>
+                <span>VIEW HISTORY ORDER</span>
               </div>
             </NavLink>
           </div>
