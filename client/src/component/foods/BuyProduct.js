@@ -7,6 +7,10 @@ import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import PaymentSingleFood from "../auth/PaymentSingleFood";
+import NavbarMenu from "../layout/Navbar/Navbar";
+import Logo from "../../assets/logox2.png";
+import BeeHappy from "../../assets/happyBee.png";
+import { AuthContext } from "../../contexts/AuthContext";
 const BuyProduct = () => {
   const params = useParams();
   const [total, setTotal] = useState(0);
@@ -16,6 +20,11 @@ const BuyProduct = () => {
     getCart,
     changeAmountCart,
   } = useContext(CartContext);
+  const {
+    authState: {
+      user: { username, phoneNumber, address },
+    },
+  } = useContext(AuthContext);
   const {
     foodState: { oneFood, category },
     getOneFoods,
@@ -45,83 +54,119 @@ const BuyProduct = () => {
   };
   return (
     <>
-      <div>{oneFood._id}</div>
-      <div>{oneFood.name}</div>
+      <NavbarMenu />
+      <div
+        style={{
+          width: "50%",
+          position: "relative",
+          backgroundColor: "#FFFF66",
+          left: 400,
+          top: 150,
+          padding: "2rem 0 0 0 ",
+          boxShadow:
+            "0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%)",
+        }}
+      >
+        <Card.Img
+          variant="top"
+          style={{
+            borderRadius: "20px 20px 20px 20px",
+            width: "16.9rem",
+            height: "15rem",
+            margin: "-3rem 0 -100px -2rem",
+          }}
+          src={Logo}
+        />
+        <div style={{ textAlign: "center", fontSize: "30px" }}>
+          {oneFood.name}
+        </div>
+        <Card.Img
+          variant="top"
+          style={{
+            borderRadius: "20px 20px 20px 20px",
+            width: "16.9rem",
+            height: "15rem",
+            margin: "20px 0 20px 15rem",
+          }}
+          src={oneFood.productImage}
+        />
+        <div
+          style={{ color: "#FF0000", fontSize: "25px", textAlign: "center" }}
+        >
+          {" "}
+          Price :{oneFood.price} $
+        </div>
 
-      <div>{oneFood.description}</div>
+        <div className="amount">
+          <button
+            style={{
+              borderRadius: "5px",
+              width: "30px",
+              height: "30px",
+              backgroundColor: "#FFFF99",
+              margin: "10px 10px 0 21rem",
+            }}
+            onClick={() => decrement()}
+          >
+            {" "}
+            -{" "}
+          </button>
+          <span style={{ fontSize: "25px" }}>{amountProduct}</span>
+          <button
+            style={{
+              borderRadius: "5px",
+              width: "30px",
+              height: "30px",
+              backgroundColor: "#FFFF99",
+              margin: "0 0 0 10px",
+            }}
+            onClick={() => increment()}
+          >
+            {" "}
+            +{" "}
+          </button>
+        </div>
+        <div style={{ margin: "20px 0 0 15rem", maxWidth: "20rem" }}>
+          <div style={{ margin: "0 0 30px 70px", fontWeight: 500 }}>
+            Your Information.
+            <div style={{ fontSize: "12px", margin: "0 0 0 10px" }}>
+              Change? <Link to="/editProfile">Click here</Link>
+            </div>
+          </div>
+          <div>Name : {username}</div>
+          <div>Phone Number : {phoneNumber}</div>
+          <div>Transport to : {address}</div>
+        </div>
 
-      <div>{oneFood.productImage}</div>
-      <div>{oneFood.price}</div>
-      <div>Total{oneFood.price * amountProduct}</div>
-      <div className="amount">
-        <button onClick={() => decrement()}> - </button>
-        <span>{amountProduct}</span>
-        <button onClick={() => increment()}> + </button>
+        <div
+          style={{
+            color: "#FF0000",
+            fontSize: "25px",
+            textAlign: "center",
+            margin: "40px 0 0 0",
+          }}
+        >
+          Total Price Order :{oneFood.price * amountProduct} $
+        </div>
+        <PaymentSingleFood
+          product={oneFood}
+          total={oneFood.price * amountProduct}
+          number={amountProduct}
+        />
+        <div style={{ fontSize: "15px", margin: "0 0 0 18rem" }}>
+          Thanks for buying !{" "}
+          <Card.Img
+            variant="top"
+            style={{
+              borderRadius: "20px 20px 20px 20px",
+              width: "4rem",
+              height: "3.5rem",
+              margin: "20px 0 20px 10px",
+            }}
+            src={BeeHappy}
+          />
+        </div>
       </div>
-      <PaymentSingleFood
-        product={oneFood}
-        total={oneFood.price * amountProduct}
-        number={amountProduct}
-      />
-      {/* <Table>
-        <thead>
-          <tr>
-            <th>Name Product</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Image Product</th>
-            <th>Count</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cart.map((item) => {
-            if (item.product._id == params.id) {
-              return (
-                <tr key={item.product._id}>
-                  <td>{item.product.name}</td>
-                  <td>{item.product.price}$</td>
-                  <td style={{ width: "44rem" }}>{item.product.description}</td>
-                  <td>
-                    {" "}
-                    <Card.Img
-                      variant="top"
-                      style={{
-                        marginLeft: "20px",
-                        borderRadius: "10px 10px 10px 10px",
-                        width: "60px",
-                        height: "63px",
-                      }}
-                      height={300}
-                      width={70}
-                      src={item.product.productImage}
-                    />
-                  </td>
-                  <td>
-                    <div className="amount">
-                      <button onClick={() => decrement(item._id, item.amount)}>
-                        {" "}
-                        -{" "}
-                      </button>
-                      <span>{item.amount}</span>
-                      <button onClick={() => increment(item._id, item.amount)}>
-                        {" "}
-                        +{" "}
-                      </button>
-                    </div>
-                  </td>
-                  <td>total{item.amount * oneFood.price}</td>
-               
-                </tr>
-              );
-            }
-          })}
-        </tbody>
-      </Table> */}
-
-      <Link to="/homepage" style={{ marginLeft: "764px" }}>
-        <Button>Back</Button>
-      </Link>
     </>
   );
 };

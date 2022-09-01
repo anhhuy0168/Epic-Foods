@@ -238,15 +238,15 @@ const DetailProduct = () => {
         >
           Add to cart
         </Button>
-        <Button style={{ marginLeft: "55rem", marginTop: "-11.7rem" }}>
-          Buy Now
-        </Button>
+
         <Link
           to={`/buy_food/${params.id}`}
           style={{ marginLeft: "6.5rem" }}
           variant="warning"
         >
-          <Button variant="warning">Buy</Button>{" "}
+          <Button style={{ marginLeft: "50rem", marginTop: "-11.8rem" }}>
+            Buy Now
+          </Button>
         </Link>
         <Card
           style={{

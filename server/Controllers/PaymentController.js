@@ -16,7 +16,7 @@ class PaymentController {
   }
   async getUserOrder(req, res) {
     try {
-      const order = await Order.find({ user: req.userId });
+      const order = await Order.findDeleted({ user: req.userId });
       res.json({ success: true, order });
     } catch (error) {
       console.log(error);
@@ -88,6 +88,36 @@ class PaymentController {
   catch(error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal server error" });
+  }
+  async checkOrder(req, res) {
+    console.log(req.params.id);
+    try {
+      const orderCheckCondition = { _id: req.params.id };
+      const checkOrder = await Order.delete(orderCheckCondition);
+
+      if (!checkOrder)
+        return res.status(401).json({
+          success: false,
+          message: "Order not found ",
+        });
+      res.json({ success: true, order: checkOrder });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
+  async getHistoryOrder(req, res) {
+    try {
+      const listHistoryOrder = await Order.findDeleted({});
+      res.json({ success: true, listHistoryOrder });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
   }
 }
 module.exports = new PaymentController();

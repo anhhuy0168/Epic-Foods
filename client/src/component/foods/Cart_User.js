@@ -7,8 +7,9 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import DeleteProductCart from "./DeleteProductCart";
+import OrderUserHistory from "../auth/OrderUserHistory";
 import Payment from "../auth/Payment";
-import OrderUser from "../auth/OrderUser";
+import NavbarMenu from "../layout/Navbar/Navbar";
 const Cart_User = () => {
   const history = useHistory();
 
@@ -47,7 +48,8 @@ const Cart_User = () => {
 
   return (
     <>
-      <Table>
+      <NavbarMenu />
+      <Table style={{ marginTop: "5rem" }}>
         <thead>
           <tr>
             <th>Name Product</th>
@@ -108,8 +110,7 @@ const Cart_User = () => {
       <Link to="/homepage" style={{ marginLeft: "764px" }}>
         <Button>Back</Button>
       </Link>
-      ORDER HISTORY
-      <OrderUser />
+      <OrderUserHistory />
     </>
   );
 };

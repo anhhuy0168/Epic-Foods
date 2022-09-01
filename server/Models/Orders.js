@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const slug = require("mongoose-slug-generator");
+const mongooseDelete = require("mongoose-delete");
+mongoose.plugin(slug);
 const OrderSchema = new mongoose.Schema({
   cart: [
     {
@@ -28,6 +31,10 @@ const OrderSchema = new mongoose.Schema({
     type: Number,
   },
   createdAt: { type: Date, default: Date.now },
+});
+OrderSchema.plugin(mongooseDelete, {
+  deleteAt: true, //! thoi gian xoa
+  overrideMethods: "all",
 });
 OrderSchema.pre(/^find/, function (next) {
   this.populate({
