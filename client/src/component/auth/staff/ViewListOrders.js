@@ -36,7 +36,7 @@ const ViewListOrders = () => {
                     position: "relative",
                     left: 300,
                     top: 150,
-                    margin: " 0 0 -20px 0rem",
+                    margin: " 0 0 -4.5rem 0rem",
                     borderRadius: "20px",
                     padding: "10px 0 10px 0",
                   }}
@@ -102,7 +102,7 @@ const ViewListOrders = () => {
                     position: "relative",
                     left: 300,
                     top: 150,
-                    margin: " 0 0 1rem 0rem",
+                    margin: " 0 0 -4.5rem 0rem",
                     borderRadius: "20px",
                     padding: "10px 0 10px 0",
                   }}

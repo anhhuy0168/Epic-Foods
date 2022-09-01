@@ -6,6 +6,7 @@ import {
   ORDER_HISTORY_LOADED_SUCCESS,
   ORDER_HISTORY_LOADED_FAIL,
   CHECK_ORDER,
+  DELETE_ORDER,
 } from "../contexts/constants";
 
 export const orderReducer = (state, action) => {
@@ -47,6 +48,12 @@ export const orderReducer = (state, action) => {
         ...state,
         orders: state.orders.filter((order) => order._id !== payload),
       };
+    case DELETE_ORDER:
+      return {
+        ...state,
+        orders: state.orders.filter((order) => order._id !== payload),
+      };
+
     default:
       return state;
   }
