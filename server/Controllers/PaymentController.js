@@ -119,5 +119,23 @@ class PaymentController {
         .json({ success: false, message: "Internal server error" });
     }
   }
+  async deleteOrder(req, res) {
+    try {
+      const orderDeleteCondition = { _id: req.params.id };
+      const deleteOrder = await Order.findOneAndDelete(orderDeleteCondition);
+
+      if (!deleteOrder)
+        return res.status(401).json({
+          success: false,
+          message: "Order not found ",
+        });
+      res.json({ success: true, order: deleteOrder });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
 }
 module.exports = new PaymentController();
