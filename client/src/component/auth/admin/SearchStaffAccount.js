@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import Form from "react-bootstrap/Form";
-const SearchFoodAdmin = ({ placeholder, data }) => {
+const SearchStaffAccount = ({ placeholder, data }) => {
   const [filteredData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
   const handleFilter = (event) => {
@@ -27,7 +27,7 @@ const SearchFoodAdmin = ({ placeholder, data }) => {
   };
 
   return (
-    <div className="search" style={{ position: "fixed", left: 220, top: 30 }}>
+    <div className="search" style={{ position: "fixed", left: 520, top: 50 }}>
       <div className="searchInputs">
         <Form.Control
           style={{ width: "20rem", margin: "10px 0 0 30rem" }}
@@ -70,7 +70,7 @@ const SearchFoodAdmin = ({ placeholder, data }) => {
                         height: "3rem",
                         margin: "0 0 -20px 0",
                       }}
-                      src={value.productImage}
+                      src={value.avatar}
                     />{" "}
                     <div
                       style={{
@@ -94,4 +94,4 @@ const SearchFoodAdmin = ({ placeholder, data }) => {
   );
 };
 
-export default SearchFoodAdmin;
+export default SearchStaffAccount;

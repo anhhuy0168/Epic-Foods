@@ -22,7 +22,19 @@ const SingleFood = () => {
 
   return (
     <Wrapper>
-      <SearchFoodAdmin placeholder="Search..." data={foods} />
+      <nav
+        id="main-navbar"
+        className="navbar navbar-expand-lg navbar-light  fixed-top"
+        style={{
+          height: "80px",
+          backgroundColor: "white",
+          width: "60rem",
+          marginLeft: "25rem",
+          borderRadius: "20px",
+        }}
+      >
+        <SearchFoodAdmin placeholder="Search..." data={foods} />
+      </nav>
       <div
         data-aos="fade-up"
         style={{
