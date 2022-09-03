@@ -63,6 +63,7 @@ const AuthContextProvider = ({ children }) => {
   };
   //register
   const registerUser = async (userForm) => {
+    console.log(userForm);
     try {
       const response = await axios.post(`${apiUrl}/auth/register`, userForm);
       if (response.data.success)
@@ -72,6 +73,18 @@ const AuthContextProvider = ({ children }) => {
         );
 
       return response.data;
+    } catch (error) {
+      if (error.response.data) return error.response.data;
+      else return { success: false, message: error.message };
+    }
+  };
+  const registerStaff = async (userForm) => {
+    console.log(userForm);
+    try {
+      const response = await axios.post(`${apiUrl}/auth/register`, userForm);
+      if (response.data.success) {
+        return response.data;
+      }
     } catch (error) {
       if (error.response.data) return error.response.data;
       else return { success: false, message: error.message };
@@ -133,6 +146,7 @@ const AuthContextProvider = ({ children }) => {
   };
   //context data
   const authContextData = {
+    registerStaff,
     updateAvatar,
     updateProfile,
     showAddStaffModal,

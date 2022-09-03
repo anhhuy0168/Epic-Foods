@@ -8,6 +8,7 @@ import { FoodContext } from "../../contexts/FoodsContext";
 import { Link } from "react-router-dom";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SearchFoodAdmin from "./SearchFoodAdmin";
 const SingleFood = () => {
   const {
     foodState: { foods },
@@ -21,6 +22,7 @@ const SingleFood = () => {
 
   return (
     <Wrapper>
+      <SearchFoodAdmin placeholder="Search..." data={foods} />
       <div
         data-aos="fade-up"
         style={{

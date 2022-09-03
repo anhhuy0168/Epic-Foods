@@ -19,6 +19,7 @@ import Carousels from "../component/layout/Carousel";
 import UpdateProfile from "../component/auth/UpdateProfile";
 import NavbarStaff from "../component/layout/Navbar/NavbarStaff";
 import SingleFoodStaff from "../component/foods/SingleFoodStaff";
+import CommitmentProduct from "../component/foods/CommitmentProduct";
 const HomePage = () => {
   // Contexts
   const {

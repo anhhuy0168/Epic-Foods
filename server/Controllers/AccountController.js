@@ -138,7 +138,7 @@ class AccountController {
         activation_token,
         process.env.ACTIVATION_TOKEN_SECRET
       );
-      console.log(user.user);
+      console.log(user.user, "hihihihihihi");
       // 	// var decoded = jwt_decode(user);
       const { username, email, address, phoneNumber, password, role } =
         user.user;

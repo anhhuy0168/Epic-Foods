@@ -9,7 +9,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FoodContext } from "../../contexts/FoodsContext";
 import beeSad from "../../../src/assets/avatar.png";
 
-const CreateComment = (idProduct) => {
+const CreateComment = (idProduct, { result }) => {
+  console.log(idProduct.result);
   const {
     authState: {
       user: { username, role, _id, avatar },
@@ -60,7 +61,7 @@ const CreateComment = (idProduct) => {
           margin: "20px 0 0 0 ",
         }}
       >
-        Comments
+        Comments ({idProduct.result})
       </div>
       <img
         style={{
