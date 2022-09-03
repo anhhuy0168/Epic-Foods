@@ -14,7 +14,11 @@ import Button from "react-bootstrap/Button";
 import { GrLogout } from "react-icons/gr";
 import beeSad from "../../../assets/avatar.png";
 import Logo from "../../../assets/logox2.png";
-
+import { MdFastfood } from "react-icons/md";
+import { BiCategoryAlt } from "react-icons/bi";
+import { FaUserTie } from "react-icons/fa";
+import { HiUsers } from "react-icons/hi";
+import { FaBusinessTime } from "react-icons/fa";
 export const NavbarAdmin = () => {
   const {
     authState: {
@@ -28,14 +32,34 @@ export const NavbarAdmin = () => {
       <div
         style={{
           position: "fixed",
-          top: 85,
+          top: 0,
           backgroundColor: "yellow",
-          borderRadius: "0px 20px 20px 0px",
-          height: "40rem",
+          borderRadius: "0px 0px 00px 0px",
+          height: "50rem",
         }}
         id="sidebarMenu"
         className="collapse d-lg-block sidebar collapse"
       >
+        <div style={{ marginLeft: "5rem" }}>
+          <h4>
+            <img
+              style={{ borderRadius: "50px", marginLeft: "7px" }}
+              src={!avatar ? beeSad : avatar}
+              width="72"
+              height="72"
+              className="mr-2"
+            />{" "}
+          </h4>
+          <div style={{ marginLeft: "17px" }}> {role}</div>
+        </div>
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "black",
+            position: "relative",
+            top: 60,
+          }}
+        ></div>
         <div className="position-sticky">
           <div className="list-group list-group-flush mx-3 mt-4">
             <NavLink
@@ -48,9 +72,24 @@ export const NavbarAdmin = () => {
               to="/homepage"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>CRUD FOODS</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "90px",
+                }}
+              >
+                {" "}
+                <MdFastfood
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></MdFastfood>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Foods
+                </div>
               </div>
             </NavLink>
             <NavLink
@@ -63,9 +102,24 @@ export const NavbarAdmin = () => {
               to="/Category"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>CRUD CATEGORY</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                }}
+              >
+                {" "}
+                <BiCategoryAlt
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></BiCategoryAlt>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Category
+                </div>
               </div>
             </NavLink>
             <NavLink
@@ -78,9 +132,24 @@ export const NavbarAdmin = () => {
               to="/registerStaff"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>CRUD ACCOUNT</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                }}
+              >
+                {" "}
+                <FaUserTie
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></FaUserTie>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Staff Account
+                </div>
               </div>
             </NavLink>
             <NavLink
@@ -93,9 +162,24 @@ export const NavbarAdmin = () => {
               to="/viewUser"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>USER</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                }}
+              >
+                {" "}
+                <HiUsers
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></HiUsers>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  User Account
+                </div>
               </div>
             </NavLink>
             <NavLink
@@ -108,14 +192,29 @@ export const NavbarAdmin = () => {
               to="/viewUser"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>Webiste traffic</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                }}
+              >
+                {" "}
+                <FaBusinessTime
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></FaBusinessTime>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Business
+                </div>
               </div>
             </NavLink>
           </div>
         </div>
-        <div style={{ margin: "10rem 0px 0px 5rem", cursor: "pointer" }}>
+        <div style={{ margin: "5rem 0px 0px 6rem", cursor: "pointer" }}>
           <GrLogout
             size={30}
             variant="secondary"
@@ -125,7 +224,7 @@ export const NavbarAdmin = () => {
         </div>
       </div>
 
-      <nav
+      {/* <nav
         id="main-navbar"
         className="navbar navbar-expand-lg navbar-light  fixed-top"
         style={{ height: "80px", backgroundColor: "#FFFF33	" }}
@@ -172,7 +271,7 @@ export const NavbarAdmin = () => {
             {role}
           </h4>
         </div>
-      </nav>
+      </nav> */}
     </Wrapper>
   );
 };

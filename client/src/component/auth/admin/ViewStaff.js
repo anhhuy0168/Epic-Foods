@@ -50,7 +50,7 @@ const ViewStaff = () => {
               }}
             >
               <Card.Body style={{ width: "" }}>
-                <Card.Title style={{ marginLeft: "50px" }}>
+                <Card.Title style={{ marginLeft: "10px" }}>
                   Username: {item.username}
                 </Card.Title>
                 <Card.Img

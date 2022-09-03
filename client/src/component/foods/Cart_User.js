@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import DeleteProductCart from "./DeleteProductCart";
 import OrderUserHistory from "../auth/OrderUserHistory";
 import Payment from "../auth/Payment";
+import TotalCart from "./TotalCart";
 import NavbarMenu from "../layout/Navbar/Navbar";
 const Cart_User = () => {
   const history = useHistory();

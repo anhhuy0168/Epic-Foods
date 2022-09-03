@@ -30,9 +30,7 @@ const Wrapper = styled.main`
     box-shadow: 0 2px 5px 0 rgba(212, 226, 14, 0.884),
       0 2px 10px 0 rgb(222, 222, 8);
   }
-  a:hover {
-    background-color: #cdcd00;
-  }
+
   .sidebar-sticky {
     position: relative;
     top: 0;
@@ -40,6 +38,13 @@ const Wrapper = styled.main`
     padding-top: 0.5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+  .option:hover {
+    background-color: #ffffcc;
+    -webkit-transition: background-color 500ms linear;
+    -ms-transition: background-color 500ms linear;
+    transition: background-color 500ms linear;
+    border-radius: 15px;
   }
 `;
 export default Wrapper;

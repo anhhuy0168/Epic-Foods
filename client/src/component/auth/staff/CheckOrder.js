@@ -7,7 +7,6 @@ import Modal from "react-bootstrap/Modal";
 import { TbTrash } from "react-icons/tb";
 import { OrderContext } from "../../../contexts/OrdersContext";
 const CheckOrder = (_id) => {
-  console.log(_id);
   const {
     orderState: { orders },
     checkOrder,
@@ -26,7 +25,7 @@ const CheckOrder = (_id) => {
           cursor: "pointer",
           position: "relative",
           left: 1350,
-          top: 150,
+          top: 80,
         }}
       >
         <AiOutlineCheckCircle size={40} onClick={handleShow} />
@@ -36,7 +35,7 @@ const CheckOrder = (_id) => {
           cursor: "pointer",
           position: "relative",
           left: 1300,
-          top: 108,
+          top: 38,
         }}
       >
         <TiDeleteOutline size={45} onClick={handleShowDelete} />

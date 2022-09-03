@@ -14,8 +14,11 @@ import Button from "react-bootstrap/Button";
 import { GrLogout } from "react-icons/gr";
 import beeSad from "../../../assets/avatar.png";
 import Logo from "../../../assets/logox2.png";
-
-export const NavbarStaff = () => {
+import { MdFastfood } from "react-icons/md";
+import { GoListUnordered } from "react-icons/go";
+import { BiHistory } from "react-icons/bi";
+import TotalOrder from "../../auth/staff/TotalOrder";
+export const NavbarStaff = ({ total }) => {
   const {
     authState: {
       user: { username, role, avatar },
@@ -28,14 +31,34 @@ export const NavbarStaff = () => {
       <div
         style={{
           position: "fixed",
-          top: 85,
+          top: 0,
           backgroundColor: "yellow",
           borderRadius: "0px 20px 20px 0px",
-          height: "40rem",
+          height: "50rem",
         }}
         id="sidebarMenu"
         className="collapse d-lg-block sidebar collapse"
       >
+        <div style={{ marginLeft: "5rem" }}>
+          <h4>
+            <img
+              style={{ borderRadius: "50px", marginLeft: "1px" }}
+              src={!avatar ? beeSad : avatar}
+              width="72"
+              height="72"
+              className="mr-2"
+            />{" "}
+          </h4>
+          <div style={{ marginLeft: "17px" }}> {role}</div>
+        </div>
+        <div
+          style={{
+            height: "0.5px",
+            backgroundColor: "black",
+            position: "relative",
+            top: 60,
+          }}
+        ></div>
         <div className="position-sticky">
           <div className="list-group list-group-flush mx-3 mt-4">
             <NavLink
@@ -48,9 +71,24 @@ export const NavbarStaff = () => {
               to="/homepage"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>VIEW FOODS</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "50px",
+                }}
+              >
+                {" "}
+                <MdFastfood
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></MdFastfood>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Foods
+                </div>
               </div>
             </NavLink>
             <NavLink
@@ -63,11 +101,27 @@ export const NavbarStaff = () => {
               to="/viewListOrder"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>VIEW ORDER</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                }}
+              >
+                {" "}
+                <GoListUnordered
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></GoListUnordered>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Orders
+                </div>
               </div>
             </NavLink>
+
             <NavLink
               style={{
                 borderRadius: "10px",
@@ -78,14 +132,46 @@ export const NavbarStaff = () => {
               to="/viewHistoryOrder"
               exact
             >
-              <div className="list-group-item list-group-item-action py-2 ripple ">
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <span>VIEW HISTORY ORDER</span>
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                  position: "relative",
+                }}
+              >
+                {" "}
+                <BiHistory
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></BiHistory>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  History Orders
+                </div>
               </div>
             </NavLink>
           </div>
+          <TotalOrder />
         </div>
-        <div style={{ margin: "10rem 0px 0px 5rem", cursor: "pointer" }}>
+        {/* <div
+          style={{
+            position: "relative",
+            top: -110,
+            left: 147,
+            backgroundColor: "red",
+            borderRadius: "20px",
+            width: "30px",
+            padding: " 2px 2px 2px 10px",
+            color: "white",
+            fontSize: "16px",
+          }}
+        >
+          {total}
+        </div> */}
+        <div style={{ margin: "13rem 0px 0px 6rem", cursor: "pointer" }}>
           <GrLogout
             size={30}
             variant="secondary"
@@ -95,7 +181,7 @@ export const NavbarStaff = () => {
         </div>
       </div>
 
-      <nav
+      {/* <nav
         id="main-navbar"
         className="navbar navbar-expand-lg navbar-light  fixed-top"
         style={{ height: "80px", backgroundColor: "#FFFF33	" }}
@@ -142,7 +228,7 @@ export const NavbarStaff = () => {
             {role}
           </h4>
         </div>
-      </nav>
+      </nav> */}
     </Wrapper>
   );
 };

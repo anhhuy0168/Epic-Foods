@@ -8,10 +8,13 @@ import { Link } from "react-router-dom";
 import NavbarAdmin from "../layout/Navbar/Navbar";
 const UpdateProfile = () => {
   const {
-    authState: { user },
+    authState: { user, avatarUser },
     updateProfile,
+    updateAvatar,
   } = useContext(AuthContext);
   const [updatedProfileUser, setUpdatedProfileUser] = useState(user);
+  const [updatedAvatarUser, setUpdatedAvatarUser] = useState(user);
+
   const onChangeUpdatedProfileForm = (event) =>
     setUpdatedProfileUser({
       ...updatedProfileUser,
@@ -19,29 +22,70 @@ const UpdateProfile = () => {
     });
 
   const onChangeNewImage = (event) =>
-    setUpdatedProfileUser({
-      ...updatedProfileUser,
+    setUpdatedAvatarUser({
+      ...updatedAvatarUser,
       avatar: event.target.files[0],
     });
-  const { _id, username, address, phoneNumber, dateOfBirth, avatar } =
-    updatedProfileUser;
+  const { avatar } = updatedAvatarUser;
   console.log(avatar);
+
+  const { _id, username, address, phoneNumber, dateOfBirth } =
+    updatedProfileUser;
+
+  console.log(updatedAvatarUser);
+  const onSubmitAvatar = async (event) => {
+    event.preventDefault();
+    const formDataImage = new FormData();
+    formDataImage.append("_id", _id);
+    formDataImage.append("avatar", avatar, avatar.name);
+    updateAvatar(formDataImage);
+  };
   const onSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData();
-    formData.append("_id", _id);
-    username && formData.append("username", username);
-    address && formData.append("address", address);
-    phoneNumber && formData.append("phoneNumber", phoneNumber);
-    dateOfBirth && formData.append("dateOfBirth", dateOfBirth);
-    avatar || formData.append("avatar", avatar, avatar.name);
-    const { success, message } = await updateProfile(formData);
-    console.log(formData.get("avatar"));
+    const { success, message } = await updateProfile(updatedProfileUser);
   };
 
   return (
     <>
       <NavbarAdmin />
+      <Form
+        onSubmit={onSubmitAvatar}
+        style={{ position: "relative", top: 400, left: 50 }}
+      >
+        <Form.Group>
+          <img
+            src={avatar}
+            style={{
+              width: "10rem",
+              height: "10rem",
+              position: "relative",
+              left: 580,
+              top: -50,
+            }}
+          />
+          <form
+            className="text-center"
+            style={{ position: "relative", left: -42 }}
+          >
+            Avatar:
+            <input
+              style={{ padding: "1rem 0 1rem 0", margin: "0 0 0 20px" }}
+              type="file"
+              id="frame"
+              placeholder="Upload file"
+              name="avatar"
+              onChange={onChangeNewImage}
+            />
+          </form>
+        </Form.Group>
+        <Button
+          variant="primary"
+          type="submit"
+          style={{ position: "relative", top: -65, left: 830 }}
+        >
+          Save
+        </Button>
+      </Form>
       <Form
         onSubmit={onSubmit}
         style={{
@@ -51,8 +95,9 @@ const UpdateProfile = () => {
           height: "70rem",
           position: "relative",
           padding: "5rem 0 0rem 0",
-          left: 210,
-          top: 200,
+          margin: 0,
+          left: 200,
+          top: -100,
         }}
       >
         <div style={{ fontWeight: 600, fontSize: "30px", marginLeft: "6rem" }}>
@@ -66,33 +111,9 @@ const UpdateProfile = () => {
             }}
           ></div>
         </div>
-        <Modal.Body style={{ width: "30rem", position: "relative", left: 200 }}>
-          <Form.Group>
-            <img
-              src={avatar}
-              style={{
-                width: "10rem",
-                height: "10rem",
-                position: "relative",
-                left: 250,
-                top: -50,
-              }}
-            />
-            <form
-              className="text-center"
-              style={{ position: "relative", left: -42 }}
-            >
-              Avatar:
-              <input
-                style={{ padding: "1rem 0 1rem 0", margin: "0 0 0 20px" }}
-                type="file"
-                id="frame"
-                placeholder="Upload file"
-                name="avatar"
-                onChange={onChangeNewImage}
-              />
-            </form>
-          </Form.Group>
+        <Modal.Body
+          style={{ width: "30rem", position: "relative", left: 200, top: 300 }}
+        >
           <Form.Group>
             Username:
             <Form.Control
@@ -147,13 +168,13 @@ const UpdateProfile = () => {
           </Form.Group>
         </Modal.Body>
         <Button
-          variant="primary"
           type="submit"
-          style={{ position: "relative", top: -20, left: 800 }}
+          variant="success"
+          style={{ position: "relative", top: 300, left: 800 }}
         >
           Save
         </Button>
-        <div style={{ top: 10, left: 210, position: "relative" }}>
+        <div style={{ top: 300, left: 210, position: "relative" }}>
           Want to change password ?{" "}
           <Link to="/forgot_password">Click here</Link>
         </div>

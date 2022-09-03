@@ -1,4 +1,4 @@
-import { UPDATE_PROFILE } from "../contexts/constants";
+import { UPDATE_PROFILE, UPDATE_AVATAR } from "../contexts/constants";
 export const authReducer = (state, action) => {
   const {
     type,
@@ -15,6 +15,11 @@ export const authReducer = (state, action) => {
         user,
       };
     case UPDATE_PROFILE:
+      return {
+        ...state,
+        user: payload,
+      };
+    case UPDATE_AVATAR:
       return {
         ...state,
         user: payload,

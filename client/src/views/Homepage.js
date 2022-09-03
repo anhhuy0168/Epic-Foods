@@ -18,6 +18,7 @@ import Navbar from "../../src/component/layout/Navbar/Navbar";
 import Carousels from "../component/layout/Carousel";
 import UpdateProfile from "../component/auth/UpdateProfile";
 import NavbarStaff from "../component/layout/Navbar/NavbarStaff";
+import SingleFoodStaff from "../component/foods/SingleFoodStaff";
 const HomePage = () => {
   // Contexts
   const {
@@ -93,7 +94,7 @@ const HomePage = () => {
     body = (
       <>
         <NavbarStaff />
-        <SingleFoodUser />
+        <SingleFoodStaff />
       </>
     );
   } else if (role === "user") {
