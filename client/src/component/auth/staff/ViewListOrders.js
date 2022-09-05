@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Wrapper from "./Styled";
 import { useContext, useEffect } from "react";
 import { OrderContext } from "../../../contexts/OrdersContext";
@@ -9,15 +9,16 @@ import NavbarStaff from "../../layout/Navbar/NavbarStaff";
 import { BsTruck } from "react-icons/bs";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import TotalOrder from "./TotalOrder";
 const ViewListOrders = () => {
   const {
     orderState: { orders },
     getAllOrders,
   } = useContext(OrderContext);
-  console.log(orders);
+  const [listOrder, setListOrder] = useState(orders);
   useEffect(() => {
     getAllOrders();
-  }, []);
+  }, [setListOrder]);
   return (
     <>
       <NavbarStaff />
@@ -35,10 +36,12 @@ const ViewListOrders = () => {
                     width: "75%",
                     position: "relative",
                     left: 300,
-                    top: 150,
+                    top: 80,
                     margin: " 0 0 -4.5rem 0rem",
                     borderRadius: "20px",
                     padding: "10px 0 10px 0",
+                    boxShadow:
+                      "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                   }}
                 >
                   <div
@@ -95,13 +98,14 @@ const ViewListOrders = () => {
                   key={item._id}
                   style={{
                     maxHeight: "30rem",
-
+                    boxShadow:
+                      "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                     backgroundColor: "#FFCC00",
                     display: "flex",
                     width: "75%",
                     position: "relative",
                     left: 300,
-                    top: 150,
+                    top: 80,
                     margin: " 0 0 -4.5rem 0rem",
                     borderRadius: "20px",
                     padding: "10px 0 10px 0",
@@ -125,7 +129,6 @@ const ViewListOrders = () => {
                   <div>
                     {" "}
                     {item.cart.map((cart) => {
-                      console.log(cart);
                       return (
                         <>
                           <div

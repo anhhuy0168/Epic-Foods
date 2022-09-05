@@ -18,7 +18,6 @@ const PaymentSingleFood = (total) => {
       },
       body: JSON.stringify({ token, amount, user, price, product }),
     })
-      .then((res) => res.json())
       .then((_) => {
         window.alert("Transaction Successful.");
       })

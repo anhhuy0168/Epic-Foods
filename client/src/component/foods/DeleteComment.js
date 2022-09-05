@@ -27,7 +27,7 @@ const DeleteComment = (_id) => {
             style={{
               position: "relative",
               left: 410,
-              top: -60,
+              top: -50,
             }}
             size={15}
           ></BsThreeDots>

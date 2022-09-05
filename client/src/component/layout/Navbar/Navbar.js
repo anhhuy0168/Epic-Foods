@@ -7,6 +7,7 @@ import { GrLogout } from "react-icons/gr";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { FoodContext } from "../../../contexts/FoodsContext";
 import SingleFoodUser from "../../foods/SingleFoodUser";
+import TotalCart from "../../foods/TotalCart";
 import SearchProduct from "../../foods/SearchProduct";
 const NavbarMenu = () => {
   const {
@@ -69,14 +70,20 @@ const NavbarMenu = () => {
         </div>
       </Link>
       <div style={{ marginRight: "20px" }}>{username}</div>
-
-      <Link to="/cart_User">
+      <Link to="/cart_User" style={{ position: "relative" }}>
         <MdOutlineShoppingCart
           size={30}
           variant="secondary"
         ></MdOutlineShoppingCart>
       </Link>
-      <div style={{ margin: "0px 0px 0px 5rem", cursor: "pointer" }}>
+
+      <div
+        style={{
+          margin: "0px 0px 0px 5rem",
+          cursor: "pointer",
+          position: "relative",
+        }}
+      >
         <GrLogout
           size={20}
           variant="secondary"
@@ -84,6 +91,7 @@ const NavbarMenu = () => {
           onClick={logout}
         ></GrLogout>
       </div>
+      <TotalCart />
     </nav>
   );
 };

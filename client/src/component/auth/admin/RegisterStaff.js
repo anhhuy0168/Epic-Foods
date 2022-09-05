@@ -12,7 +12,7 @@ import ViewUser from "./ViewUser";
 const RegisterStaff = () => {
   const history = useHistory();
   // Context
-  const { registerUser, showAddStaffModal, setShowAddStaffModal } =
+  const { registerStaff, showAddStaffModal, setShowAddStaffModal } =
     useContext(AuthContext);
   // Local state
   const [registerForm, setRegisterForm] = useState({
@@ -47,7 +47,6 @@ const RegisterStaff = () => {
       username: "",
       password: "",
       confirmPassword: "",
-      role: "",
     });
     setShowAddStaffModal(false);
   };
@@ -70,7 +69,7 @@ const RegisterStaff = () => {
         success: "",
       });
     try {
-      const registerData = await registerUser(registerForm);
+      const registerData = await registerStaff(registerForm);
       if (!registerData.success) {
         setAlert({ type: "danger", message: registerData.message });
         setTimeout(() => setAlert(null), 5000);

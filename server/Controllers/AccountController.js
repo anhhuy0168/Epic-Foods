@@ -138,7 +138,7 @@ class AccountController {
         activation_token,
         process.env.ACTIVATION_TOKEN_SECRET
       );
-      console.log(user.user);
+      console.log(user.user, "hihihihihihi");
       // 	// var decoded = jwt_decode(user);
       const { username, email, address, phoneNumber, password, role } =
         user.user;
@@ -202,11 +202,41 @@ class AccountController {
       return res.status(500).json({ msg: err.message });
     }
   }
+  //update avatar
+  async updateAvatar(req, res) {
+    const result = await cloudinary.uploader.upload(req.file.path);
+    try {
+      let updateAvatar = {
+        avatar: result.secure_url,
+      };
+      const updateUserCondition = { _id: req.params.id };
+      updateAvatar = await User.findByIdAndUpdate(
+        updateUserCondition,
+        updateAvatar,
+        { new: true }
+      );
+      if (!updateAvatar)
+        return res.status(401).json({
+          success: false,
+          message: "User not found",
+        });
+
+      res.json({
+        success: true,
+        message: "Excellent progress!",
+        avatar: updateAvatar,
+      });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
   //profile update
   async updateProfile(req, res) {
-    const result = await cloudinary.uploader.upload(req.file.path);
     console.log(req.body);
-    const { username, address, phoneNumber } = req.body;
+    const { username, address, phoneNumber, dateOfBirth } = req.body;
     if (!username || !phoneNumber || !address)
       return res
         .status(400)
@@ -216,7 +246,7 @@ class AccountController {
         username,
         address,
         phoneNumber,
-        avatar: result.secure_url,
+        dateOfBirth,
       };
       const updateUserCondition = { _id: req.params.id };
       updateUser = await User.findByIdAndUpdate(

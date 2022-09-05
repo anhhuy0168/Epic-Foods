@@ -18,6 +18,9 @@ import Navbar from "../../src/component/layout/Navbar/Navbar";
 import Carousels from "../component/layout/Carousel";
 import UpdateProfile from "../component/auth/UpdateProfile";
 import NavbarStaff from "../component/layout/Navbar/NavbarStaff";
+import SingleFoodStaff from "../component/foods/SingleFoodStaff";
+import CommitmentProduct from "../component/foods/CommitmentProduct";
+import Footer from "../component/layout/Footer";
 const HomePage = () => {
   // Contexts
   const {
@@ -93,7 +96,7 @@ const HomePage = () => {
     body = (
       <>
         <NavbarStaff />
-        <SingleFoodUser />
+        <SingleFoodStaff />
       </>
     );
   } else if (role === "user") {
@@ -102,6 +105,7 @@ const HomePage = () => {
         <Navbar />
         <Carousels />
         <SingleFoodUser />
+        <Footer />
       </>
     );
   }

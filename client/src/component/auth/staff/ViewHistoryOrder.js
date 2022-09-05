@@ -28,7 +28,9 @@ const ViewHistoryOrder = () => {
                 className="singleProduct"
                 key={item._id}
                 style={{
-                  backgroundColor: "#FFCC00",
+                  boxShadow:
+                    "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
+                  backgroundColor: "#CCCCCC",
                   display: "flex",
                   width: "75%",
                   position: "relative",
@@ -90,8 +92,9 @@ const ViewHistoryOrder = () => {
                 key={item._id}
                 style={{
                   maxHeight: "30rem",
-
-                  backgroundColor: "#FFCC00",
+                  boxShadow:
+                    "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
+                  backgroundColor: "#CCCCCC",
                   display: "flex",
                   width: "75%",
                   position: "relative",
