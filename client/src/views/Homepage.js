@@ -20,6 +20,7 @@ import UpdateProfile from "../component/auth/UpdateProfile";
 import NavbarStaff from "../component/layout/Navbar/NavbarStaff";
 import SingleFoodStaff from "../component/foods/SingleFoodStaff";
 import CommitmentProduct from "../component/foods/CommitmentProduct";
+import Footer from "../component/layout/Footer";
 const HomePage = () => {
   // Contexts
   const {
@@ -104,6 +105,7 @@ const HomePage = () => {
         <Navbar />
         <Carousels />
         <SingleFoodUser />
+        <Footer />
       </>
     );
   }

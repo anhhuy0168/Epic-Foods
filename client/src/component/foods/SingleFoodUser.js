@@ -1,7 +1,7 @@
 import Wrapper from "./SingleFoodStyle";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { FoodContext } from "../../contexts/FoodsContext";
@@ -15,8 +15,13 @@ const SingleFoodUser = ({ data }) => {
     AOS.init({ duration: 1000 });
     AOS.refresh();
   });
-  // useEffect(() => getFoods(), [data]);
+  const [noOfElement, setnoOfElement] = useState(3);
 
+  const loadMore = () => {
+    setnoOfElement(noOfElement + noOfElement);
+  };
+  // useEffect(() => getFoods(), [data]);
+  const slice = foods.slice(0, noOfElement);
   return (
     <Wrapper>
       <div
@@ -34,7 +39,7 @@ const SingleFoodUser = ({ data }) => {
           gridRowGap: "10px",
         }}
       >
-        {foods.map((item) => {
+        {slice.map((item) => {
           return (
             <Card
               key={item._id}
@@ -87,6 +92,13 @@ const SingleFoodUser = ({ data }) => {
           );
         })}
       </div>
+      <button
+        className="btn btn-dark  "
+        onClick={() => loadMore()}
+        style={{ position: "relative", left: 720, top: 100 }}
+      >
+        Load More
+      </button>
     </Wrapper>
   );
 };
