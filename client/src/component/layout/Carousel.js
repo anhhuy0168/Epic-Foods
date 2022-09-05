@@ -2,7 +2,7 @@ import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 const Carousels = () => {
   return (
-    <div style={{ height: "30%" }}>
+    <div style={{ height: "30%", marginTop: "5rem" }}>
       <Carousel fade>
         <Carousel.Item>
           <img

@@ -6,6 +6,8 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { FoodContext } from "../../contexts/FoodsContext";
 import { Link } from "react-router-dom";
+import SearchFoodAdmin from "./SearchFoodAdmin";
+
 const SingleFoodStaff = ({ data }) => {
   const {
     foodState: { foods },
@@ -19,13 +21,26 @@ const SingleFoodStaff = ({ data }) => {
 
   return (
     <Wrapper>
+      <nav
+        id="main-navbar"
+        className="navbar navbar-expand-lg navbar-light  fixed-top"
+        style={{
+          height: "80px",
+          backgroundColor: "white",
+          width: "60rem",
+          marginLeft: "25rem",
+          borderRadius: "20px",
+        }}
+      >
+        <SearchFoodAdmin placeholder="Search..." data={foods} />
+      </nav>
       <div
         data-aos="fade-up"
         style={{
           position: "relative",
           width: "50%",
           width: "18rem",
-          top: 50,
+          top: 100,
           left: 400,
           padding: 0,
           display: "grid",

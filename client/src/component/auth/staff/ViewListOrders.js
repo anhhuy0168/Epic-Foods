@@ -8,8 +8,8 @@ import CheckOrder from "./CheckOrder";
 import NavbarStaff from "../../layout/Navbar/NavbarStaff";
 import { BsTruck } from "react-icons/bs";
 import { FaMoneyCheckAlt } from "react-icons/fa";
-import { AiOutlineCheckCircle } from "react-icons/ai";
-import TotalOrder from "./TotalOrder";
+import AOS from "aos";
+import "aos/dist/aos.css";
 const ViewListOrders = () => {
   const {
     orderState: { orders },
@@ -19,6 +19,10 @@ const ViewListOrders = () => {
   useEffect(() => {
     getAllOrders();
   }, [setListOrder]);
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+    AOS.refresh();
+  });
   return (
     <>
       <NavbarStaff />
@@ -33,9 +37,9 @@ const ViewListOrders = () => {
                   style={{
                     backgroundColor: "#FFCC00",
                     display: "flex",
-                    width: "75%",
+                    width: "60%",
                     position: "relative",
-                    left: 300,
+                    left: 440,
                     top: 80,
                     margin: " 0 0 -4.5rem 0rem",
                     borderRadius: "20px",
@@ -59,7 +63,7 @@ const ViewListOrders = () => {
                     <div>Phone: {item.user.phoneNumber}</div>
                   </div>
 
-                  <div style={{ width: "40rem", margin: "30px 0 0 10rem" }}>
+                  <div style={{ width: "40rem", margin: "30px 0 0 5rem" }}>
                     <div style={{ maxWidth: "20rem" }}>
                       {" "}
                       <Card.Img
@@ -102,9 +106,9 @@ const ViewListOrders = () => {
                       "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                     backgroundColor: "#FFCC00",
                     display: "flex",
-                    width: "75%",
+                    width: "60%",
                     position: "relative",
-                    left: 300,
+                    left: 440,
                     top: 80,
                     margin: " 0 0 -4.5rem 0rem",
                     borderRadius: "20px",
@@ -132,7 +136,7 @@ const ViewListOrders = () => {
                       return (
                         <>
                           <div
-                            style={{ position: "relative", left: 160, top: 10 }}
+                            style={{ position: "relative", left: 80, top: 10 }}
                           >
                             {" "}
                             <Card.Img
@@ -148,7 +152,7 @@ const ViewListOrders = () => {
                             {cart.product.name} x{cart.amount}
                           </div>
                           <div
-                            style={{ position: "absolute", left: 800, top: 50 }}
+                            style={{ position: "absolute", left: 650, top: 50 }}
                           >
                             {" "}
                             <FaMoneyCheckAlt

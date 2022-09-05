@@ -153,37 +153,39 @@ export const NavbarStaff = ({ total }) => {
                 </div>
               </div>
             </NavLink>
+            <NavLink
+              style={{
+                borderRadius: "10px",
+                margin: "10px 0px 10px 0px",
+                textDecoration: "none",
+              }}
+              activeClassName="active1"
+              to="/messenger"
+              exact
+            >
+              <div
+                className="option"
+                style={{
+                  display: "flex",
+                  padding: "10px 0 10px 30px",
+                  marginTop: "-15px",
+                }}
+              >
+                {" "}
+                <GoListUnordered
+                  style={{ marginRight: "20px", color: "black" }}
+                  size={30}
+                ></GoListUnordered>
+                <div
+                  style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
+                >
+                  Chat
+                </div>
+              </div>
+            </NavLink>
           </div>
           <TotalOrder />
         </div>
-        <NavLink
-          style={{
-            borderRadius: "10px",
-            margin: "10px 0px 10px 0px",
-            textDecoration: "none",
-          }}
-          activeClassName="active1"
-          to="/messenger"
-          exact
-        >
-          <div
-            className="option"
-            style={{
-              display: "flex",
-              padding: "10px 0 10px 30px",
-              marginTop: "-15px",
-            }}
-          >
-            {" "}
-            <GoListUnordered
-              style={{ marginRight: "20px", color: "black" }}
-              size={30}
-            ></GoListUnordered>
-            <div style={{ marginTop: "5px", fontSize: "17px", color: "black" }}>
-              Chat
-            </div>
-          </div>
-        </NavLink>
 
         {/* <div
           style={{

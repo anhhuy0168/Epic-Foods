@@ -23,6 +23,7 @@ import BuyProduct from "./component/foods/BuyProduct";
 import OrderContextProvider from "./contexts/OrdersContext";
 import ViewListOrders from "./component/auth/staff/ViewListOrders";
 import ViewHistoryOrder from "./component/auth/staff/ViewHistoryOrder";
+import Messenger from "../src/component/layout/messenger/Messenger";
 function App() {
   return (
     <AuthContextProvider>
@@ -80,6 +81,11 @@ function App() {
                       exact
                       path="/viewHistoryOrder"
                       component={ViewHistoryOrder}
+                    />
+                    <ProtectedRoute
+                      exact
+                      path="/messenger"
+                      component={Messenger}
                     />
                     <Route
                       path="/forgot_password"

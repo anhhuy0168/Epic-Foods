@@ -2,10 +2,11 @@ import styled from "styled-components";
 const Wrapper = styled.main`
   .singleProduct {
     height: 8rem;
-    transition: height 0.5s;
+    transition: transform 0.4s;
   }
   .singleProduct:hover {
-    height: 9rem;
+    transform: scale(1.1);
+    border-radius: "20px";
   }
 `;
 export default Wrapper;

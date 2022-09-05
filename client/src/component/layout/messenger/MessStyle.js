@@ -30,6 +30,7 @@ const Wrapper = styled.main`
   .chatBoxTop {
     height: 100%;
     overflow-y: scroll;
+
     padding-right: 10px;
   }
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Wrapper from "./Styled";
 import { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
@@ -20,64 +21,68 @@ const CheckOrder = (_id) => {
   const handleCloseDelete = () => setShowDelete(false);
   return (
     <>
-      <div
-        style={{
-          cursor: "pointer",
-          position: "relative",
-          left: 1350,
-          top: 80,
-        }}
-      >
-        <AiOutlineCheckCircle size={40} onClick={handleShow} />
-      </div>
-      <div
-        style={{
-          cursor: "pointer",
-          position: "relative",
-          left: 1300,
-          top: 38,
-        }}
-      >
-        <TiDeleteOutline size={45} onClick={handleShowDelete} />
-      </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>You want check this order ?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>After checked will not undo!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <div variant="primary" onClick={handleClose}>
-            <Button
-              className="food-button"
-              onClick={checkOrder.bind(this, _id._id)}
-            >
-              Check
+      <Wrapper>
+        <div
+          className="delete"
+          style={{
+            cursor: "pointer",
+            position: "relative",
+            left: 1220,
+            top: 81,
+          }}
+        >
+          <AiOutlineCheckCircle size={40} onClick={handleShow} />
+        </div>
+        <div
+          className="check"
+          style={{
+            cursor: "pointer",
+            position: "relative",
+            left: 1280,
+            top: 38,
+          }}
+        >
+          <TiDeleteOutline size={45} onClick={handleShowDelete} />
+        </div>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>You want check this order ?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>After checked will not undo!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
             </Button>
-          </div>
-        </Modal.Footer>
-      </Modal>
-      <Modal show={showDelete} onHide={handleCloseDelete}>
-        <Modal.Header closeButton>
-          <Modal.Title>Are you sure ?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>After delete will not undo!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDelete}>
-            Close
-          </Button>
-          <div variant="primary" onClick={handleCloseDelete}>
-            <Button
-              className="food-button"
-              onClick={deleteOrder.bind(this, _id._id)}
-            >
-              Delete
+            <div variant="primary" onClick={handleClose}>
+              <Button
+                className="food-button"
+                onClick={checkOrder.bind(this, _id._id)}
+              >
+                Check
+              </Button>
+            </div>
+          </Modal.Footer>
+        </Modal>
+        <Modal show={showDelete} onHide={handleCloseDelete}>
+          <Modal.Header closeButton>
+            <Modal.Title>Are you sure ?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>After delete will not undo!</Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseDelete}>
+              Close
             </Button>
-          </div>
-        </Modal.Footer>
-      </Modal>
+            <div variant="primary" onClick={handleCloseDelete}>
+              <Button
+                className="food-button"
+                onClick={deleteOrder.bind(this, _id._id)}
+              >
+                Delete
+              </Button>
+            </div>
+          </Modal.Footer>
+        </Modal>
+      </Wrapper>
     </>
   );
 };
