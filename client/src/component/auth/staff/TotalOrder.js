@@ -6,12 +6,10 @@ const TotalOrder = () => {
     getAllOrders,
   } = useContext(OrderContext);
   const [listOrder, setListOrder] = useState(orders);
-  console.log(orders);
   var result = orders.length;
   useEffect(() => {
     getAllOrders();
   }, [listOrder]);
-  console.log(listOrder);
   return (
     <div
       style={{

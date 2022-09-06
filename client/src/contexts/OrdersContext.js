@@ -24,7 +24,6 @@ const OrderContextProvider = ({ children }) => {
   const getAllOrders = async () => {
     try {
       const response = await axios.get(`${apiUrlOrder}/orders`);
-      console.log(response);
       if (response.data.success) {
         dispatch({
           type: ORDER_LOADED_SUCCESS,

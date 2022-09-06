@@ -1,11 +1,10 @@
 import Conversation from "../../chat/Conversation/Conversation";
-// import Messange from "../../chat/Messenger";
-// import ChatOnline from "../../components/chatOnline/ChatOnline";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Wrapper from "./MessStyle";
 import { AuthContext } from "../../../contexts/AuthContext";
 import NavbarStaff from "../Navbar/NavbarStaff";
+import { io } from "socket.io-client";
 import Message from "../../chat/Conversation/message";
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -14,32 +13,29 @@ export default function Messenger() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const socket = useRef();
+  const socket = useRef(io("ws://localhost:8900"));
   const scrollRef = useRef();
   const {
-    authState: { user },
+    authState: {
+      user,
+      user: { _id },
+    },
   } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   socket.current = io("ws://localhost:8900");
-  //   socket.current.on("getMessage", (data) => {
-  //     setArrivalMessage({
-  //       sender: data.senderId,
-  //       text: data.text,
-  //       createdAt: Date.now(),
-  //     });
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   arrivalMessage &&
-  //     currentChat?.members.includes(arrivalMessage.sender) &&
-  //     setMessages((prev) => [...prev, arrivalMessage]);
-  // }, [arrivalMessage, currentChat]);
+  useEffect(() => {
+    socket.current.emit("addUser", user._id);
+    socket.current.on("getUsers", (users) => {
+      console.log(users);
+      // setOnlineUsers(
+      //   user.followings.filter((f) => users.some((u) => u.userId === f))
+      // );
+    });
+  }, [user]);
 
   // useEffect(() => {
   //   socket.current.emit("addUser", user._id);
   //   socket.current.on("getUsers", (users) => {
+  //     console.log(users);
   //     setOnlineUsers(
   //       user.followings.filter((f) => users.some((u) => u.userId === f))
   //     );
@@ -70,9 +66,8 @@ export default function Messenger() {
         console.log(err);
       }
     };
-    getMessages();
+    getMessages(messages);
   }, [currentChat]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const message = {
@@ -81,16 +76,15 @@ export default function Messenger() {
       conversationId: currentChat._id,
     };
 
-    //   const receiverId = currentChat.members.find(
-    //     (member) => member !== user._id
-    //   );
+    const receiverId = currentChat.members.find(
+      (member) => member !== user._id
+    );
 
-    //   socket.current.emit("sendMessage", {
-    //     senderId: user._id,
-    //     receiverId,
-    //     text: newMessage,
-    //   });
-
+    socket.current.emit("sendMessage", {
+      senderId: user._id,
+      receiverId,
+      text: newMessage,
+    });
     try {
       const res = await axios.post(
         "http://localhost:5000/api/messages",
@@ -102,14 +96,26 @@ export default function Messenger() {
       console.log(err);
     }
   };
-
+  useEffect(() => {
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createAt: Date.now(),
+      });
+    });
+  }, []);
+  useEffect(() => {
+    arrivalMessage &&
+      currentChat?.members.includes(arrivalMessage.sender) &&
+      setMessages((prev) => [...prev, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
   return (
     <>
-      {/* <NavbarStaff /> */}
+      <NavbarStaff />
       <Wrapper>
         <div className="messenger" style={{ marginLeft: "17rem" }}>
           <div className="chatMenu">
