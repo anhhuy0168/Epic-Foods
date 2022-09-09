@@ -9,6 +9,9 @@ const cartRouter = require("./routes/cart");
 const adminRouter = require("./routes/admin");
 const commentRouter = require("./routes/comment");
 const paymentRouter = require("./routes/payment");
+const messageRouter = require("./routes/messages");
+const conversationRouter = require("./routes/conversations");
+
 const connectDB = async () => {
   try {
     await mongoose.connect(
@@ -39,6 +42,8 @@ app.use("/auth/cart", cartRouter);
 app.use("/api/admin", adminRouter);
 app.use("/auth/comment", commentRouter);
 app.use("/auth", paymentRouter);
+app.use("/api/messages", messageRouter);
+app.use("/api/conversations", conversationRouter);
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));

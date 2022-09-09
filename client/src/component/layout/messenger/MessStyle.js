@@ -1,8 +1,11 @@
 import styled from "styled-components";
+import css from "../../../assets/background.png";
 const Wrapper = styled.main`
+  background-image: url ${"../../../assets/background.png"};
   .messenger {
     height: calc(100vh - 70px);
     display: flex;
+    background-image: url("../../../assets/background.png");
   }
 
   .chatMenu {
@@ -30,6 +33,7 @@ const Wrapper = styled.main`
   .chatBoxTop {
     height: 100%;
     overflow-y: scroll;
+
     padding-right: 10px;
   }
 

@@ -92,21 +92,6 @@ const CreateComment = (idProduct, { result }) => {
             }}
           />
         </Form.Group>
-        {/* <Button
-          variant="primary"
-          type="submit"
-          style={{
-            position: "relative",
-            top: 58,
-            right: 60,
-            padding: 0,
-            height: "2rem",
-            width: "3rem",
-            fontSize: "15px",
-          }}
-        >
-          Send
-        </Button> */}
       </Form>
     </>
   );

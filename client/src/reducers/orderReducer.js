@@ -11,7 +11,6 @@ import {
 
 export const orderReducer = (state, action) => {
   const { type, payload } = action;
-  console.log(payload);
   switch (type) {
     case ORDER_LOADED_SUCCESS:
       return {

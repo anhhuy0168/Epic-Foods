@@ -7,7 +7,7 @@ const TotalCart = () => {
     changeAmountCart,
   } = useContext(CartContext);
   const result = cart.length;
-  console.log(result);
+  // console.log(result);
   const [cartNumber, setCartNumber] = useState(cart);
   useEffect(() => {
     getCart(cartNumber);

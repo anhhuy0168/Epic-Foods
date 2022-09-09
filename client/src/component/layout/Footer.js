@@ -4,12 +4,11 @@ import { BsFacebook } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
 import { AiOutlineInstagram } from "react-icons/ai";
 import { AiFillLinkedin } from "react-icons/ai";
-
 const Footer = () => {
   return (
     <>
       <Wrapper>
-        <footer className="footer" style={{ position: "relative", top: 200 }}>
+        <footer className="footer" style={{ margin: "10rem 0 0 0" }}>
           <div className="container">
             <div className="row">
               <div className="footer-col">
