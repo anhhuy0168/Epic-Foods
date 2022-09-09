@@ -78,7 +78,6 @@ class PaymentController {
     }
   }
   async createOrder(req, res) {
-    console.log(req.body);
     const { token = {}, amount = 0, user, price, cart } = req.body;
 
     if (!Object.keys(token).length || !amount) {

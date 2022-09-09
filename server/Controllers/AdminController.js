@@ -44,6 +44,8 @@ class AdminController {
   async getAllCategory(req, res) {
     try {
       const category = await Category.find();
+      // category.sort({ createdAt });
+      // console.log(category);
       res.json({ success: true, category });
     } catch (error) {
       console.log(error);

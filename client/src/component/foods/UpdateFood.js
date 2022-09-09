@@ -47,7 +47,8 @@ const UpdateFoodModal = () => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
-    formData.append("productImage", productImage, productImage.name);
+    productImage &&
+      formData.append("productImage", productImage, productImage.name);
     formData.append("category", categoryId);
     const { success, message } = await updateFood(formData);
     setShowUpdateFoodModal(false);

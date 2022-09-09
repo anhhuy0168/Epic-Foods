@@ -203,7 +203,7 @@ export const NavbarStaff = ({ total }) => {
         >
           {total}
         </div> */}
-        <div style={{ margin: "13rem 0px 0px 6rem", cursor: "pointer" }}>
+        <div style={{ margin: "8rem 0px 0px 6rem", cursor: "pointer" }}>
           <GrLogout
             size={30}
             variant="secondary"

@@ -19,7 +19,7 @@ const TotalOrder = () => {
         width: "30px",
         backgroundColor: "red",
         borderRadius: "20px",
-        padding: " 2px 8px 2px 5px",
+        padding: " 2px 8px 2px 10px",
         color: "white",
         fontSize: "16px",
       }}

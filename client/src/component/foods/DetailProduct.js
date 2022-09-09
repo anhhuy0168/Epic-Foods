@@ -90,7 +90,7 @@ const DetailProduct = () => {
             >
               {oneFood.description}
               <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category.name}
+                Category: {category?.name}
               </div>
             </div>
           </div>
@@ -218,7 +218,7 @@ const DetailProduct = () => {
             >
               {oneFood.description}
               <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category.name}
+                Category: {category?.name}
               </div>
             </div>
           </div>
@@ -343,7 +343,7 @@ const DetailProduct = () => {
             >
               {oneFood.description}
               <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category.name}
+                Category: {category?.name}
               </div>
             </div>
           </div>
@@ -425,6 +425,7 @@ const DetailProduct = () => {
                         }}
                       >
                         <div style={{ fontSize: "16px", fontWeight: 650 }}>
+                          {console.log(item.user)}
                           {item.user_id.username}
                         </div>
                         {item.content}

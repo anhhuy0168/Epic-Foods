@@ -11,7 +11,7 @@ const PaymentSingleFood = (total) => {
   const price = total.total;
   const product = total.product;
   const handleToken = (token) => {
-    fetch("http://localhost:5000/auth/order/payment", {
+    fetch("http://localhost:5000/auth/order/SinglePayment", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

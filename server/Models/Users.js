@@ -42,6 +42,7 @@ const UsersSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Cart",
   },
+  createdAt: { type: Date, default: Date.now() },
 });
 
 module.exports = mongoose.model("users", UsersSchema);

@@ -18,11 +18,11 @@ const ViewListOrders = () => {
   const [listOrder, setListOrder] = useState(orders);
   useEffect(() => {
     getAllOrders();
-  }, [setListOrder]);
+  }, [listOrder]);
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 500 });
     AOS.refresh();
-  });
+  }, [listOrder]);
   return (
     <>
       <NavbarStaff />
@@ -32,6 +32,7 @@ const ViewListOrders = () => {
             return (
               <>
                 <div
+                  data-aos="zoom-in"
                   className="singleProduct"
                   key={item._id}
                   style={{
@@ -41,7 +42,7 @@ const ViewListOrders = () => {
                     position: "relative",
                     left: 440,
                     top: 80,
-                    margin: " 0 0 -4.5rem 0rem",
+                    margin: " 0 0 1rem 0rem",
                     borderRadius: "20px",
                     padding: "10px 0 10px 0",
                     boxShadow:
@@ -84,9 +85,9 @@ const ViewListOrders = () => {
                     />{" "}
                     {item.price}$
                   </div>
-                </div>
-                <div>
-                  <CheckOrder _id={item._id} />
+                  <div>
+                    <CheckOrder _id={item._id} />
+                  </div>
                 </div>
               </>
             );
@@ -98,6 +99,7 @@ const ViewListOrders = () => {
             return (
               <>
                 <div
+                  data-aos="zoom-in"
                   className="singleProduct"
                   key={item._id}
                   style={{
@@ -110,7 +112,7 @@ const ViewListOrders = () => {
                     position: "relative",
                     left: 440,
                     top: 80,
-                    margin: " 0 0 -4.5rem 0rem",
+                    margin: " 0 0 1rem 0rem",
                     borderRadius: "20px",
                     padding: "10px 0 10px 0",
                   }}
@@ -165,9 +167,9 @@ const ViewListOrders = () => {
                       );
                     })}
                   </div>
-                </div>
-                <div>
-                  <CheckOrder _id={item._id} />
+                  <div style={{ position: "relative", left: 320 }}>
+                    <CheckOrder _id={item._id} />
+                  </div>
                 </div>
               </>
             );

@@ -11,6 +11,7 @@ const CommentSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "product",
   },
+  createdAt: { type: Date, default: Date.now() },
 });
 CommentSchema.pre(/^find/, function (next) {
   this.populate({

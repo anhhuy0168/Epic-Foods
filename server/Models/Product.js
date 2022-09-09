@@ -20,6 +20,7 @@ const ProductsSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "category",
   },
+  createdAt: { type: Date, default: Date.now() },
 });
 ProductsSchema.pre(/^find/, function (next) {
   this.populate({

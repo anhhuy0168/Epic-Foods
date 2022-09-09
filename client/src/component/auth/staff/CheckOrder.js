@@ -27,8 +27,8 @@ const CheckOrder = (_id) => {
           style={{
             cursor: "pointer",
             position: "relative",
-            left: 1220,
-            top: 81,
+            left: -60,
+            top: 43,
           }}
         >
           <AiOutlineCheckCircle size={40} onClick={handleShow} />
@@ -38,8 +38,8 @@ const CheckOrder = (_id) => {
           style={{
             cursor: "pointer",
             position: "relative",
-            left: 1280,
-            top: 38,
+            left: -10,
+            top: 0,
           }}
         >
           <TiDeleteOutline size={45} onClick={handleShowDelete} />
