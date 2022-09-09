@@ -5,7 +5,10 @@ import Wrapper from "./MessStyle";
 import { AuthContext } from "../../../contexts/AuthContext";
 import NavbarStaff from "../Navbar/NavbarStaff";
 import { io } from "socket.io-client";
+import Form from "react-bootstrap/Form";
+import { AiOutlineSend } from "react-icons/ai";
 import Message from "../../chat/Conversation/message";
+import { ChatContext } from "../../../contexts/ChatContext";
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -13,7 +16,7 @@ export default function Messenger() {
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
-  const socket = useRef(io("ws://localhost:8900"));
+  const socket = useRef();
   const scrollRef = useRef();
   const {
     authState: {
@@ -21,7 +24,20 @@ export default function Messenger() {
       user: { _id },
     },
   } = useContext(AuthContext);
-
+  const {
+    conversationState: { conversation },
+    createConversation,
+  } = useContext(ChatContext);
+  useEffect(() => {
+    socket.current = io("ws://localhost:8900");
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createAt: Date.now(),
+      });
+    });
+  }, []);
   useEffect(() => {
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
@@ -31,16 +47,6 @@ export default function Messenger() {
       // );
     });
   }, [user]);
-
-  // useEffect(() => {
-  //   socket.current.emit("addUser", user._id);
-  //   socket.current.on("getUsers", (users) => {
-  //     console.log(users);
-  //     setOnlineUsers(
-  //       user.followings.filter((f) => users.some((u) => u.userId === f))
-  //     );
-  //   });
-  // }, [user]);
   //get conversation
   useEffect(() => {
     const getConversations = async () => {
@@ -54,7 +60,8 @@ export default function Messenger() {
       }
     };
     getConversations();
-  }, [user._id]);
+  }, [user._id, conversation]);
+  console.log(conversation);
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -96,15 +103,7 @@ export default function Messenger() {
       console.log(err);
     }
   };
-  useEffect(() => {
-    socket.current.on("getMessage", (data) => {
-      setArrivalMessage({
-        sender: data.senderId,
-        text: data.text,
-        createAt: Date.now(),
-      });
-    });
-  }, []);
+
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
@@ -140,15 +139,31 @@ export default function Messenger() {
                     ))}
                   </div>
                   <div className="chatBoxBottom">
-                    <textarea
-                      className="chatMessageInput"
-                      placeholder="write something..."
-                      onChange={(e) => setNewMessage(e.target.value)}
-                      value={newMessage}
-                    ></textarea>
-                    <button className="chatSubmitButton" onClick={handleSubmit}>
-                      Send
-                    </button>
+                    <Form
+                      style={{ display: "flex", height: "3rem" }}
+                      onSubmit={handleSubmit}
+                    >
+                      <Form.Group
+                        style={{ height: "1rem" }}
+                        controlId="formBasicEmail"
+                      >
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="Aa"
+                          onChange={(e) => setNewMessage(e.target.value)}
+                          value={newMessage}
+                          style={{
+                            width: "30rem",
+                            marginTop: "10px",
+                            marginLeft: "0px",
+                            borderRadius: "30px",
+                            backgroundColor: "#CCCCCC",
+                          }}
+                        />
+                      </Form.Group>
+                      <AiOutlineSend size={40} style={{ marginTop: "10px" }} />
+                    </Form>
                   </div>
                 </>
               ) : (

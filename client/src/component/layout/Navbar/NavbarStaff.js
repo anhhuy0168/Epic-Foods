@@ -18,6 +18,7 @@ import { MdFastfood } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
 import { BiHistory } from "react-icons/bi";
 import TotalOrder from "../../auth/staff/TotalOrder";
+import { BsMessenger } from "react-icons/bs";
 export const NavbarStaff = ({ total }) => {
   const {
     authState: {
@@ -172,10 +173,10 @@ export const NavbarStaff = ({ total }) => {
                 }}
               >
                 {" "}
-                <GoListUnordered
+                <BsMessenger
                   style={{ marginRight: "20px", color: "black" }}
                   size={30}
-                ></GoListUnordered>
+                ></BsMessenger>
                 <div
                   style={{ marginTop: "5px", fontSize: "17px", color: "black" }}
                 >

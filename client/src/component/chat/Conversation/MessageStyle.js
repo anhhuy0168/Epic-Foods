@@ -21,8 +21,8 @@ const Wrapper = styled.main`
   .messageText {
     padding: 10px;
     border-radius: 20px;
-    background-color: #1877f2;
-    color: white;
+    background-color: #bbbbbb;
+    color: black;
     max-width: 300px;
   }
 
@@ -33,10 +33,13 @@ const Wrapper = styled.main`
 
   .message.own {
     align-items: flex-end;
+    img {
+      display: none;
+    }
   }
 
   .message.own .messageText {
-    background-color: rgb(245, 241, 241);
+    background-color: #0099cc;
     color: black;
   }
 `;

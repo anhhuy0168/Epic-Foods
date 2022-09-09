@@ -21,12 +21,13 @@ const Conversation = ({ conversation, currentUser }) => {
     };
     getUser();
   }, [currentUser, conversation]);
+  console.log(conversation);
   return (
     <Wrapper>
       <div className="conversation">
         <img
           className="conversationImg"
-          src={user?.avatar ? Avatar : user?.avatar}
+          src={!user?.avatar ? Avatar : user?.avatar}
         />
         <span className="conversationName">{user?.username}</span>
       </div>

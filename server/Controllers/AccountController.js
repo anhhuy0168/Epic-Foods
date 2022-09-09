@@ -287,5 +287,28 @@ class AccountController {
       res.status(500).json(err);
     }
   }
+  //get friend
+  async getFriend(req, res) {
+    try {
+      const user = await User.findById(req.params.userId);
+      console.log(user);
+      const friends = await Promise.all(
+        user.followings.map((friendId) => {
+          return User.findById(friendId);
+        })
+      );
+      console.log(friends, "day la friend");
+      console.log("day la friend");
+      // let friendList = [];
+      // friends.map((friend) => {
+      //   const { _id, username, avatar } = friend;
+      //   friendList.push({ _id, username, avatar });
+      // });
+      // res.status(200).json(friendList);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  }
 }
 module.exports = new AccountController();

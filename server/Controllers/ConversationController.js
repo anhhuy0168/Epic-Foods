@@ -2,13 +2,24 @@ const Conversation = require("../Models/Conversation");
 class ConversationController {
   // new conv
   async newConversation(req, res) {
+    console.log(req.body);
     const newConversation = new Conversation({
-      members: [req.body.senderId, req.body.receiverId],
+      members: [req.body._id, req.body.staffId],
     });
+    const data = await Conversation.findOne(newConversation);
 
+    if (data) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Conversation has exist" });
+    }
     try {
       const savedConversation = await newConversation.save();
-      res.status(200).json(savedConversation);
+      res.status(200).json({
+        success: true,
+        message: "Create complete !",
+        conversation: savedConversation,
+      });
     } catch (err) {
       res.status(500).json(err);
     }

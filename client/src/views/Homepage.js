@@ -16,11 +16,12 @@ import SingleFoodUser from "../component/foods/SingleFoodUser";
 import NavbarAdmin from "../../src/component/layout/Navbar/NavbarAdmin";
 import Navbar from "../../src/component/layout/Navbar/Navbar";
 import Carousels from "../component/layout/Carousel";
-import UpdateProfile from "../component/auth/UpdateProfile";
 import NavbarStaff from "../component/layout/Navbar/NavbarStaff";
 import SingleFoodStaff from "../component/foods/SingleFoodStaff";
-import CommitmentProduct from "../component/foods/CommitmentProduct";
 import Footer from "../component/layout/Footer";
+import ChatBox from "../component/auth/ChatBox";
+import { RiMessengerLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 const HomePage = () => {
   // Contexts
   const {
@@ -105,6 +106,13 @@ const HomePage = () => {
         <Navbar />
         <Carousels />
         <SingleFoodUser />
+        <Link
+          className="fixed-top"
+          to="/chat/help"
+          style={{ float: "right", margin: "40rem 0 0 90rem" }}
+        >
+          <RiMessengerLine size={50} />
+        </Link>
         <Footer />
       </>
     );

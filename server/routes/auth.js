@@ -5,6 +5,7 @@ const verifyToken = require("../middleware/auth");
 const verifyTokenPassword = require("../middleware/VerifyTokenPassword");
 const upload = require("../utils/multer");
 router.get("/get_user", AccountController.getUser);
+router.get("/friends/:userId", AccountController.getFriend);
 router.post("/register", AccountController.userRegister);
 router.post("/login", AccountController.userLogin);
 router.get("/", verifyToken, AccountController.checkUser);

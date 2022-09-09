@@ -4,6 +4,9 @@ class MessageController {
   // new conv
   async addMessage(req, res) {
     const newMessage = new Message(req.body);
+    if (!newMessage) {
+      res.status(500);
+    }
     try {
       const savedMessage = await newMessage.save();
       res.status(200).json(savedMessage);

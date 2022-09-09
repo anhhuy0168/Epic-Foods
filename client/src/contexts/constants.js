@@ -14,6 +14,10 @@ export const apiGoogleUrl =
   process.env.NODE_ENV !== "production"
     ? "http://localhost:5000"
     : "somedeployed";
+export const apiChat =
+  process.env.NODE_ENV !== "production"
+    ? "http://localhost:5000/api"
+    : "somedeployed";
 export const LOCAL_STORAGE_TOKEN_NAME = "epic-food";
 
 export const FOODS_LOADED_SUCCESS = "FOODS_LOADED_SUCCESS";
@@ -56,3 +60,4 @@ export const ORDER_HISTORY_LOADED_SUCCESS = "ORDER_HISTORY_LOADED_SUCCESS";
 export const ORDER_HISTORY_LOADED_FAIL = "ORDER_HISTORY_LOADED_FAIL";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const UPDATE_AVATAR = "UPDATE_AVATAR";
+export const ADD_CONVERSATION = "ADD_CONVERSATION";

@@ -24,6 +24,8 @@ import OrderContextProvider from "./contexts/OrdersContext";
 import ViewListOrders from "./component/auth/staff/ViewListOrders";
 import ViewHistoryOrder from "./component/auth/staff/ViewHistoryOrder";
 import Messenger from "../src/component/layout/messenger/Messenger";
+import ChatContextProvider from "./contexts/ChatContext";
+import ChatBox from "./component/auth/ChatBox";
 function App() {
   return (
     <AuthContextProvider>
@@ -32,112 +34,125 @@ function App() {
           <AdminContextProvider>
             <CommentContextProvider>
               <OrderContextProvider>
-                <Router>
-                  <Switch>
-                    <Route exact path="/" component={Landing}></Route>
-                    <Route
-                      exact
-                      path="/login"
-                      render={(props) => <Auth {...props} authRoute="login" />}
-                    />
-                    <Route
-                      exact
-                      path="/register"
-                      render={(props) => (
-                        <Auth {...props} authRoute="register" />
-                      )}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/homepage"
-                      component={Homepage}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/registerStaff"
-                      component={RegisterStaff}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/food/detail/:id"
-                      component={DetailProduct}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/buy_food/:id"
-                      component={BuyProduct}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/viewUser"
-                      component={ViewUser}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/viewListOrder"
-                      component={ViewListOrders}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/viewHistoryOrder"
-                      component={ViewHistoryOrder}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/messenger"
-                      component={Messenger}
-                    />
-                    <Route
-                      path="/forgot_password"
-                      component={ForgotPassword}
-                      exact
-                    />
-                    <ProtectedRoute exact path="/cart_User" component={Cart} />
-                    <Route
-                      path="/user/reset/:token"
-                      component={ResetPassword}
-                      exact
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/Category"
-                      component={ViewCategory}
-                    />
-                    <ProtectedRoute
-                      exact
-                      path="/editProfile"
-                      component={UpdateProfile}
-                    />
-                    <Route
-                      path="/user/reset/:token"
-                      component={ResetPassword}
-                      exact
-                    />
-                    <Route
-                      path="/forgot_password"
-                      component={ForgotPassword}
-                      exact
-                    />
-                    <Route
-                      path="/user/reset/:token"
-                      component={ResetPassword}
-                      exact
-                    />
+                <ChatContextProvider>
+                  <Router>
+                    <Switch>
+                      <Route exact path="/" component={Landing}></Route>
+                      <Route
+                        exact
+                        path="/login"
+                        render={(props) => (
+                          <Auth {...props} authRoute="login" />
+                        )}
+                      />
+                      <Route
+                        exact
+                        path="/register"
+                        render={(props) => (
+                          <Auth {...props} authRoute="register" />
+                        )}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/homepage"
+                        component={Homepage}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/registerStaff"
+                        component={RegisterStaff}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/food/detail/:id"
+                        component={DetailProduct}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/buy_food/:id"
+                        component={BuyProduct}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/viewUser"
+                        component={ViewUser}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/viewListOrder"
+                        component={ViewListOrders}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/viewHistoryOrder"
+                        component={ViewHistoryOrder}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/messenger"
+                        component={Messenger}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/chat/help"
+                        component={ChatBox}
+                      />
+                      <Route
+                        path="/forgot_password"
+                        component={ForgotPassword}
+                        exact
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/cart_User"
+                        component={Cart}
+                      />
+                      <Route
+                        path="/user/reset/:token"
+                        component={ResetPassword}
+                        exact
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/Category"
+                        component={ViewCategory}
+                      />
+                      <ProtectedRoute
+                        exact
+                        path="/editProfile"
+                        component={UpdateProfile}
+                      />
+                      <Route
+                        path="/user/reset/:token"
+                        component={ResetPassword}
+                        exact
+                      />
+                      <Route
+                        path="/forgot_password"
+                        component={ForgotPassword}
+                        exact
+                      />
+                      <Route
+                        path="/user/reset/:token"
+                        component={ResetPassword}
+                        exact
+                      />
 
-                    <Route
-                      path="/user/activate/:activation_token"
-                      component={ActivationEmail}
-                      exact
-                    />
+                      <Route
+                        path="/user/activate/:activation_token"
+                        component={ActivationEmail}
+                        exact
+                      />
 
-                    <Route
-                      exact
-                      path="/confirmEmail"
-                      component={ConfirmEmailForm}
-                    ></Route>
-                  </Switch>
-                  <Toaster />
-                </Router>
+                      <Route
+                        exact
+                        path="/confirmEmail"
+                        component={ConfirmEmailForm}
+                      ></Route>
+                    </Switch>
+                    <Toaster />
+                  </Router>
+                </ChatContextProvider>
               </OrderContextProvider>
             </CommentContextProvider>
           </AdminContextProvider>
