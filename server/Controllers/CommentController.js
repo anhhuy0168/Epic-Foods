@@ -3,7 +3,9 @@ const Comment = require("../Models/Comment");
 class CommentController {
   async getComment(req, res) {
     try {
-      const comment = await Comment.find({ product: req.params.id });
+      const comment = await Comment.find({ product: req.params.id }).sort([
+        ["createdAt", -1],
+      ]);
       res.json({ success: true, comment });
     } catch (error) {
       console.log(error);

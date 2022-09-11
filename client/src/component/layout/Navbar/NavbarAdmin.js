@@ -189,7 +189,7 @@ export const NavbarAdmin = () => {
                 textDecoration: "none",
               }}
               activeClassName="active1"
-              to="/viewUser"
+              to="/view_chart"
               exact
             >
               <div

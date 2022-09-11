@@ -57,7 +57,7 @@ const Cart_User = () => {
             <th>Price</th>
             <th>Description</th>
             <th>Image Product</th>
-            <th>Count</th>
+            <th>Quantity</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -85,12 +85,22 @@ const Cart_User = () => {
                 </td>
                 <td>
                   <div className="amount">
-                    <button onClick={() => decrement(item._id, item.amount)}>
+                    <button
+                      style={{
+                        borderRadius: "10px",
+                        margin: "0 2px 0 0px",
+                        width: "27px",
+                      }}
+                      onClick={() => decrement(item._id, item.amount)}
+                    >
                       {" "}
                       -{" "}
                     </button>
                     <span>{item.amount}</span>
-                    <button onClick={() => increment(item._id, item.amount)}>
+                    <button
+                      style={{ borderRadius: "10px", margin: "0 0 0 5px" }}
+                      onClick={() => increment(item._id, item.amount)}
+                    >
                       {" "}
                       +{" "}
                     </button>
@@ -104,13 +114,11 @@ const Cart_User = () => {
           })}
         </tbody>
       </Table>
-      <div className="total">
+      <div className="total" style={{ textAlign: "center" }}>
         <h3>Total: $ {total}</h3>
+        <Payment total={total} />
       </div>
-      <Payment total={total} />
-      <Link to="/homepage" style={{ marginLeft: "764px" }}>
-        <Button>Back</Button>
-      </Link>
+
       <OrderUserHistory />
     </>
   );

@@ -18,7 +18,6 @@ const Payment = (total) => {
       },
       body: JSON.stringify({ token, user, price, cart }),
     })
-      .then((res) => res.json())
       .then((_) => {
         window.alert("Transaction Successful.");
       })

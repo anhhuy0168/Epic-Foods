@@ -20,7 +20,7 @@ class FoodsController {
   //
   async getAllFoods(req, res) {
     try {
-      const food = await Foods.find();
+      const food = await Foods.find().sort([["createdAt", -1]]);
       res.json({ success: true, food });
     } catch (error) {
       console.log(error);

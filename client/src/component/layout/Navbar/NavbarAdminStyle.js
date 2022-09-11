@@ -39,12 +39,16 @@ const Wrapper = styled.main`
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   }
+  .option {
+    transition: transform 1s;
+  }
   .option:hover {
-    background-color: #ffffcc;
+    font-weight: 500;
     -webkit-transition: background-color 500ms linear;
     -ms-transition: background-color 500ms linear;
     transition: background-color 500ms linear;
     border-radius: 15px;
+    transform: scale(1.1);
   }
 `;
 export default Wrapper;
