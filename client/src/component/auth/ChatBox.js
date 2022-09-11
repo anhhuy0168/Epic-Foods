@@ -221,13 +221,16 @@ const ChatBox = () => {
                           style={{
                             width: "30rem",
                             marginTop: "10px",
-                            marginLeft: "90px",
+                            marginLeft: "120px",
                             borderRadius: "30px",
                             backgroundColor: "#CCCCCC",
                           }}
                         />
                       </Form.Group>
-                      <AiOutlineSend size={40} style={{ marginTop: "10px" }} />
+                      <AiOutlineSend
+                        size={25}
+                        style={{ position: "relative", right: 30, top: 18 }}
+                      />
                     </Form>
                   </div>
                 </>

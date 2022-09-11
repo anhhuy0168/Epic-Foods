@@ -22,7 +22,7 @@ const ViewHistoryOrder = () => {
   }, []);
   console.log(historyOrders);
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 700 });
     AOS.refresh();
   }, []);
   const [query, setQuery] = useState("");
@@ -52,9 +52,10 @@ const ViewHistoryOrder = () => {
         />
       </nav>
       {historyOrders
+        .filter((item) => item.deleted === true)
         .filter((item) => item.user.username.toLowerCase().includes(query))
         .map((item) => {
-          if (item.product && item.deleted == true) {
+          if (item.product) {
             return (
               <>
                 <div
@@ -62,6 +63,8 @@ const ViewHistoryOrder = () => {
                   className="singleProduct"
                   key={item._id}
                   style={{
+                    height: "9rem",
+
                     boxShadow:
                       "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                     backgroundColor: "#CCCCCC",
@@ -88,9 +91,20 @@ const ViewHistoryOrder = () => {
                     <div>{item.user.username}</div>
                     <div>Address: {item.user.address}</div>
                     <div>Phone: {item.user.phoneNumber}</div>
+                    <FaMoneyCheckAlt
+                      size={20}
+                      style={{ margin: "-2px 5px 0 0px" }}
+                    />{" "}
+                    {item.price}$
                   </div>
 
-                  <div style={{ width: "40rem", margin: "30px 0 0 10rem" }}>
+                  <div
+                    style={{
+                      width: "40rem",
+                      margin: "50px 0 0 10rem",
+                      fontWeight: 500,
+                    }}
+                  >
                     <div style={{ maxWidth: "20rem" }}>
                       {" "}
                       <Card.Img
@@ -103,13 +117,8 @@ const ViewHistoryOrder = () => {
                         }}
                         src={item.product.productImage}
                       />
-                      {item.product.name}x {item.amount}{" "}
+                      {item.product.name} x{item.amount}{" "}
                     </div>
-                    <FaMoneyCheckAlt
-                      size={20}
-                      style={{ margin: "-2px 5px 0 60px" }}
-                    />{" "}
-                    {item.price}$
                   </div>
                 </div>
               </>
@@ -118,9 +127,10 @@ const ViewHistoryOrder = () => {
         })}
 
       {historyOrders
+        .filter((item) => item.deleted === true)
         .filter((item) => item.user.username.toLowerCase().includes(query))
         .map((item) => {
-          if (!item.product && item.deleted == true) {
+          if (!item.product) {
             return (
               <>
                 <div
@@ -129,6 +139,7 @@ const ViewHistoryOrder = () => {
                   key={item._id}
                   style={{
                     maxHeight: "30rem",
+                    height: "9rem",
                     boxShadow:
                       "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                     backgroundColor: "#CCCCCC",
@@ -155,16 +166,25 @@ const ViewHistoryOrder = () => {
                     <div>{item.user.username}</div>
                     <div>Address: {item.user.address}</div>
                     <div>Phone: {item.user.phoneNumber}</div>
+                    <FaMoneyCheckAlt
+                      size={20}
+                      style={{ margin: "0px 5px 0 0px" }}
+                    />{" "}
+                    {item.price}$
                   </div>
 
                   <div>
                     {" "}
                     {item.cart.map((cart) => {
-                      console.log(cart);
                       return (
                         <>
                           <div
-                            style={{ position: "relative", left: 160, top: 10 }}
+                            style={{
+                              position: "relative",
+                              left: 160,
+                              top: 10,
+                              fontWeight: 500,
+                            }}
                           >
                             {" "}
                             <Card.Img
@@ -183,11 +203,6 @@ const ViewHistoryOrder = () => {
                             style={{ position: "absolute", left: 800, top: 50 }}
                           >
                             {" "}
-                            <FaMoneyCheckAlt
-                              size={20}
-                              style={{ margin: "0px 5px 0 0px" }}
-                            />{" "}
-                            {item.price}$
                           </div>
                         </>
                       );

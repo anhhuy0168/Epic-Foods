@@ -3,7 +3,9 @@ const { ObjectId } = require("mongodb");
 class CartController {
   async getCartUser(req, res) {
     try {
-      const cart = await Cart.find({ user_id: req.userId });
+      const cart = await Cart.find({ user_id: req.userId }).sort([
+        ["createdAt", -1],
+      ]);
       res.json({ success: true, cart });
     } catch (error) {
       console.log(error);
@@ -15,7 +17,6 @@ class CartController {
   async addToCart(req, res) {
     const { product, users_id } = req.body;
     const infor = await Cart.findById(users_id, product);
-    console.log(infor);
     if (infor) {
       return res
         .status(400)

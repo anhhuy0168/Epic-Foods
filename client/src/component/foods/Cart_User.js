@@ -114,13 +114,11 @@ const Cart_User = () => {
           })}
         </tbody>
       </Table>
-      <div className="total">
+      <div className="total" style={{ textAlign: "center" }}>
         <h3>Total: $ {total}</h3>
+        <Payment total={total} />
       </div>
-      <Payment total={total} />
-      <Link to="/homepage" style={{ marginLeft: "764px" }}>
-        <Button>Back</Button>
-      </Link>
+
       <OrderUserHistory />
     </>
   );

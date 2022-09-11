@@ -1,18 +1,21 @@
 const mongoose = require("mongoose");
-const CommentSchema = new mongoose.Schema({
-  content: {
-    type: String,
+const CommentSchema = new mongoose.Schema(
+  {
+    content: {
+      type: String,
+    },
+    user_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+    },
+    product: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "product",
+    },
+    createdAt: { type: Date, default: Date.now() },
   },
-  user_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "users",
-  },
-  product: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "product",
-  },
-  createdAt: { type: Date, default: Date.now() },
-});
+  { timestamps: true }
+);
 CommentSchema.pre(/^find/, function (next) {
   this.populate({
     path: "product",

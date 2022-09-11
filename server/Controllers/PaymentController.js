@@ -16,7 +16,9 @@ class PaymentController {
   }
   async getUserOrder(req, res) {
     try {
-      const order = await Order.findDeleted({ user: req.userId });
+      const order = await Order.find({ user: req.userId }).sort([
+        ["createdAt", -1],
+      ]);
       res.json({ success: true, order });
     } catch (error) {
       console.log(error);
@@ -126,7 +128,6 @@ class PaymentController {
     // res.status(201).json({ success: true });
   }
   async checkOrder(req, res) {
-    console.log(req.params.id);
     try {
       const orderCheckCondition = { _id: req.params.id };
       const checkOrder = await Order.delete(orderCheckCondition);
@@ -146,7 +147,7 @@ class PaymentController {
   }
   async getHistoryOrder(req, res) {
     try {
-      const listHistoryOrder = await Order.findDeleted({});
+      const listHistoryOrder = await Order.find().sort([["createdAt", -1]]);
       res.json({ success: true, listHistoryOrder });
     } catch (error) {
       console.log(error);

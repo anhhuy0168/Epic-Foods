@@ -2,7 +2,6 @@ const Conversation = require("../Models/Conversation");
 class ConversationController {
   // new conv
   async newConversation(req, res) {
-    console.log(req.body);
     const newConversation = new Conversation({
       members: [req.body._id, req.body.staffId],
     });
@@ -28,7 +27,7 @@ class ConversationController {
     try {
       const conversation = await Conversation.find({
         members: { $in: [req.params.userId] },
-      });
+      }).sort([["createdAt", -1]]);
       res.status(200).json(conversation);
     } catch (err) {
       res.status(500).json(err);

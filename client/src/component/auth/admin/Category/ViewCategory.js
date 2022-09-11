@@ -45,7 +45,7 @@ const ViewCategory = () => {
               ))}
             </>
           ) : (
-            <h4 className="text-center">No Users</h4>
+            <h4 className="text-center">No Category</h4>
           )}
         </ListGroup>
       </>

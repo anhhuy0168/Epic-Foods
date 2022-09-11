@@ -3,7 +3,7 @@ const Category = require("../Models/Category");
 class AdminController {
   async getAllStaff(req, res) {
     try {
-      const user = await User.find({ role: "staff" });
+      const user = await User.find({ role: "staff" }).sort([["createdAt", -1]]);
       res.json({ success: true, user });
     } catch (error) {
       console.log(error);
@@ -14,7 +14,9 @@ class AdminController {
   }
   async getAllUser(req, res) {
     try {
-      const listUser = await User.find({ role: "user" });
+      const listUser = await User.find({ role: "user" }).sort([
+        ["createdAt", -1],
+      ]);
       res.json({ success: true, listUser });
     } catch (error) {
       console.log(error);
@@ -43,9 +45,10 @@ class AdminController {
   }
   async getAllCategory(req, res) {
     try {
-      const category = await Category.find();
+      const category = await Category.find().sort([["createdAt", -1]]);
       // category.sort({ createdAt });
       // console.log(category);
+      console.log(category);
       res.json({ success: true, category });
     } catch (error) {
       console.log(error);

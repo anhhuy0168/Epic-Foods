@@ -26,7 +26,6 @@ export default function Messenger() {
   } = useContext(AuthContext);
   const {
     conversationState: { conversation },
-    createConversation,
   } = useContext(ChatContext);
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
@@ -60,8 +59,8 @@ export default function Messenger() {
       }
     };
     getConversations();
-  }, [user._id, conversation]);
-  console.log(conversation);
+  }, [conversation, user._id]);
+  console.log(conversations);
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -119,9 +118,12 @@ export default function Messenger() {
         <div className="messenger" style={{ marginLeft: "17rem" }}>
           <div className="chatMenu">
             <div className="chatMenuWrapper">
-              <input placeholder="Search for user" className="chatMenuInput" />
+              <div placeholder="Search for user" className="chatMenuInput">
+                List chat user
+              </div>
               {conversations.map((c) => (
                 <div onClick={() => setCurrentChat(c)}>
+                  {console.log(c.members[0])}
                   <Conversation conversation={c} currentUser={user} />
                 </div>
               ))}
@@ -156,13 +158,16 @@ export default function Messenger() {
                           style={{
                             width: "30rem",
                             marginTop: "10px",
-                            marginLeft: "0px",
+                            marginLeft: "20px",
                             borderRadius: "30px",
                             backgroundColor: "#CCCCCC",
                           }}
                         />
                       </Form.Group>
-                      <AiOutlineSend size={40} style={{ marginTop: "10px" }} />
+                      <AiOutlineSend
+                        size={25}
+                        style={{ position: "relative", right: 30, top: 17 }}
+                      />
                     </Form>
                   </div>
                 </>
