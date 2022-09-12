@@ -10,6 +10,8 @@ const adminRouter = require("./routes/admin");
 const commentRouter = require("./routes/comment");
 const paymentRouter = require("./routes/payment");
 const messageRouter = require("./routes/messages");
+const statisticRouter = require("./routes/statistic");
+
 const conversationRouter = require("./routes/conversations");
 const connectDB = async () => {
   try {
@@ -43,6 +45,7 @@ app.use("/auth/comment", commentRouter);
 app.use("/auth", paymentRouter);
 app.use("/api/messages", messageRouter);
 app.use("/api/conversations", conversationRouter);
+app.use("/api/statistic", statisticRouter);
 
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
