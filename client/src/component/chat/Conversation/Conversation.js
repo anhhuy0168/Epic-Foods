@@ -21,7 +21,6 @@ const Conversation = ({ conversation, currentUser }) => {
     };
     getUser();
   }, [currentUser, conversation]);
-  console.log(conversation);
   return (
     <Wrapper>
       <div className="conversation">

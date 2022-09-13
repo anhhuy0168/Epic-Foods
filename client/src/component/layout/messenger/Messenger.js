@@ -15,7 +15,6 @@ export default function Messenger() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const socket = useRef();
   const scrollRef = useRef();
   const {
@@ -25,8 +24,12 @@ export default function Messenger() {
     },
   } = useContext(AuthContext);
   const {
-    conversationState: { conversation },
+    conversationState: { conversation, oneConversation },
+    getConversation,
   } = useContext(ChatContext);
+  useEffect(() => {
+    getConversation();
+  }, []);
   useEffect(() => {
     socket.current = io("ws://localhost:8900");
     socket.current.on("getMessage", (data) => {
@@ -35,6 +38,7 @@ export default function Messenger() {
         text: data.text,
         createAt: Date.now(),
       });
+      getConversation(user._id);
     });
   }, []);
   useEffect(() => {
@@ -53,14 +57,13 @@ export default function Messenger() {
         const res = await axios.get(
           `http://localhost:5000/api/conversations/${user._id}`
         );
-        setConversations(res.data);
+        setConversations(res.data.conversation);
       } catch (err) {
         console.log(err);
       }
     };
     getConversations();
-  }, [conversation, user._id]);
-  console.log(conversations);
+  }, [conversation, user._id, oneConversation]);
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -98,6 +101,7 @@ export default function Messenger() {
       );
       setMessages([...messages, res.data]);
       setNewMessage("");
+      getConversation(user._id);
     } catch (err) {
       console.log(err);
     }
@@ -121,9 +125,8 @@ export default function Messenger() {
               <div placeholder="Search for user" className="chatMenuInput">
                 List chat user
               </div>
-              {conversations.map((c) => (
+              {conversations?.map((c) => (
                 <div onClick={() => setCurrentChat(c)}>
-                  {console.log(c.members[0])}
                   <Conversation conversation={c} currentUser={user} />
                 </div>
               ))}

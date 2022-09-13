@@ -5,7 +5,7 @@ const stripe = require("stripe")(
 class PaymentController {
   async getOrder(req, res, next) {
     try {
-      const listOrder = await Order.find();
+      const listOrder = await Order.find().sort([["createdAt", 1]]);
       res.json({ success: true, listOrder });
     } catch (error) {
       console.log(error);
