@@ -126,6 +126,7 @@ const BuyProduct = () => {
             +{" "}
           </button>
         </div>
+
         <div style={{ margin: "20px 0 0 15rem", maxWidth: "20rem" }}>
           <div style={{ margin: "0 0 30px 70px", fontWeight: 500 }}>
             Your Information.
@@ -148,6 +149,7 @@ const BuyProduct = () => {
         >
           Total Price Order :{oneFood.price * amountProduct} $
         </div>
+
         <PaymentSingleFood
           product={oneFood}
           total={oneFood.price * amountProduct}

@@ -78,8 +78,8 @@ const ChatBox = () => {
         const res = await axios.get(
           `http://localhost:5000/api/conversations/${user._id}`
         );
-        setCurrentChat(res.data[0]);
-        setConversations(res.data);
+        setCurrentChat(res.data.conversation[0]);
+        setConversations(res.data.conversation);
       } catch (err) {
         console.log(err);
       }
@@ -141,11 +141,6 @@ const ChatBox = () => {
       inline: "start",
     });
   }, [messages]);
-
-  // console.log("conversation", conversations);
-  // console.log("currentChat", currentChat);
-  // console.log("conversation context", conversation);
-
   return (
     <>
       <NavbarMenu />

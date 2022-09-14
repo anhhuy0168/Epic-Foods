@@ -10,7 +10,6 @@ const TotalOrder = () => {
     getAllOrders();
   }, [listOrder]);
   var total = orders.filter((item) => item.deleted === false);
-  console.log(total.length);
   return (
     <div
       style={{
