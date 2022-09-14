@@ -48,7 +48,6 @@ class AdminController {
       const category = await Category.find().sort([["createdAt", -1]]);
       // category.sort({ createdAt });
       // console.log(category);
-      console.log(category);
       res.json({ success: true, category });
     } catch (error) {
       console.log(error);
