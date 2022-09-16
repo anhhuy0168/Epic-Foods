@@ -26,6 +26,7 @@ const BuyProduct = () => {
       user: { username, phoneNumber, address },
     },
   } = useContext(AuthContext);
+  console.log(address);
   const {
     foodState: { oneFood, category },
     getOneFoods,
@@ -135,9 +136,11 @@ const BuyProduct = () => {
               Change? <Link to="/editProfile">Click here</Link>
             </div>
           </div>
-          <div>Name : {username}</div>
-          <div>Phone Number : {phoneNumber}</div>
-          <div>Transport to : {address}</div>
+          <div style={{ fontWeight: 500 }}>
+            <div>Name : {username}</div>
+            <div>Phone Number : {phoneNumber}</div>
+            <div>Transport to : {address}</div>
+          </div>
         </div>
         <div style={{ padding: "15rem" }}>
           <MapDelivery customerAddress={address} />

@@ -8,6 +8,7 @@ class AccountController {
   // @route GET api/auth
   // @desc Check if user is logged in
   async checkUser(req, res) {
+    console.log(req.userId);
     try {
       const user = await User.findById(req.userId).select("-password");
       if (!user)
@@ -49,6 +50,7 @@ class AccountController {
 
       // all good
       // return token
+      console.log(user);
       const accessToken = jwt.sign(
         { userId: user._id, username: user.username },
         process.env.ACCESS_TOKEN_SECRET,
@@ -79,7 +81,7 @@ class AccountController {
       role,
     } = req.body;
     // Simple validation
-    if (!username || !password || !email || !address || !phoneNumber)
+    if (!username || !password || !email)
       return res
         .status(400)
         .json({ success: false, message: "Missing information" });
@@ -93,7 +95,6 @@ class AccountController {
 
       // All good
 
-      // const newUser1 = new User({ phoneNumber,role :'user', email,address,dateOfBirth,username, password: hashedPassword })
       const newUser = {
         username,
         email,
@@ -138,7 +139,6 @@ class AccountController {
         activation_token,
         process.env.ACTIVATION_TOKEN_SECRET
       );
-      console.log(user.user, "hihihihihihi");
       // 	// var decoded = jwt_decode(user);
       const { username, email, address, phoneNumber, password, role } =
         user.user;
@@ -151,8 +151,6 @@ class AccountController {
         username,
         email,
         password: hashedPassword,
-        address,
-        phoneNumber,
         role,
       });
 
@@ -237,10 +235,6 @@ class AccountController {
   async updateProfile(req, res) {
     console.log(req.body);
     const { username, address, phoneNumber, dateOfBirth } = req.body;
-    if (!username || !phoneNumber || !address)
-      return res
-        .status(400)
-        .json({ success: false, message: "Missing information !" });
     try {
       let updateUser = {
         username,

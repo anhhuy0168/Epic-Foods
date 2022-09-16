@@ -76,29 +76,6 @@ const RegisterForm = () => {
         <Form.Group>
           <Form.Control
             type="text"
-            placeholder="Address"
-            name="address"
-            required
-            ref={inputRef}
-            value={address}
-            onChange={onChangeRegisterForm}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            type="text"
-            placeholder="Phone Number"
-            name="phoneNumber"
-            required
-            ref={inputRef}
-            value={phoneNumber}
-            onChange={onChangeRegisterForm}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Control
-            type="text"
             placeholder="Username"
             name="username"
             required

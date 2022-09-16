@@ -26,6 +26,7 @@ const AuthContextProvider = ({ children }) => {
 
     try {
       const response = await axios.get(`${apiUrl}/auth/`);
+      console.log(response);
       if (response.data.success) {
         dispatch({
           type: "SET_AUTH",
@@ -52,7 +53,6 @@ const AuthContextProvider = ({ children }) => {
           LOCAL_STORAGE_TOKEN_NAME,
           response.data.accessToken
         );
-      console.log(response.data.accessToken, "day la token");
       await loadUser();
       return response.data;
     } catch (error) {
@@ -146,6 +146,7 @@ const AuthContextProvider = ({ children }) => {
   };
   //context data
   const authContextData = {
+    loadUser,
     registerStaff,
     updateAvatar,
     updateProfile,

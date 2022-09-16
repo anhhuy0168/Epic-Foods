@@ -27,12 +27,10 @@ const UsersSchema = new mongoose.Schema(
     },
     phoneNumber: {
       type: Number,
-      required: true,
       maxLength: 255,
     },
     address: {
       type: String,
-      required: true,
       maxLength: 255,
     },
     role: {

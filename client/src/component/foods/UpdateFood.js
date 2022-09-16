@@ -39,7 +39,8 @@ const UpdateFoodModal = () => {
     setUpdatedFood(food);
     setShowUpdateFoodModal(false);
   };
-  const { _id, name, description, price, productImage } = updatedFoods;
+  const { _id, name, description, price, productImage, category } =
+    updatedFoods;
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -99,8 +100,8 @@ const UpdateFoodModal = () => {
             <div style={{ fontSize: "20px" }}>Category :</div>
             <DropdownButton
               style={{ marginLeft: "20px" }}
-              title={categoryName}
-              type="file"
+              title={!categoryName ? category.name : categoryName}
+              type="text"
             >
               {listCategory.map((item) => {
                 return (
@@ -129,6 +130,7 @@ const UpdateFoodModal = () => {
                 placeholder="Upload file"
                 name="productImage"
                 onChange={onChangeNewImage}
+                required
               />
             </form>
           </Form.Group>

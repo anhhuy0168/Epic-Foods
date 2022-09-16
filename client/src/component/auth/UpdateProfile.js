@@ -132,7 +132,7 @@ const UpdateProfile = () => {
               <Form.Control
                 style={{ marginRight: "20rem" }}
                 rows={3}
-                placeholder="address"
+                placeholder=""
                 name="address"
                 value={address}
                 onChange={onChangeUpdatedProfileForm}
@@ -149,7 +149,7 @@ const UpdateProfile = () => {
                   top: -30,
                 }}
                 type="text"
-                placeholder="phoneNumber"
+                placeholder=""
                 name="phoneNumber"
                 value={phoneNumber}
                 onChange={onChangeUpdatedProfileForm}
@@ -160,7 +160,7 @@ const UpdateProfile = () => {
             Date Of Birth:
             <Form.Control
               type="text"
-              placeholder="dateOfBirth"
+              placeholder=""
               name="dateOfBirth"
               value={dateOfBirth}
               onChange={onChangeUpdatedProfileForm}
