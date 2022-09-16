@@ -11,6 +11,7 @@ import NavbarMenu from "../layout/Navbar/Navbar";
 import Logo from "../../assets/logox2.png";
 import BeeHappy from "../../assets/happyBee.png";
 import { AuthContext } from "../../contexts/AuthContext";
+import MapDelivery from "./MapDelivery";
 const BuyProduct = () => {
   const params = useParams();
   const [total, setTotal] = useState(0);
@@ -85,7 +86,7 @@ const BuyProduct = () => {
           style={{
             borderRadius: "20px 20px 20px 20px",
             width: "16.9rem",
-            height: "15rem",
+            height: "18rem",
             margin: "20px 0 20px 15rem",
           }}
           src={oneFood.productImage}
@@ -137,6 +138,9 @@ const BuyProduct = () => {
           <div>Name : {username}</div>
           <div>Phone Number : {phoneNumber}</div>
           <div>Transport to : {address}</div>
+        </div>
+        <div style={{ padding: "15rem" }}>
+          <MapDelivery customerAddress={address} />
         </div>
 
         <div

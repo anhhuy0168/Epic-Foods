@@ -326,7 +326,7 @@ const DetailProduct = () => {
           <img
             src={oneFood.productImage}
             alt=""
-            style={{ width: "30rem", height: "32rem" }}
+            style={{ width: "30rem", height: "32rem", borderRadius: "20px" }}
           />
           <div>
             <div style={{ fontSize: "40px", margin: "-18px 0 0 100px " }}>
