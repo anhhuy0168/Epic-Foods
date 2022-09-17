@@ -33,14 +33,14 @@ const UpdateFoodModal = () => {
     );
 
   const onChangeNewImage = (event) =>
-    setUpdatedFood({ ...updatedFoods, productImage: event.target.files[0] });
+    setUpdatedFood({ ...updatedFoods, photo: event.target.files[0] });
 
   const closeDialog = () => {
     setUpdatedFood(food);
     setShowUpdateFoodModal(false);
   };
-  const { _id, name, description, price, productImage, category } =
-    updatedFoods;
+  const { _id, name, description, price, photo, category } = updatedFoods;
+  console.log(photo);
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -48,14 +48,12 @@ const UpdateFoodModal = () => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
-    productImage &&
-      formData.append("productImage", productImage, productImage.name);
     formData.append("category", categoryId);
+    photo && formData.append("productImage", photo, photo.name);
     const { success, message } = await updateFood(formData);
     setShowUpdateFoodModal(false);
     setShowToast({ show: true, message, type: success ? "success" : "danger" });
   };
-
   return (
     <Modal show={showUpdateFoodModal} onHide={closeDialog}>
       <Modal.Header closeButton>

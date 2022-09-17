@@ -110,6 +110,7 @@ const FoodContextProvider = ({ children }) => {
         return response.data;
       }
     } catch (error) {
+      console.log(error);
       return error.response.data
         ? error.response.data
         : { success: false, message: "Server error" };

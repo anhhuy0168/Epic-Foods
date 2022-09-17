@@ -21,7 +21,7 @@ const TotalCart = () => {
         width: "30px",
         backgroundColor: "red",
         borderRadius: "20px",
-        padding: "3px 9px 3px 9px",
+        padding: "5px 5px 5px 10px",
         color: "white",
         fontSize: "12px",
       }}

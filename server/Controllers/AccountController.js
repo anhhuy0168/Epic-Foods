@@ -204,26 +204,8 @@ class AccountController {
   async updateAvatar(req, res) {
     const result = await cloudinary.uploader.upload(req.file.path);
     try {
-      let updateAvatar = {
-        avatar: result.secure_url,
-      };
-      const updateUserCondition = { _id: req.params.id };
-      updateAvatar = await User.findByIdAndUpdate(
-        updateUserCondition,
-        updateAvatar,
-        { new: true }
-      );
-      if (!updateAvatar)
-        return res.status(401).json({
-          success: false,
-          message: "User not found",
-        });
-
-      res.json({
-        success: true,
-        message: "Excellent progress!",
-        avatar: updateAvatar,
-      });
+      if (!req.file) {
+      }
     } catch (error) {
       console.log(error);
       res
@@ -234,31 +216,59 @@ class AccountController {
   //profile update
   async updateProfile(req, res) {
     console.log(req.body);
-    const { username, address, phoneNumber, dateOfBirth } = req.body;
+    const { username, address, phoneNumber, dateOfBirth, avatar } = req.body;
     try {
-      let updateUser = {
-        username,
-        address,
-        phoneNumber,
-        dateOfBirth,
-      };
-      const updateUserCondition = { _id: req.params.id };
-      updateUser = await User.findByIdAndUpdate(
-        updateUserCondition,
-        updateUser,
-        { new: true }
-      );
-      if (!updateUser)
-        return res.status(401).json({
-          success: false,
-          message: "User not found",
-        });
+      if (req.file) {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        let updateUser = {
+          username,
+          address,
+          phoneNumber,
+          dateOfBirth,
+          avatar: result.secure_url,
+        };
+        const updateUserCondition = { _id: req.params.id };
+        updateUser = await User.findByIdAndUpdate(
+          updateUserCondition,
+          updateUser,
+          { new: true }
+        );
+        if (!updateUser)
+          return res.status(401).json({
+            success: false,
+            message: "User not found",
+          });
 
-      res.json({
-        success: true,
-        message: "Excellent progress!",
-        user: updateUser,
-      });
+        res.json({
+          success: true,
+          message: "Excellent progress!",
+          user: updateUser,
+        });
+      } else if (!req.file) {
+        let updateUser = {
+          username,
+          address,
+          phoneNumber,
+          dateOfBirth,
+        };
+        const updateUserCondition = { _id: req.params.id };
+        updateUser = await User.findByIdAndUpdate(
+          updateUserCondition,
+          updateUser,
+          { new: true }
+        );
+        if (!updateUser)
+          return res.status(401).json({
+            success: false,
+            message: "User not found",
+          });
+
+        res.json({
+          success: true,
+          message: "Excellent progress!",
+          user: updateUser,
+        });
+      }
     } catch (error) {
       console.log(error);
       res
