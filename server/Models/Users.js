@@ -26,13 +26,11 @@ const UsersSchema = new mongoose.Schema(
       type: Date,
     },
     phoneNumber: {
-      type: Number,
-      required: true,
+      type: String,
       maxLength: 255,
     },
     address: {
       type: String,
-      required: true,
       maxLength: 255,
     },
     role: {

@@ -15,6 +15,7 @@ import { ChartContext } from "../../../../contexts/ChartContext";
 import { OrderContext } from "../../../../contexts/OrdersContext";
 import NavbarAdmin from "../../../layout/Navbar/NavbarAdmin";
 import ViewChartOfMonth from "./ViewChartOfMonth";
+import ViewTotalOrderSale from "./ViewTotalOrderSale";
 import AOS from "aos";
 import "aos/dist/aos.css";
 export default function ChartOfWeek() {
@@ -37,6 +38,7 @@ export default function ChartOfWeek() {
   return (
     <>
       <NavbarAdmin />
+      <ViewTotalOrderSale />
       <h3
         data-aos="zoom-in"
         data-aos-delay="500"

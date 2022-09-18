@@ -3,9 +3,9 @@ import Form from "react-bootstrap/Form";
 import { Link, useHistory } from "react-router-dom";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import AlertMessage from "../layout/AlertToken/AlertMessage";
+import LoginGoogle from "./LoginGoogle";
 const LoginForm = () => {
   //alert
   const [alert, setAlert] = useState(null);
@@ -80,13 +80,10 @@ const LoginForm = () => {
         </Link>
       </p>
       <p className="my">Or log in with :</p>
-      <div className="icon">
-        <Link to="/auth/loginGoogle" style={{ marginRight: "6px" }}>
-          <FcGoogle size={30} />
-        </Link>
-        <Link to="">
-          <BsFacebook size={25} />
-        </Link>
+      <div className="icon" style={{ display: "flex" }}>
+        <div style={{ marginRight: "6px", cursor: "pointer" }}>
+          <LoginGoogle />
+        </div>
       </div>
 
       <Link to="forgot_password">Forgot Password ?</Link>

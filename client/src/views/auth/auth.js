@@ -29,7 +29,7 @@ const Auth = ({ authRoute }) => {
       </>
     );
   return (
-    <div className="landing">
+    <div className="landing" style={{ overflow: "hidden" }}>
       <div className="dark-overlay">
         <div className="landing-inner">
           <div></div>

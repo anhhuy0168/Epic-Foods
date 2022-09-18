@@ -30,10 +30,12 @@ class FoodsController {
     }
   }
   //create
-  async createFoods(req, res) {
+  async createFoods(req, res, next) {
     try {
       //upload
       const result = await cloudinary.uploader.upload(req.file.path);
+
+      console.log(result);
       const { name, description, price, category } = req.body;
       const product = await Foods.findOne({ name });
       if (product)
@@ -62,46 +64,67 @@ class FoodsController {
   }
   //update
   async updateFoods(req, res) {
-    const result = await cloudinary.uploader.upload(req.file.path);
-
-    const { name, description, price, productImage, category } = req.body;
-    // Simple validation
-    if (!name && !productImage && !price)
-      return res
-        .status(400)
-        .json({ success: false, message: "Missing information !" });
     try {
-      let updateProduct = {
-        name,
-        description,
-        price,
-        productImage: result.secure_url,
-        category,
-      };
-      const updateProductCondition = { _id: req.params.id };
-      updateProduct = await Foods.findByIdAndUpdate(
-        updateProductCondition,
-        updateProduct,
-        { new: true }
-      );
-      if (!updateProduct)
-        return res.status(401).json({
-          success: false,
-          message: "Product not found",
-        });
+      if (req.file) {
+        const { name, description, price, category, productImage } = req.body;
 
-      res.json({
-        success: true,
-        message: "Excellent progress!",
-        product: updateProduct,
-      });
+        const result = await cloudinary.uploader.upload(req.file.path);
+        let updateProduct = {
+          name,
+          description,
+          price,
+          productImage: result.secure_url,
+          category,
+        };
+        const updateProductCondition = { _id: req.params.id };
+        updateProduct = await Foods.findByIdAndUpdate(
+          updateProductCondition,
+          updateProduct,
+          { new: true }
+        );
+        if (!updateProduct)
+          return res
+            .status(401)
+            .json({ success: false, message: "Product not found" });
+        res.json({
+          success: true,
+          message: "Excellent progress!",
+          product: updateProduct,
+        });
+      } else if (!req.file) {
+        const { name, description, price, category, productImage } = req.body;
+        let updateProduct = {
+          name,
+          description,
+          price,
+          category,
+        };
+        const updateProductCondition = { _id: req.params.id };
+        updateProduct = await Foods.findByIdAndUpdate(
+          updateProductCondition,
+          updateProduct,
+          { new: true }
+        );
+        if (!updateProduct)
+          return res.status(401).json({
+            success: false,
+            message: "Product not found",
+          });
+
+        res.json({
+          success: true,
+          message: "Excellent progress!",
+          product: updateProduct,
+        });
+      }
     } catch (error) {
       console.log(error);
       res
         .status(500)
-        .json({ success: false, message: "Internal server error" });
+        .json({ success: false, message: "Internal server errorrrrr" });
     }
   }
+  // const result = await cloudinary.uploader.upload(req.file.path);
   //delete
   async deleteFoods(req, res) {
     try {
@@ -124,6 +147,5 @@ class FoodsController {
     }
   }
 }
-//upload
 
 module.exports = new FoodsController();

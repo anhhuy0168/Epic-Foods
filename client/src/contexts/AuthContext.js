@@ -17,6 +17,11 @@ const AuthContextProvider = ({ children }) => {
     avatarUser: null,
   });
   const [showAddStaffModal, setShowAddStaffModal] = useState(false);
+  const [showToast, setShowToast] = useState({
+    show: false,
+    message: "",
+    type: null,
+  });
 
   //authenticated user
   const loadUser = async () => {
@@ -26,6 +31,7 @@ const AuthContextProvider = ({ children }) => {
 
     try {
       const response = await axios.get(`${apiUrl}/auth/`);
+      console.log(response);
       if (response.data.success) {
         dispatch({
           type: "SET_AUTH",
@@ -52,7 +58,6 @@ const AuthContextProvider = ({ children }) => {
           LOCAL_STORAGE_TOKEN_NAME,
           response.data.accessToken
         );
-      console.log(response.data.accessToken, "day la token");
       await loadUser();
       return response.data;
     } catch (error) {
@@ -101,22 +106,19 @@ const AuthContextProvider = ({ children }) => {
   //update profile
   const updateProfile = async (updateProfile) => {
     try {
-      // for (var pair of updateProfile.entries()) {
-      //   console.log(pair[0] + ", " + pair[1]);
-      // }
-      console.log(updateProfile);
+      for (var pair of updateProfile.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
       const response = await axios.patch(
-        `${apiUrl}/auth/updateUser/${updateProfile._id}`,
-        updateProfile
-        // { headers: { "Content-Type": "multipart/form-data" } }
+        `${apiUrl}/auth/updateUser/${updateProfile.get("_id")}`,
+        updateProfile,
+        { headers: { "Content-Type": "multipart/form-data" } }
       );
-      console.log(response);
       if (response.data.success) {
         dispatch({ type: UPDATE_PROFILE, payload: response.data.user });
         return response.data;
       }
     } catch (error) {
-      console.log(error);
       return error.response.data
         ? error.response.data
         : { success: false, message: "Server error" };
@@ -146,6 +148,9 @@ const AuthContextProvider = ({ children }) => {
   };
   //context data
   const authContextData = {
+    showToast,
+    setShowToast,
+    loadUser,
     registerStaff,
     updateAvatar,
     updateProfile,

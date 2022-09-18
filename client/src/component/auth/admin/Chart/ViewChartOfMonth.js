@@ -26,7 +26,6 @@ export default function ChartOfMonth() {
     AOS.init({ duration: 600 });
     AOS.refresh();
   });
-  console.log(chartOfMonth);
   return (
     <>
       <h3

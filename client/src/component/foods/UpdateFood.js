@@ -33,13 +33,14 @@ const UpdateFoodModal = () => {
     );
 
   const onChangeNewImage = (event) =>
-    setUpdatedFood({ ...updatedFoods, productImage: event.target.files[0] });
+    setUpdatedFood({ ...updatedFoods, photo: event.target.files[0] });
 
   const closeDialog = () => {
     setUpdatedFood(food);
     setShowUpdateFoodModal(false);
   };
-  const { _id, name, description, price, productImage } = updatedFoods;
+  const { _id, name, description, price, photo, category } = updatedFoods;
+  console.log(photo);
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -47,14 +48,12 @@ const UpdateFoodModal = () => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
-    productImage &&
-      formData.append("productImage", productImage, productImage.name);
     formData.append("category", categoryId);
+    photo && formData.append("productImage", photo, photo.name);
     const { success, message } = await updateFood(formData);
     setShowUpdateFoodModal(false);
     setShowToast({ show: true, message, type: success ? "success" : "danger" });
   };
-
   return (
     <Modal show={showUpdateFoodModal} onHide={closeDialog}>
       <Modal.Header closeButton>
@@ -99,8 +98,8 @@ const UpdateFoodModal = () => {
             <div style={{ fontSize: "20px" }}>Category :</div>
             <DropdownButton
               style={{ marginLeft: "20px" }}
-              title={categoryName}
-              type="file"
+              title={!categoryName ? category.name : categoryName}
+              type="text"
             >
               {listCategory.map((item) => {
                 return (
@@ -129,6 +128,7 @@ const UpdateFoodModal = () => {
                 placeholder="Upload file"
                 name="productImage"
                 onChange={onChangeNewImage}
+                required
               />
             </form>
           </Form.Group>

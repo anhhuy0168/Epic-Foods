@@ -52,7 +52,7 @@ const NavbarMenu = () => {
       <Link to="/editProfile">
         <div
           style={{
-            marginLeft: "20em",
+            marginLeft: "17rem",
             marginRight: "10px",
             position: "relative",
           }}

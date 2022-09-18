@@ -40,7 +40,8 @@ const ViewListOrders = () => {
                     style={{
                       backgroundColor: "#FFCC00",
                       display: "flex",
-                      height: "9rem",
+                      height: "10rem",
+                      maxHeight: "15rem",
                       width: "60%",
                       position: "relative",
                       left: 440,
@@ -126,7 +127,7 @@ const ViewListOrders = () => {
                     key={item._id}
                     style={{
                       maxHeight: "30rem",
-                      height: "9rem",
+                      height: "10rem",
                       boxShadow:
                         "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                       backgroundColor: "#FFCC00",

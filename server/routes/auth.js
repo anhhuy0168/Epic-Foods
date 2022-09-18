@@ -12,7 +12,11 @@ router.get("/", verifyToken, AccountController.checkUser);
 router.post("/activation", AccountController.activateEmail);
 router.post("/forgot", AccountController.forgotPassword);
 router.post("/reset", verifyTokenPassword, AccountController.resetPassword);
-router.patch("/updateUser/:id", AccountController.updateProfile);
+router.patch(
+  "/updateUser/:id",
+  upload.single("avatar"),
+  AccountController.updateProfile
+);
 router.patch(
   "/updateAvatar/:id",
   upload.single("avatar"),
