@@ -5,6 +5,8 @@ import Wrapper from "./MapDeliveryStyle";
 import axios from "axios";
 import { PathLayer } from "@deck.gl/layers";
 import mapboxgl from "mapbox-gl";
+import { AiOutlineCar } from "react-icons/ai";
+
 import { AuthContext } from "../../../src/contexts/AuthContext";
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFubWluaGxlIiwiYSI6ImNsODFlcnJtbDBmZWczdnQ5c20wOWdvdzgifQ.zIQ4DC5dVzV0v5NQR9O6eQ";
@@ -82,11 +84,15 @@ const MapDelivery = ({ customerAddress }) => {
 
   return (
     <>
-      <p style={{ position: "relative", top: -237 }}>
+      <div style={{ position: "relative", top: -210, right: 160 }}>
+        <AiOutlineCar size={30} />
+      </div>
+      <p style={{ position: "relative", top: -237, right: 110 }}>
         Distance {distance && distance}m / in{" "}
         {duration && Math.floor(duration / 60)} mins
       </p>
       <Wrapper>
+        <div style={{ margin: "0 0 0 0" }}></div>
         <DeckGL
           initialViewState={{
             longitude: dirCoor ? dirCoor[7][0] : -122.481132,

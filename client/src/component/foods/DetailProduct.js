@@ -70,8 +70,9 @@ const DetailProduct = () => {
             src={oneFood.productImage}
             alt=""
             style={{
-              width: "30rem",
-              height: "32rem",
+              width: "36rem",
+              borderRadius: "20px",
+              height: "26rem",
             }}
           />
           <div>
@@ -83,8 +84,9 @@ const DetailProduct = () => {
             <div
               style={{
                 maxWidth: "30rem",
-                marginTop: "5rem",
+                marginTop: "20px",
                 position: "relative",
+                padding: "0 20px 0 0",
                 left: 50,
               }}
             >
@@ -98,7 +100,7 @@ const DetailProduct = () => {
             style={{
               marginTop: "23rem",
               position: "absolute",
-              right: 430,
+              right: 300,
               width: "10rem",
               color: "red",
               fontSize: "30px",
@@ -198,8 +200,9 @@ const DetailProduct = () => {
             src={oneFood.productImage}
             alt=""
             style={{
-              width: "30rem",
-              height: "32rem",
+              width: "36rem",
+              borderRadius: "20px",
+              height: "26rem",
             }}
           />
           <div>
@@ -326,7 +329,7 @@ const DetailProduct = () => {
           <img
             src={oneFood.productImage}
             alt=""
-            style={{ width: "30rem", height: "32rem", borderRadius: "20px" }}
+            style={{ width: "39rem", borderRadius: "20px", height: "29rem" }}
           />
           <div>
             <div style={{ fontSize: "40px", margin: "-18px 0 0 100px " }}>
@@ -335,7 +338,7 @@ const DetailProduct = () => {
             <div
               style={{
                 maxWidth: "30rem",
-                marginTop: "2rem",
+                marginTop: "1rem",
                 position: "relative",
                 left: 50,
                 verticalAlign: "top",
@@ -350,9 +353,9 @@ const DetailProduct = () => {
 
           <div
             style={{
-              marginTop: "23rem",
+              marginTop: "20rem",
               position: "absolute",
-              right: 600,
+              right: 400,
               width: "10rem",
               color: "red",
               fontSize: "30px",
@@ -364,8 +367,8 @@ const DetailProduct = () => {
         <BsCart3
           size={40}
           style={{
-            marginLeft: "750px",
-            marginTop: "-140px",
+            marginLeft: "950px",
+            marginTop: "-130px",
             cursor: "pointer",
           }}
           onClick={() => addProductToCart(oneFood._id)}
@@ -377,7 +380,7 @@ const DetailProduct = () => {
         <Link to={`/buy_food/${params.id}`} style={{ marginLeft: "6.5rem" }}>
           <Button
             variant="success"
-            style={{ marginLeft: "45rem", marginTop: "-11.8rem" }}
+            style={{ marginLeft: "57rem", marginTop: "-11.2rem" }}
           >
             Buy Now
           </Button>

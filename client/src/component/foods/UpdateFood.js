@@ -40,7 +40,7 @@ const UpdateFoodModal = () => {
     setShowUpdateFoodModal(false);
   };
   const { _id, name, description, price, photo, category } = updatedFoods;
-  console.log(photo);
+  console.log(category);
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -48,7 +48,8 @@ const UpdateFoodModal = () => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
-    formData.append("category", categoryId);
+    category &&
+      formData.append("category", !categoryId ? category._id : categoryId);
     photo && formData.append("productImage", photo, photo.name);
     const { success, message } = await updateFood(formData);
     setShowUpdateFoodModal(false);

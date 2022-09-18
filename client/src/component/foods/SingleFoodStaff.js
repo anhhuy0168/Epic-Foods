@@ -74,9 +74,10 @@ const SingleFoodStaff = ({ data }) => {
                 />
                 <Card.Title
                   style={{
-                    marginLeft: "60px",
+                    textAlign: "center",
                     marginTop: "20px",
                     maxWidth: "15rem",
+                    padding: "0 0 0 30px",
                   }}
                 >
                   {item.name}
