@@ -91,8 +91,26 @@ const DetailProduct = () => {
               }}
             >
               {oneFood.description}
-              <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category?.name}
+              <div
+                style={{
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  display: "flex",
+                }}
+              >
+                Category:{" "}
+                <p
+                  style={{
+                    margin: "-5px 0 0 10px",
+                    backgroundColor: "yellow",
+                    borderRadius: "20px",
+                    height: "35px",
+                    width: "60px",
+                    padding: "5px 20px 0 10px",
+                  }}
+                >
+                  {category?.name}
+                </p>
               </div>
             </div>
           </div>
@@ -206,7 +224,7 @@ const DetailProduct = () => {
             }}
           />
           <div>
-            <div style={{ fontSize: "40px", margin: "-18px 0 0 100px " }}>
+            <div style={{ fontSize: "40px", margin: "-18px 0 0 150px " }}>
               {oneFood.name}
             </div>
             <div></div>
@@ -214,14 +232,32 @@ const DetailProduct = () => {
             <div
               style={{
                 maxWidth: "30rem",
-                marginTop: "5rem",
+                marginTop: "1rem",
                 position: "relative",
                 left: 50,
               }}
             >
               {oneFood.description}
-              <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category?.name}
+              <div
+                style={{
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  display: "flex",
+                }}
+              >
+                Category:{" "}
+                <p
+                  style={{
+                    margin: "-5px 0 0 10px",
+                    backgroundColor: "yellow",
+                    borderRadius: "20px",
+                    height: "35px",
+                    width: "60px",
+                    padding: "5px 20px 0 10px",
+                  }}
+                >
+                  {category?.name}
+                </p>
               </div>
             </div>
           </div>
@@ -229,7 +265,8 @@ const DetailProduct = () => {
             style={{
               marginTop: "23rem",
               position: "absolute",
-              right: 430,
+              right: 250,
+              top: 90,
               width: "10rem",
               color: "red",
               fontSize: "30px",
@@ -345,8 +382,26 @@ const DetailProduct = () => {
               }}
             >
               {oneFood.description}
-              <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category?.name}
+              <div
+                style={{
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  display: "flex",
+                }}
+              >
+                Category:{" "}
+                <p
+                  style={{
+                    margin: "-5px 0 0 10px",
+                    backgroundColor: "yellow",
+                    borderRadius: "20px",
+                    height: "35px",
+                    width: "60px",
+                    padding: "5px 20px 0 10px",
+                  }}
+                >
+                  {category?.name}
+                </p>
               </div>
             </div>
           </div>

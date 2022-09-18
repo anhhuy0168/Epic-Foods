@@ -8,6 +8,7 @@ const DeleteProductCart = (_id, cartId) => {
   return (
     <>
       <Button
+        style={{ marginTop: "40px" }}
         className="post-button"
         onClick={deleteProductCart.bind(this, _id.cartId)}
       >

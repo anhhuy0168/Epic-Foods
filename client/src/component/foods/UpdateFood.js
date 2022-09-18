@@ -97,7 +97,9 @@ const UpdateFoodModal = () => {
           </Form.Group>
           <Form.Group style={{ display: "flex", marginTop: "3rem" }}>
             <div style={{ fontSize: "20px" }}>Category :</div>
+            <div></div>
             <DropdownButton
+              variant="warning"
               style={{ marginLeft: "20px" }}
               title={!categoryName ? category.name : categoryName}
               type="text"
@@ -138,7 +140,7 @@ const UpdateFoodModal = () => {
           <Button variant="secondary" onClick={closeDialog}>
             Cancel
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="success" type="submit">
             Done
           </Button>
         </Modal.Footer>

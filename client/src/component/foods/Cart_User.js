@@ -74,17 +74,16 @@ const Cart_User = () => {
                     variant="top"
                     style={{
                       marginLeft: "20px",
+                      marginTop: "20px",
                       borderRadius: "10px 10px 10px 10px",
-                      width: "60px",
-                      height: "63px",
+                      width: "80px",
+                      height: "70px",
                     }}
-                    height={300}
-                    width={70}
                     src={item.product.productImage}
                   />
                 </td>
                 <td>
-                  <div className="amount">
+                  <div className="amount" style={{ marginTop: "40px" }}>
                     <button
                       style={{
                         borderRadius: "10px",
