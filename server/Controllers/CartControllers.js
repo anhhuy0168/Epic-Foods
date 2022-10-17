@@ -16,13 +16,12 @@ class CartController {
   }
   async addToCart(req, res) {
     const { product, users_id } = req.body;
-    // const infor = await Cart.find({ product: product });
-    // console.log(infor);
-    // if (infor) {
-    //   return res
-    //     .status(400)
-    //     .json({ success: false, message: "Product has exist" });
-    // }
+    const infor = await Cart.find({ product: ObjectId(product) });
+    if (infor.length !== 0) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Product has exist" });
+    }
 
     try {
       const cartUser = await Cart.find({ user_id: req.userId });

@@ -54,6 +54,7 @@ const NavbarMenu = () => {
           className="mr-3"
         />
       </Link>
+      <div style={{ fontWeight: 400, fontFamily: "cursive" }}>Epic Foods</div>
       <form className="d-none d-md-flex input-group w-auto my-auto">
         <SearchProduct placeholder="Search..." data={foods}></SearchProduct>
       </form>

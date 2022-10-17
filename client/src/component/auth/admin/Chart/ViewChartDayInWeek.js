@@ -38,15 +38,17 @@ export default function ChartOfWeek() {
   return (
     <>
       <NavbarAdmin />
-      <ViewTotalOrderSale />
+      {/* <ViewTotalOrderSale /> */}
       <h3
         data-aos="zoom-in"
         data-aos-delay="500"
         style={{
           position: "relative",
-          margin: "0px 0 0 45rem",
+          margin: "0px 0 0 38rem",
           top: 80,
-          fontFamily: "arial",
+          fontWeight: 500,
+          fontSize: "50px",
+          fontFamily: "monospace",
         }}
       >
         Total money in a week

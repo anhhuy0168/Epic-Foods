@@ -34,7 +34,7 @@ export const NavbarStaff = ({ total }) => {
           position: "fixed",
           top: 0,
           backgroundColor: "yellow",
-          borderRadius: "0px 20px 20px 0px",
+          borderRadius: "0px 0px 0px 0px",
           height: "50rem",
         }}
         id="sidebarMenu"

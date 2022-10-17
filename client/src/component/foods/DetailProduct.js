@@ -45,7 +45,6 @@ const DetailProduct = () => {
   useEffect(() => getOneFoods(params.id), []);
   useEffect(() => getComment(params.id), []);
   useEffect(() => setCount(comments), [comments]);
-  console.log(count);
   const result = count.length;
   const addProductToCart = (value) => {
     const newProduct = {
@@ -54,9 +53,10 @@ const DetailProduct = () => {
     };
 
     addProductCart(newProduct);
-    toast.success("Add Product Successfully");
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   let body = null;
   if (role === "staff") {
     body = (
@@ -357,7 +357,6 @@ const DetailProduct = () => {
   if (role === "user") {
     body = (
       <>
-        <Toaster position="top-right" reverseOrder={false} />
         <Navbar />
         <div
           className="detail"
