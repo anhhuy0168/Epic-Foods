@@ -11,11 +11,17 @@ import OrderUserHistory from "../auth/OrderUserHistory";
 import Payment from "../auth/Payment";
 import TotalCart from "./TotalCart";
 import NavbarMenu from "../layout/Navbar/Navbar";
+import { AuthContext } from "../../contexts/AuthContext";
+import MapBuyProductCart from "./MapBuyProductCart";
 const Cart_User = () => {
   const history = useHistory();
-
   const [total, setTotal] = useState(0);
   const [cartProduct, setCartProduct] = useState();
+  const {
+    authState: {
+      user: { username, phoneNumber, address },
+    },
+  } = useContext(AuthContext);
   const {
     cartState: { cart },
     getCart,
@@ -50,12 +56,11 @@ const Cart_User = () => {
   return (
     <>
       <NavbarMenu />
-      <Table style={{ marginTop: "5rem" }}>
+      <Table style={{ marginTop: "5rem", marginBottom: "5rem" }}>
         <thead>
           <tr>
             <th>Name Product</th>
             <th>Price</th>
-            <th>Description</th>
             <th>Image Product</th>
             <th>Quantity</th>
             <th>Action</th>
@@ -67,7 +72,6 @@ const Cart_User = () => {
               <tr key={item.product._id}>
                 <td>{item.product.name}</td>
                 <td>{item.product.price}$</td>
-                <td style={{ width: "44rem" }}>{item.product.description}</td>
                 <td>
                   {" "}
                   <Card.Img
@@ -113,12 +117,18 @@ const Cart_User = () => {
           })}
         </tbody>
       </Table>
-      <div className="total" style={{ textAlign: "center" }}>
+      <div style={{ marginTop: "20rem", marginLeft: "25rem" }}>
+        <MapBuyProductCart customerAddress={address} />
+      </div>
+
+      <div className="total" style={{ textAlign: "center", marginTop: "2rem" }}>
         <h3>Total: $ {total}</h3>
         <Payment total={total} />
       </div>
-
-      <OrderUserHistory />
+      <div style={{ marginTop: "10rem" }}>
+        {" "}
+        <OrderUserHistory />
+      </div>
     </>
   );
 };
