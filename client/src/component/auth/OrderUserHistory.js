@@ -66,7 +66,7 @@ const OrderUserHistory = () => {
                       margin: " 0 0 10px 0rem",
                       borderRadius: "20px",
                       padding: "10px 0 10px 0",
-                      height: "9rem",
+                      height: "10rem",
                     }}
                   >
                     <div
@@ -138,7 +138,7 @@ const OrderUserHistory = () => {
                       margin: " 0 0 10px 0rem",
                       borderRadius: "20px",
                       padding: "10px 0 10px 0",
-                      height: "9rem",
+                      height: "10rem",
                     }}
                   >
                     <div

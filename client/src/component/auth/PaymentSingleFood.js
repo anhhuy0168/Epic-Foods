@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { CartContext } from "../../contexts/CartContext";
 import { AuthContext } from "../../contexts/AuthContext";
+import Toast from "react-bootstrap/Toast";
+import toast, { Toaster } from "react-hot-toast";
 const PaymentSingleFood = (total) => {
   console.log(total.total);
   const {
@@ -19,7 +21,10 @@ const PaymentSingleFood = (total) => {
       body: JSON.stringify({ token, amount, user, price, product }),
     })
       .then((_) => {
-        window.alert("Transaction Successful.");
+        toast.success("Buy Successfully", {
+          duration: 4000,
+          position: "top-right",
+        });
       })
       .catch((_) => window.alert("Transaction Failed."));
   };

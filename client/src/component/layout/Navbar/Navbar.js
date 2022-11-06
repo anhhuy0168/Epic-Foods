@@ -45,7 +45,16 @@ const NavbarMenu = () => {
           <i className="fas fa-bars"></i>
         </button>
       </div>
-      <img src={Logo} alt="Logo" width="50px" height="50px" className="mr-3" />
+      <Link to="/homepage">
+        <img
+          src={Logo}
+          alt="Logo"
+          width="50px"
+          height="50px"
+          className="mr-3"
+        />
+      </Link>
+      <div style={{ fontWeight: 400, fontFamily: "cursive" }}>Epic Foods</div>
       <form className="d-none d-md-flex input-group w-auto my-auto">
         <SearchProduct placeholder="Search..." data={foods}></SearchProduct>
       </form>

@@ -60,19 +60,20 @@ function ResetPassword() {
       style={{
         marginLeft: "35%",
         width: "30%",
+
         border: "1px",
-        borderColor: "black",
-        borderStyle: "solid",
+        boxShadow:
+          "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
         borderRadius: "10px",
-        backgroundColor: "rgb(0, 255, 136)",
       }}
     >
       <h2
         style={{
           color: "black",
           fontSize: "25px",
-          margin: "40px 0 20px 0",
+          margin: "90px 0 20px 0",
           marginLeft: "20px",
+          paddingTop: "20px",
         }}
       >
         Reset Your Password
@@ -86,7 +87,8 @@ function ResetPassword() {
           style={{
             margin: "20px 0 20px 210px",
             width: "60%",
-            borderRadius: "10px",
+            borderRadius: "5px",
+            height: "40px",
           }}
           placeholder="Password"
           className="input"
@@ -101,7 +103,8 @@ function ResetPassword() {
           style={{
             margin: "20px 0 20px 210px",
             width: "60%",
-            borderRadius: "10px",
+            borderRadius: "5px",
+            height: "40px",
           }}
           placeholder="Confirm Password"
           className="input"
@@ -119,6 +122,7 @@ function ResetPassword() {
           backgroundColor: "yellow",
           marginLeft: "110px",
           width: "50%",
+          height: "40px",
         }}
         className="buttonReset"
         onClick={handleResetPass}

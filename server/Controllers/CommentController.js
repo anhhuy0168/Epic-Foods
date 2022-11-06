@@ -1,9 +1,11 @@
 const Comment = require("../Models/Comment");
-
+const { ObjectId } = require("mongodb");
 class CommentController {
   async getComment(req, res) {
+    const id = req.params.id;
     try {
-      const comment = await Comment.find({ product: req.params.id }).sort([
+      const y = ObjectId(id);
+      const comment = await Comment.find({ product: y }).sort([
         ["createdAt", -1],
       ]);
       res.json({ success: true, comment });

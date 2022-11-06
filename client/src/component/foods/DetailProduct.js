@@ -45,7 +45,6 @@ const DetailProduct = () => {
   useEffect(() => getOneFoods(params.id), []);
   useEffect(() => getComment(params.id), []);
   useEffect(() => setCount(comments), [comments]);
-  console.log(count);
   const result = count.length;
   const addProductToCart = (value) => {
     const newProduct = {
@@ -54,9 +53,10 @@ const DetailProduct = () => {
     };
 
     addProductCart(newProduct);
-    toast.success("Add Product Successfully");
   };
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   let body = null;
   if (role === "staff") {
     body = (
@@ -70,8 +70,9 @@ const DetailProduct = () => {
             src={oneFood.productImage}
             alt=""
             style={{
-              width: "30rem",
-              height: "32rem",
+              width: "36rem",
+              borderRadius: "20px",
+              height: "26rem",
             }}
           />
           <div>
@@ -83,14 +84,33 @@ const DetailProduct = () => {
             <div
               style={{
                 maxWidth: "30rem",
-                marginTop: "5rem",
+                marginTop: "20px",
                 position: "relative",
+                padding: "0 20px 0 0",
                 left: 50,
               }}
             >
               {oneFood.description}
-              <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category?.name}
+              <div
+                style={{
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  display: "flex",
+                }}
+              >
+                Category:{" "}
+                <p
+                  style={{
+                    margin: "-5px 0 0 10px",
+                    backgroundColor: "yellow",
+                    borderRadius: "20px",
+                    height: "35px",
+                    width: "60px",
+                    padding: "5px 20px 0 10px",
+                  }}
+                >
+                  {category?.name}
+                </p>
               </div>
             </div>
           </div>
@@ -98,7 +118,7 @@ const DetailProduct = () => {
             style={{
               marginTop: "23rem",
               position: "absolute",
-              right: 430,
+              right: 300,
               width: "10rem",
               color: "red",
               fontSize: "30px",
@@ -198,12 +218,13 @@ const DetailProduct = () => {
             src={oneFood.productImage}
             alt=""
             style={{
-              width: "30rem",
-              height: "32rem",
+              width: "36rem",
+              borderRadius: "20px",
+              height: "26rem",
             }}
           />
           <div>
-            <div style={{ fontSize: "40px", margin: "-18px 0 0 100px " }}>
+            <div style={{ fontSize: "40px", margin: "-18px 0 0 150px " }}>
               {oneFood.name}
             </div>
             <div></div>
@@ -211,14 +232,32 @@ const DetailProduct = () => {
             <div
               style={{
                 maxWidth: "30rem",
-                marginTop: "5rem",
+                marginTop: "1rem",
                 position: "relative",
                 left: 50,
               }}
             >
               {oneFood.description}
-              <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category?.name}
+              <div
+                style={{
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  display: "flex",
+                }}
+              >
+                Category:{" "}
+                <p
+                  style={{
+                    margin: "-5px 0 0 10px",
+                    backgroundColor: "yellow",
+                    borderRadius: "20px",
+                    height: "35px",
+                    width: "60px",
+                    padding: "5px 20px 0 10px",
+                  }}
+                >
+                  {category?.name}
+                </p>
               </div>
             </div>
           </div>
@@ -226,7 +265,8 @@ const DetailProduct = () => {
             style={{
               marginTop: "23rem",
               position: "absolute",
-              right: 430,
+              right: 250,
+              top: 90,
               width: "10rem",
               color: "red",
               fontSize: "30px",
@@ -317,7 +357,6 @@ const DetailProduct = () => {
   if (role === "user") {
     body = (
       <>
-        <Toaster position="top-right" reverseOrder={false} />
         <Navbar />
         <div
           className="detail"
@@ -326,7 +365,7 @@ const DetailProduct = () => {
           <img
             src={oneFood.productImage}
             alt=""
-            style={{ width: "30rem", height: "32rem", borderRadius: "20px" }}
+            style={{ width: "39rem", borderRadius: "20px", height: "29rem" }}
           />
           <div>
             <div style={{ fontSize: "40px", margin: "-18px 0 0 100px " }}>
@@ -335,24 +374,42 @@ const DetailProduct = () => {
             <div
               style={{
                 maxWidth: "30rem",
-                marginTop: "2rem",
+                marginTop: "1rem",
                 position: "relative",
                 left: 50,
                 verticalAlign: "top",
               }}
             >
               {oneFood.description}
-              <div style={{ marginTop: "20px", fontWeight: "600" }}>
-                Category: {category?.name}
+              <div
+                style={{
+                  marginTop: "20px",
+                  fontWeight: "600",
+                  display: "flex",
+                }}
+              >
+                Category:{" "}
+                <p
+                  style={{
+                    margin: "-5px 0 0 10px",
+                    backgroundColor: "yellow",
+                    borderRadius: "20px",
+                    height: "35px",
+                    width: "60px",
+                    padding: "5px 20px 0 10px",
+                  }}
+                >
+                  {category?.name}
+                </p>
               </div>
             </div>
           </div>
 
           <div
             style={{
-              marginTop: "23rem",
+              marginTop: "20rem",
               position: "absolute",
-              right: 600,
+              right: 400,
               width: "10rem",
               color: "red",
               fontSize: "30px",
@@ -364,8 +421,8 @@ const DetailProduct = () => {
         <BsCart3
           size={40}
           style={{
-            marginLeft: "750px",
-            marginTop: "-140px",
+            marginLeft: "950px",
+            marginTop: "-130px",
             cursor: "pointer",
           }}
           onClick={() => addProductToCart(oneFood._id)}
@@ -377,7 +434,7 @@ const DetailProduct = () => {
         <Link to={`/buy_food/${params.id}`} style={{ marginLeft: "6.5rem" }}>
           <Button
             variant="success"
-            style={{ marginLeft: "45rem", marginTop: "-11.8rem" }}
+            style={{ marginLeft: "57rem", marginTop: "-11.2rem" }}
           >
             Buy Now
           </Button>

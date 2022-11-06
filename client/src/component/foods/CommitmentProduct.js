@@ -73,7 +73,9 @@ const CommitmentProduct = () => {
   if (role === "admin" || role === "staff") {
     body = (
       <>
-        <div style={{ padding: " 30px 10rem 30px 20rem" }}>
+        <div
+          style={{ padding: " 30px 10rem 30px 20rem", margin: "90px 0 0 0" }}
+        >
           <div style={{ fontWeight: 700 }}>PRODUCT COMMITMENT :</div>
           <div>
             - Young and dynamic team: This spirit has been reflected in our

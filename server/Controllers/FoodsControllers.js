@@ -1,6 +1,7 @@
 const Foods = require("../Models/Product");
 const multer = require("multer");
 const cloudinary = require("../utils/cloudinary");
+const { ObjectId } = require("mongodb");
 class FoodsController {
   //get 1
   async getOneFood(req, res) {
@@ -64,17 +65,18 @@ class FoodsController {
   }
   //update
   async updateFoods(req, res) {
+    console.log(req.body);
     try {
       if (req.file) {
         const { name, description, price, category, productImage } = req.body;
-
+        const y = ObjectId(category);
         const result = await cloudinary.uploader.upload(req.file.path);
         let updateProduct = {
           name,
           description,
           price,
           productImage: result.secure_url,
-          category,
+          category: y,
         };
         const updateProductCondition = { _id: req.params.id };
         updateProduct = await Foods.findByIdAndUpdate(
@@ -93,11 +95,12 @@ class FoodsController {
         });
       } else if (!req.file) {
         const { name, description, price, category, productImage } = req.body;
+        const y = ObjectId(category);
         let updateProduct = {
           name,
           description,
           price,
-          category,
+          category: y,
         };
         const updateProductCondition = { _id: req.params.id };
         updateProduct = await Foods.findByIdAndUpdate(

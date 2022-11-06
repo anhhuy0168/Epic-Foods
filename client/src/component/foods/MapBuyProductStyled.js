@@ -1,9 +1,7 @@
 import styled from "styled-components";
 const Wrapper = styled.section`
-  position: absolute;
-  bottom: 41rem;
-  left: 6.5rem;
-  top: 47rem;
+  position: relative;
+  top: -25rem;
   .mapboxgl-ctrl-bottom-right {
     display: none;
   }

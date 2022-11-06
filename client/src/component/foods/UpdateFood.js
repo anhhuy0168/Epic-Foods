@@ -40,7 +40,7 @@ const UpdateFoodModal = () => {
     setShowUpdateFoodModal(false);
   };
   const { _id, name, description, price, photo, category } = updatedFoods;
-  console.log(photo);
+  console.log(category);
   const onSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -48,7 +48,8 @@ const UpdateFoodModal = () => {
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
-    formData.append("category", categoryId);
+    category &&
+      formData.append("category", !categoryId ? category._id : categoryId);
     photo && formData.append("productImage", photo, photo.name);
     const { success, message } = await updateFood(formData);
     setShowUpdateFoodModal(false);
@@ -96,7 +97,9 @@ const UpdateFoodModal = () => {
           </Form.Group>
           <Form.Group style={{ display: "flex", marginTop: "3rem" }}>
             <div style={{ fontSize: "20px" }}>Category :</div>
+            <div></div>
             <DropdownButton
+              variant="warning"
               style={{ marginLeft: "20px" }}
               title={!categoryName ? category.name : categoryName}
               type="text"
@@ -137,7 +140,7 @@ const UpdateFoodModal = () => {
           <Button variant="secondary" onClick={closeDialog}>
             Cancel
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="success" type="submit">
             Done
           </Button>
         </Modal.Footer>

@@ -12,6 +12,7 @@ import Logo from "../../assets/logox2.png";
 import BeeHappy from "../../assets/happyBee.png";
 import { AuthContext } from "../../contexts/AuthContext";
 import MapDelivery from "./MapDelivery";
+import { BiHome } from "react-icons/bi";
 const BuyProduct = () => {
   const params = useParams();
   const [total, setTotal] = useState(0);
@@ -59,10 +60,10 @@ const BuyProduct = () => {
       <NavbarMenu />
       <div
         style={{
-          width: "50%",
+          width: "60%",
           position: "relative",
           backgroundColor: "#FFFF66",
-          left: 400,
+          left: 300,
           top: 150,
           padding: "2rem 0 0 0 ",
           boxShadow:
@@ -82,61 +83,75 @@ const BuyProduct = () => {
         <div style={{ textAlign: "center", fontSize: "30px" }}>
           {oneFood.name}
         </div>
-        <Card.Img
-          variant="top"
-          style={{
-            borderRadius: "20px 20px 20px 20px",
-            width: "16.9rem",
-            height: "18rem",
-            margin: "20px 0 20px 15rem",
-          }}
-          src={oneFood.productImage}
-        />
-        <div
-          style={{ color: "#FF0000", fontSize: "25px", textAlign: "center" }}
-        >
-          {" "}
-          Price :{oneFood.price} $
+        <div style={{ display: "flex" }}>
+          <Card.Img
+            variant="top"
+            style={{
+              borderRadius: "20px 20px 20px 20px",
+              width: "27rem",
+              height: "17rem",
+              margin: "20px 0 20px 5rem",
+            }}
+            src={oneFood.productImage}
+          />
+          <div
+            className="amount"
+            style={{ position: "relative", top: 100, right: -160 }}
+          >
+            <button
+              style={{
+                borderRadius: "5px",
+                width: "30px",
+                height: "30px",
+                backgroundColor: "#FFFF99",
+                margin: "0 10px 0 0",
+              }}
+              onClick={() => decrement()}
+            >
+              {" "}
+              -{" "}
+            </button>
+            <span style={{ fontSize: "25px", padding: "0px" }}>
+              {amountProduct}
+            </span>
+            <button
+              style={{
+                borderRadius: "5px",
+                width: "30px",
+                height: "30px",
+                backgroundColor: "#FFFF99",
+                margin: "0 0 0 10px",
+              }}
+              onClick={() => increment()}
+            >
+              {" "}
+              +{" "}
+            </button>
+          </div>
+          <div
+            style={{
+              color: "#FF0000",
+              fontSize: "25px",
+              position: "relative",
+              right: 20,
+              top: 160,
+            }}
+          >
+            Total Price Order :{oneFood.price * amountProduct} $
+          </div>
         </div>
 
-        <div className="amount">
-          <button
-            style={{
-              borderRadius: "5px",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#FFFF99",
-              margin: "10px 10px 0 21rem",
-            }}
-            onClick={() => decrement()}
-          >
-            {" "}
-            -{" "}
-          </button>
-          <span style={{ fontSize: "25px" }}>{amountProduct}</span>
-          <button
-            style={{
-              borderRadius: "5px",
-              width: "30px",
-              height: "30px",
-              backgroundColor: "#FFFF99",
-              margin: "0 0 0 10px",
-            }}
-            onClick={() => increment()}
-          >
-            {" "}
-            +{" "}
-          </button>
-        </div>
-
-        <div style={{ margin: "20px 0 0 15rem", maxWidth: "20rem" }}>
-          <div style={{ margin: "0 0 30px 70px", fontWeight: 500 }}>
+        <div style={{ margin: "0px 0 0 5rem", maxWidth: "20rem" }}>
+          <div style={{ margin: "0 0 30px 0px", fontWeight: 500 }}>
             Your Information.
-            <div style={{ fontSize: "12px", margin: "0 0 0 10px" }}>
+            <div style={{ fontSize: "12px", margin: "0 0 0 0px" }}>
               Change? <Link to="/editProfile">Click here</Link>
             </div>
           </div>
-          <div style={{ fontWeight: 500 }}>
+          <div style={{ position: "relative", top: 0 }}>
+            <BiHome size={30} />
+          </div>
+          <div style={{ fontWeight: 500, margin: "-30px 0 0 3rem" }}>
             <div>Name : {username}</div>
             <div>Phone Number : {phoneNumber}</div>
             <div>Transport to : {address}</div>
@@ -145,23 +160,14 @@ const BuyProduct = () => {
         <div style={{ padding: "15rem" }}>
           <MapDelivery customerAddress={address} />
         </div>
-
-        <div
-          style={{
-            color: "#FF0000",
-            fontSize: "25px",
-            textAlign: "center",
-            margin: "40px 0 0 0",
-          }}
-        >
-          Total Price Order :{oneFood.price * amountProduct} $
+        <div style={{ margin: "-20px 0 0 50px" }}>
+          <PaymentSingleFood
+            product={oneFood}
+            total={oneFood.price * amountProduct}
+            number={amountProduct}
+          />
         </div>
 
-        <PaymentSingleFood
-          product={oneFood}
-          total={oneFood.price * amountProduct}
-          number={amountProduct}
-        />
         <div style={{ fontSize: "15px", margin: "0 0 0 18rem" }}>
           Thanks for buying !{" "}
           <Card.Img

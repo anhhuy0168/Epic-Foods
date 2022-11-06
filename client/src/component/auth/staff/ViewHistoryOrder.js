@@ -42,7 +42,7 @@ const ViewHistoryOrder = () => {
         }}
       >
         <Form.Control
-          placeholder="Search history orders..."
+          placeholder="Search by username..."
           style={{ position: "relative", left: 420, width: "17rem", top: 19 }}
           onChange={(e) => setQuery(e.target.value)}
         />
@@ -63,7 +63,7 @@ const ViewHistoryOrder = () => {
                   className="singleProduct"
                   key={item._id}
                   style={{
-                    height: "9rem",
+                    height: "10rem",
 
                     boxShadow:
                       "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
@@ -139,7 +139,7 @@ const ViewHistoryOrder = () => {
                   key={item._id}
                   style={{
                     maxHeight: "30rem",
-                    height: "9rem",
+                    height: "10rem",
                     boxShadow:
                       "0 2px 5px 0 rgb(0 0 0 / 16%), 0 2px 20px 0 rgb(0 0 0 / 20%)",
                     backgroundColor: "#CCCCCC",

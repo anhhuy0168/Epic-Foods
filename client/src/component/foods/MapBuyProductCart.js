@@ -1,17 +1,16 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import DeckGL from "deck.gl";
 import { Map, Marker } from "react-map-gl";
-import Wrapper from "./MapDeliveryStyle";
+import Wrapper from "./MapBuyProductStyled";
 import axios from "axios";
 import { PathLayer } from "@deck.gl/layers";
 import mapboxgl from "mapbox-gl";
 import { AiOutlineCar } from "react-icons/ai";
-
 import { AuthContext } from "../../../src/contexts/AuthContext";
 mapboxgl.accessToken =
   "pk.eyJ1IjoidmFubWluaGxlIiwiYSI6ImNsODFlcnJtbDBmZWczdnQ5c20wOWdvdzgifQ.zIQ4DC5dVzV0v5NQR9O6eQ";
 
-const MapDelivery = ({ customerAddress }) => {
+const MapBuyProductCart = ({ customerAddress }) => {
   const restaurantAddress =
     "553000, Hòa Cường Bắc, Quận Cẩm Lệ, Da Nang, Vietnam";
 
@@ -20,7 +19,11 @@ const MapDelivery = ({ customerAddress }) => {
   const [dirCoor, setDirCoor] = useState(null);
   const [distance, setDistance] = useState(null);
   const [duration, setDuration] = useState(null);
-
+  const {
+    authState: {
+      user: { username, phoneNumber, address },
+    },
+  } = useContext(AuthContext);
   const data = [
     {
       name: "shipping-route",
@@ -84,34 +87,50 @@ const MapDelivery = ({ customerAddress }) => {
 
   return (
     <>
-      <div style={{ position: "relative", top: -210, right: 160 }}>
-        <AiOutlineCar size={30} />
-      </div>
-      <p style={{ position: "relative", top: -237, right: 110 }}>
-        Distance {distance && distance}m / in{" "}
-        {duration && Math.floor(duration / 60)} mins
-      </p>
-      <Wrapper>
-        <div style={{ margin: "0 0 0 0" }}></div>
-        <DeckGL
-          initialViewState={{
-            longitude: dirCoor ? dirCoor[7][0] : -122.481132,
-            latitude: dirCoor ? dirCoor[7][1] : 37.698203,
-            zoom: 12.5,
+      <div style={{ marginRight: "30rem" }}>
+        <div style={{ position: "relative", top: -210, right: 320 }}>
+          <AiOutlineCar size={30} />
+        </div>
+        <p style={{ position: "relative", top: -237, right: 270 }}>
+          Distance {distance && distance}m / in{" "}
+          {duration && Math.floor(duration / 60)} mins
+        </p>
+        <div
+          style={{
+            fontWeight: 500,
+            position: "relative",
+            right: 270,
+            top: -240,
           }}
-          height="400px"
-          width="700px"
-          controller={true}
-          layers={layer} // layers here!
         >
-          <Map
-            mapStyle="mapbox://styles/mapbox/streets-v11"
-            mapboxApiAccessToken={mapboxgl.accessToken}
-          ></Map>
-        </DeckGL>
+          <div>Name : {username}</div>
+          <div>Phone Number : {phoneNumber}</div>
+          <div style={{ maxWidth: "15rem" }}>Transport to : {address}</div>
+        </div>
+      </div>
+
+      <Wrapper>
+        <div style={{ margin: "0 0 0 0" }}>
+          <DeckGL
+            initialViewState={{
+              longitude: dirCoor ? dirCoor[7][0] : -122.481132,
+              latitude: dirCoor ? dirCoor[7][1] : 37.698203,
+              zoom: 12.5,
+            }}
+            height="400px"
+            width="700px"
+            controller={true}
+            layers={layer} // layers here!
+          >
+            <Map
+              mapStyle="mapbox://styles/mapbox/streets-v11"
+              mapboxApiAccessToken={mapboxgl.accessToken}
+            ></Map>
+          </DeckGL>
+        </div>
       </Wrapper>
     </>
   );
 };
 
-export default MapDelivery;
+export default MapBuyProductCart;
